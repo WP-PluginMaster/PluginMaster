@@ -24,6 +24,7 @@
 <li> If you want to use Vue JS run <code>"npm install"</code> . After installing required node modules run  <code>npm run dev</code> for building existing vue JS demo project. </li>
 <li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.  </li>
 <li> Active Plugin from WordPress Plugin Page. A demo project will setup with <code>DemoPlugin</code> side Menu. Demo project builds with Vue JS and Vue Route.  </li>
+  <li> CHange api_namespace from <code> app/config/config.php</code> if needed</li>
 </ol>
 
 
@@ -313,5 +314,22 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
   </code>
   </pre>
                     
+ 
+ # 9. Global Functions
+ 
+ <ol>
+  <li><code>view()</code> : root of vue file : <code>resources/view/</code>. you have to pass only file name withour extention and directory. Example: <code> view('home/index') </code> </li>
+  <li> <code> json($data, $code)</code> : for returnning as json with status code</li> 
+  
+  <li> <code> config($key)</code> : for returnning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
+  
+
+  
+  </ol>
                     
 
+
+# License
+<p>The MIT License (MIT)</p>
+
+<p>Developed by : <a href="https://alemran.me">AL EMRAN</a></p>
