@@ -21,12 +21,11 @@
 <ol>
 <li>  Clone from <code>"https://github.com/emrancu/PluginMaster"</code> to your plugin directory.  </li>
 <li>  Run <code>"composer dump-autoload"</code> . PluginMaster developer with <code>composer</code> support and <code>psr-4</code> autoloading. You can use any package using the composer. </li>
-<li> If you want to use Vue JS run <code>"npm install"</code> . After installing required node modules run  <code>npm run dev</code> for building existing vue JS demo project. </li>
+<li>If you want to build vue (Build app is available with PluginMaster) run <code>"npm install"</code> . After installing required node modules run  <code>npm run dev</code> for building existing vue JS demo project. </li>
 <li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.  </li>
 <li> Active Plugin from WordPress Plugin Page. A demo project will setup with <code>DemoPlugin</code> side Menu. Demo project builds with Vue JS and Vue Route.  </li>
-  <li> CHange api_namespace from <code> app/config/config.php</code> if needed</li>
+  <li> Change api_namespace from <code> app/config/config.php</code> if needed</li>
 </ol>
-
 
 # 1. Database Migration System
 
