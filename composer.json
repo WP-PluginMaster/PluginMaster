@@ -1,4 +1,13 @@
 {
+  "name": "PluginMaster",
+  "description": "An Application Development Framework for Wordpress.",
+  "keywords": [
+    "framework",
+    "PluginMaster",
+    "WordPress Plugin Development framework"
+  ],
+  "license": "MIT",
+  "type": "project",
   "autoload": {
     "classmap": [],
     "psr-4": {
