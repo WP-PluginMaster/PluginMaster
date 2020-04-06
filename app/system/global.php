@@ -9,7 +9,7 @@ function view($path)
 }
 
 
-function sidenav_file($routeObject)git sta
+function sidenav_file($routeObject)
 {
     $sidenav = $routeObject;
     require_once plugin_dir_path(__FILE__) . '../../routes/sidenav.php';
