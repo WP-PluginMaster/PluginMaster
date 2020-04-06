@@ -1,12 +1,23 @@
 {
   "name": "plugin-master/plugin-master",
   "description": "An Application Development Framework for Wordpress.",
+  "license": "MIT",
+  "homepage": "https://github.com/emrancu/PluginMaster",
+  "support": {
+    "issues": "https://github.com/emrancu/PluginMaster/issues",
+    "source": "https://github.com/emrancu/PluginMaster"
+  },
+  "authors": [
+    {
+      "name": "AL EMRAN",
+      "email": "emrancu1@gmail.com"
+    }
+  ],
   "keywords": [
     "framework",
     "PluginMaster",
     "WordPress Plugin Development framework"
   ],
-  "license": "MIT",
   "type": "project",
   "autoload": {
     "classmap": [],
@@ -14,5 +25,9 @@
       "App\\": "app/"
     }
   },
-  "require": {}
+  "require": {
+    "plugin-master/routing": "^1.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

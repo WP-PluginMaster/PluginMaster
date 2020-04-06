@@ -13,7 +13,7 @@ export function getRequest(url, loading = false, rootUrl = false, csrf = false) 
 
         let baseURL = '';
         if (rootUrl) {
-            baseURL = corsData.root + 'WPDemo/v1/';
+            baseURL = corsData.root + 'PluginMaster/v1/';
         }
 
         let options = {
@@ -63,7 +63,7 @@ export function postRequest(url, data, loading = false) {
             body: JSON.stringify(data)
         };
 
-        fetch(corsData.root + 'WPDemo/v1/' + url, options)
+        fetch(corsData.root + 'PluginMaster/v1/' + url, options)
             .then(response => {
                     let responseData =  response.json() ;
                     if(response.status === 200){

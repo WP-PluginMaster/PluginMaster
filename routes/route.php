@@ -12,7 +12,6 @@
 
 
 $route->get('dashboard/{id?}', 'DashboardController@dashboard');
-
 $route->post('add-note', 'NotesController@addNote');
 $route->get('get-notes', 'NotesController@getNotes');
 $route->post('update-note', 'NotesController@updateNote');

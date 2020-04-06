@@ -2,7 +2,7 @@
 
 return [
     "environment" => "production",
-    "app_name" => "Easy Plugin",
-    "api_version" => "WPDemo/v1"
+    "app_name" => "PluginMaster",
+    "api_namespace" => "PluginMaster/v1"
 ];
 

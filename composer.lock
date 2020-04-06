@@ -1,0 +1,61 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "cee9db7405c897dbb01322b6e087ea1a",
+    "packages": [
+        {
+            "name": "plugin-master/routing",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-Routing.git",
+                "reference": "04c1ed0ff1f4aec6969e260c18c3e03f7c29aadd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Routing/zipball/04c1ed0ff1f4aec6969e260c18c3e03f7c29aadd",
+                "reference": "04c1ed0ff1f4aec6969e260c18c3e03f7c29aadd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\Routing\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The PluginMaster Rest Routing Wrapper for WordPress.",
+            "homepage": "https://github.com/emrancu/PluginMaster-Routing",
+            "keywords": [
+                "WP Rest Routing Wrapper",
+                "WordPress Plugin Development framework",
+                "routing"
+            ],
+            "time": "2020-04-06T05:11:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

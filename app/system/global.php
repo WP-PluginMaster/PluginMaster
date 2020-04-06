@@ -8,13 +8,8 @@ function view($path)
     require_once plugin_dir_path(__FILE__) . '../../resources/view/' . $path . '.php';
 }
 
-function route_file($routeObject)
-{
-    $route = $routeObject;
-    require_once plugin_dir_path(__FILE__) . '../../routes/route.php';
-}
 
-function sidenav_file($routeObject)
+function sidenav_file($routeObject)git sta
 {
     $sidenav = $routeObject;
     require_once plugin_dir_path(__FILE__) . '../../routes/sidenav.php';

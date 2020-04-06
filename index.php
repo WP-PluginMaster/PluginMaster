@@ -13,7 +13,7 @@
  * @package           WP Plugin Development FW
  *
  * @wordpress-plugin
- * Plugin Name:       WP Plugin Development Framework
+ * Plugin Name:       PluginMaster
  * Plugin URI:        https://github.com/emrancu/wordpressPlugin
  * Description:       This is a framework for developing WordPress Plugin.
  * Version:           1.0.0
