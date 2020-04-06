@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cee9db7405c897dbb01322b6e087ea1a",
+    "content-hash": "f458cdf2cb0b1165fdf0eb7b6c0614f7",
     "packages": [
         {
             "name": "plugin-master/routing",
@@ -48,6 +48,49 @@
                 "routing"
             ],
             "time": "2020-04-06T05:11:48+00:00"
+        },
+        {
+            "name": "plugin-master/sidemenu",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-SideMenu.git",
+                "reference": "5058d43b5b705136b4ede96ee924b3d81e20636d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-SideMenu/zipball/5058d43b5b705136b4ede96ee924b3d81e20636d",
+                "reference": "5058d43b5b705136b4ede96ee924b3d81e20636d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\SideMenu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The PluginMaster SideMenu Registerer for WordPress.",
+            "homepage": "https://github.com/emrancu/PluginMaster-SideMenu",
+            "keywords": [
+                "WP SideMenu Registerer",
+                "WordPress Plugin Development framework",
+                "routing"
+            ],
+            "time": "2020-04-06T13:08:31+00:00"
         }
     ],
     "packages-dev": [],

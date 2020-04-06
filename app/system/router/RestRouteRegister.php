@@ -4,7 +4,7 @@ namespace App\system\router;
 
 use PluginMaster\Routing\Router;
 
-class RestRoute extends Router
+class RestRouteRegister extends Router
 {
 
     private  $namespace;
@@ -13,7 +13,7 @@ class RestRoute extends Router
         $this->namespace = config('api_namespace') ;
     }
 
-    public function routes()
+    public function init()
     {
         $route = $this;
         require_once plugin_dir_path(__FILE__) . '../../../routes/route.php';
