@@ -7,10 +7,11 @@ use PluginMaster\Routing\Router;
 class RestRouteRegister extends Router
 {
 
-    private  $namespace;
+    private $namespace;
+
     public function __construct()
     {
-        $this->namespace = config('api_namespace') ;
+        $this->namespace = config('api_namespace');
     }
 
     public function init()
@@ -35,9 +36,9 @@ class RestRouteRegister extends Router
      * @param $callback
      * @param bool $secure
      */
-    public function post($route, $callback, $secure = false)
+    public function post($route, $options, $secure = false)
     {
-        $this->postRoute($route, $callback, $this->namespace, $secure = false);
+        $this->postRoute($route, $options, $this->namespace, $secure = false);
 
     }
 

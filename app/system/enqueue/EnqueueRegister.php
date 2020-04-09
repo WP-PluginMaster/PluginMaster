@@ -3,13 +3,10 @@
 namespace App\system\enqueue;
 
 
-use App\system\core\base\Enqueue;
+use PluginMaster\Enqueue\Enqueue;
 
-class EnqueueRegister implements Enqueue
+class EnqueueRegister extends Enqueue
 {
-
-    public $plugin;
-    public $pluginRoot;
 
     public function __construct()
     {
@@ -29,111 +26,21 @@ class EnqueueRegister implements Enqueue
         $currentNav = urldecode(explode('page=', $_SERVER['REQUEST_URI'])[1]);
 
         if ('toplevel_page_' . $mainMenu == $hook || strtolower($mainMenu) . '_page_' . $currentNav == $hook) {
-            enqueue_file($this);
+
+            $enqueue = $this;
+            require_once plugin_dir_path(__FILE__) . '../../../enqueue/enqueue.php';
         }
 
-        if($hook == 'plugins.php'){
+        if ($hook == 'plugins.php') {
             $this->deActiveAction();
-       }
-
-
+        }
 
     }
 
-
-    /**
-     * @param $handler
-     * @param $objectName
-     */
-    public function csrfToken($handler, $objectName)
-    {
-        wp_localize_script($handler, $objectName, array(
-            'root' => esc_url_raw(rest_url()),
-            'security' => wp_create_nonce('wp_rest')
-        ));
-    }
-
-
-    /**
-     * @param $path
-     * @param string $id
-     */
-    public function footerScriptCdn($path, $id = '')
-    {
-        $handler = $id ? $id : uniqid();
-        wp_enqueue_script($handler, $path, array(), '1.0.0', true);
-    }
-
-
-    /**
-     * @param $path
-     * @param string $id
-     */
-    public function footerScript($path, $id = '')
-    {
-        $handler = $id ? $id : uniqid();
-        $path = plugins_url($this->pluginRoot) . $path;
-        wp_enqueue_script($handler, $path, array(), '1.0.0'  , true);
-    }
-
-    /**
-     * @param $fileName
-     * @param int $port
-     */
-    public function hotScript($fileName, $port = 8080)
-    {
-        $handler = uniqid();
-        $path = 'http://localhost:' . $port . '/assets/' . $fileName;
-        wp_enqueue_script($handler, $path, array(), '1.0.0', true);
-    }
-
-
-    /**
-     * @param $path
-     * @param string $id
-     */
-    public function headerScriptCdn($path, $id = '')
-    {
-        $handler = $id ? $id : uniqid();
-        wp_enqueue_script($handler, $path, array(), '1.0.0', false);
-    }
-
-
-    /**
-     * @param $path
-     * @param string $id
-     */
-    public function headerScript($path, $id = '')
-    {
-        $handler = $id ? $id : uniqid();
-        $path = plugins_url($this->pluginRoot) . $path;
-        wp_enqueue_script($handler, $path, array(), '1.0.0', false);
-    }
-
-
-    /**
-     * @param $path
-     */
-    public function style($path)
-    {
-        $path = plugins_url($this->pluginRoot) . $path;
-        wp_enqueue_style(uniqid(), $path, array(), '1.0.0', 'all');
-    }
-
-
-    /**
-     * @param $path
-     */
-    public function styleCdn($path)
-    {
-        wp_enqueue_style(uniqid(), $path, array(), '1.0.0', 'all');
-    }
 
     public function deActiveAction()
     {
-
         add_filter('plugin_action_links_' . $this->plugin, [$this, 'deActiveActionData']);
-
     }
 
 

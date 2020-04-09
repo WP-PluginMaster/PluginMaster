@@ -4,8 +4,140 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f458cdf2cb0b1165fdf0eb7b6c0614f7",
+    "content-hash": "d62916970e7bd25d746222786104b0c8",
     "packages": [
+        {
+            "name": "plugin-master/db",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-DB.git",
+                "reference": "19a65224ce7465a03b07977dc0d0d6ff210e6fe9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-DB/zipball/19a65224ce7465a03b07977dc0d0d6ff210e6fe9",
+                "reference": "19a65224ce7465a03b07977dc0d0d6ff210e6fe9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\DB\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The query builder for WordPress",
+            "homepage": "https://github.com/emrancu/PluginMaster-DB",
+            "keywords": [
+                "PluginMaster Query Builder",
+                "Query builder for WordPress",
+                "WordPress Plugin Development framework",
+                "WordPress Query Builder",
+                "request"
+            ],
+            "time": "2020-04-09T15:41:53+00:00"
+        },
+        {
+            "name": "plugin-master/enqueue",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-Enqueue.git",
+                "reference": "981dfc7437c6047ec2abae3b768150441432494f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Enqueue/zipball/981dfc7437c6047ec2abae3b768150441432494f",
+                "reference": "981dfc7437c6047ec2abae3b768150441432494f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\Enqueue\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The PluginMaster Enqueue Registerer for WordPress.",
+            "homepage": "https://github.com/emrancu/PluginMaster-Enqueue",
+            "keywords": [
+                "WP Enqueue Registerer",
+                "WordPress Plugin Development framework",
+                "routing"
+            ],
+            "time": "2020-04-07T03:53:50+00:00"
+        },
+        {
+            "name": "plugin-master/request",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-Request.git",
+                "reference": "47911acd439c5efa027d23658d7233d8008e7859"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Request/zipball/47911acd439c5efa027d23658d7233d8008e7859",
+                "reference": "47911acd439c5efa027d23658d7233d8008e7859",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\Request\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The RequestHandler for PHP.",
+            "homepage": "https://github.com/emrancu/PluginMaster-Request",
+            "keywords": [
+                "PluginMaster Request Handler",
+                "WordPress Plugin Development framework",
+                "request",
+                "request handler"
+            ],
+            "time": "2020-04-07T04:31:57+00:00"
+        },
         {
             "name": "plugin-master/routing",
             "version": "v1.0.1",

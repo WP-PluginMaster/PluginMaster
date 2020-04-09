@@ -7,7 +7,6 @@ require_once plugin_dir_path(__FILE__) . '../global.php';
 use App\system\enqueue\EnqueueRegister;
 use App\system\router\RestRouteRegister;
 use App\system\sidenav\SideMenuRegister;
-use App\system\sidenav\sideNavRoute;
 
 class Boot
 {

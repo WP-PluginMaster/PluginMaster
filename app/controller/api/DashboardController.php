@@ -12,6 +12,8 @@ class DashboardController extends Controller
 
     function dashboard($param)
     {
+
+
         return [
             "id" => $param['id'],
             "config" => config('environment') === 'local' ? config('endpoints.summery') : config('production_endpoints.summery')

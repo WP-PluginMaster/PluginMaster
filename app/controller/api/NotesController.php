@@ -39,13 +39,13 @@ class NotesController extends Controller
     function updateNote()
     {
         $request = new Request();
-        $insert = DB::table('demo_notes')->update([
+
+        $update = DB::table('demo_notes')
+            ->where('id', $request->id)
+            ->update([
             "note" => $request->note,
             "status" => $request->status,
-        ],
-            [
-                "id" => $request->id
-            ]);
+        ]);
 
         return json([
             "message" => " Updated Successfully"
@@ -56,10 +56,9 @@ class NotesController extends Controller
     function clearCompletedNote()
     {
 
-        $insert = DB::table('demo_notes')->delete(
-            [
-                "status" => 'completed'
-            ]);
+        $insert = DB::table('demo_notes')
+            ->where('status', 'completed')
+            ->delete();
 
         return json([
             "message" => "Cleared Successfully"
@@ -70,10 +69,9 @@ class NotesController extends Controller
     function deleteNote()
     {
         $request = new Request();
-        $insert = DB::table('demo_notes')->delete(
-            [
-                "id" => $request->id
-            ]);
+        $delete = DB::table('demo_notes')
+            ->where("id" , $request->id)
+            ->delete();
 
         return json([
             "message" => "Deleted Successfully"

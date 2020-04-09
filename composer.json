@@ -27,7 +27,10 @@
   },
   "require": {
     "plugin-master/routing": "^1.0",
-    "plugin-master/sidemenu": "^1.0"
+    "plugin-master/sidemenu": "^1.0",
+    "plugin-master/enqueue": "^1.0",
+    "plugin-master/request": "^1.0",
+    "plugin-master/db": "^1.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true
