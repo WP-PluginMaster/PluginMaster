@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d62916970e7bd25d746222786104b0c8",
+    "content-hash": "a1944123cc78cfa393e9287033e36581",
     "packages": [
         {
             "name": "plugin-master/db",
-            "version": "v1.0.0",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emrancu/PluginMaster-DB.git",
-                "reference": "19a65224ce7465a03b07977dc0d0d6ff210e6fe9"
+                "reference": "d410e3ebd73ca9dea6bc835d5120fe443d8f52a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emrancu/PluginMaster-DB/zipball/19a65224ce7465a03b07977dc0d0d6ff210e6fe9",
-                "reference": "19a65224ce7465a03b07977dc0d0d6ff210e6fe9",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-DB/zipball/d410e3ebd73ca9dea6bc835d5120fe443d8f52a9",
+                "reference": "d410e3ebd73ca9dea6bc835d5120fe443d8f52a9",
                 "shasum": ""
             },
             "require": {
@@ -47,9 +47,9 @@
                 "Query builder for WordPress",
                 "WordPress Plugin Development framework",
                 "WordPress Query Builder",
-                "request"
+                "query builder"
             ],
-            "time": "2020-04-09T15:41:53+00:00"
+            "time": "2020-04-16T06:49:03+00:00"
         },
         {
             "name": "plugin-master/enqueue",
@@ -96,16 +96,16 @@
         },
         {
             "name": "plugin-master/request",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emrancu/PluginMaster-Request.git",
-                "reference": "47911acd439c5efa027d23658d7233d8008e7859"
+                "reference": "76a3067e4d27dd71b0d34dc9bafeb51d17b0a552"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emrancu/PluginMaster-Request/zipball/47911acd439c5efa027d23658d7233d8008e7859",
-                "reference": "47911acd439c5efa027d23658d7233d8008e7859",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Request/zipball/76a3067e4d27dd71b0d34dc9bafeb51d17b0a552",
+                "reference": "76a3067e4d27dd71b0d34dc9bafeb51d17b0a552",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "request",
                 "request handler"
             ],
-            "time": "2020-04-07T04:31:57+00:00"
+            "time": "2020-04-11T03:29:45+00:00"
         },
         {
             "name": "plugin-master/routing",
@@ -182,6 +182,51 @@
             "time": "2020-04-06T05:11:48+00:00"
         },
         {
+            "name": "plugin-master/schema",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-Schema.git",
+                "reference": "fded4cef754f2135d74b8bceac1cd6be801183c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Schema/zipball/fded4cef754f2135d74b8bceac1cd6be801183c4",
+                "reference": "fded4cef754f2135d74b8bceac1cd6be801183c4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\Schema\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "Schema Builder for PHP",
+            "homepage": "https://github.com/emrancu/PluginMaster-Schema",
+            "keywords": [
+                "PluginMaster Schema Builder Validator",
+                "Schema Builder for PHP",
+                "Schema Builder for WordPress",
+                "WordPress Plugin Development framework",
+                "schema builder"
+            ],
+            "time": "2020-04-19T14:59:08+00:00"
+        },
+        {
             "name": "plugin-master/sidemenu",
             "version": "v1.0.3",
             "source": {
@@ -223,6 +268,51 @@
                 "routing"
             ],
             "time": "2020-04-06T13:08:31+00:00"
+        },
+        {
+            "name": "plugin-master/validator",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emrancu/PluginMaster-Validator.git",
+                "reference": "205c76815f993684756b1de8007dae7848bcd002"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Validator/zipball/205c76815f993684756b1de8007dae7848bcd002",
+                "reference": "205c76815f993684756b1de8007dae7848bcd002",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "PluginMaster\\Validator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AL EMRAN",
+                    "email": "emrancu1@gmail.com"
+                }
+            ],
+            "description": "The query builder for WordPress",
+            "homepage": "https://github.com/emrancu/PluginMaster-Validator",
+            "keywords": [
+                "Http Request validator",
+                "PluginMaster Request Validator",
+                "Request Validator for WordPress",
+                "WordPress Plugin Development framework",
+                "WordPress Request Validator"
+            ],
+            "time": "2020-04-12T01:20:31+00:00"
         }
     ],
     "packages-dev": [],

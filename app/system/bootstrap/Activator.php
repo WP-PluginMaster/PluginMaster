@@ -5,12 +5,6 @@ namespace App\system\bootstrap;
 class Activator
 {
 
-
-    public function __construct()
-    {
-
-    }
-
     /**
      * @return void
      */
@@ -21,8 +15,8 @@ class Activator
 
     public function initMigration()
     {
-        global $wpdb;
-        $migrationDir = plugin_dir_path(__FILE__) . '../../../database/migrations';
+        global $wpdb, $plugin_path;
+        $migrationDir = $plugin_path . '/database/migrations';
 
         $charset = $wpdb->get_charset_collate();
 
@@ -31,8 +25,8 @@ class Activator
             if (is_file($path)) {
                 require $path;
                 $sequence = explode('_', $filename)[0];
-                $actualFIleName  = str_replace($sequence.'_', '', $filename);
-                $classname = explode('.', $actualFIleName )[0];
+                $actualFIleName = str_replace($sequence . '_', '', $filename);
+                $classname = explode('.', $actualFIleName)[0];
                 $schema = new $classname();
                 $sql = $schema->up()->sql;
                 $this->create($classname, $sql, $charset);

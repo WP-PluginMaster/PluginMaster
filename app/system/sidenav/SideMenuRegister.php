@@ -10,8 +10,9 @@ class SideMenuRegister extends SideMenu
 
     public function init()
     {
+        global $plugin_path;
         $sidenav = $this;
-        require_once plugin_dir_path(__FILE__) . '../../../routes/sidenav.php';
+        require_once $plugin_path . '/routes/sidenav.php';
 
     }
 
@@ -27,6 +28,7 @@ class SideMenuRegister extends SideMenu
 
         $this->removeFirstSubMenu();
     }
+
 
     public function sub($nav, $options)
     {

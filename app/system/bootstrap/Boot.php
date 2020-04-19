@@ -2,7 +2,12 @@
 
 
 namespace App\system\bootstrap;
+
+session_start();
+use App\system\session\Session;
 require_once plugin_dir_path(__FILE__) . '../global.php';
+
+
 
 use App\system\enqueue\EnqueueRegister;
 use App\system\router\RestRouteRegister;
@@ -23,6 +28,7 @@ class Boot
         add_action('rest_api_init', [new RestRouteRegister(), 'init']); // active api route
         add_action('admin_menu', array(new SideMenuRegister(), 'init')); // active sidenav
          (new EnqueueRegister())->initAsset();
+         Session::unsetFlashSession();
     }
 
 }

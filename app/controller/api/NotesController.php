@@ -3,9 +3,8 @@
 namespace App\controller\api;
 
 use App\system\controller\Controller;
-use App\system\db\builder\DB;
 use App\system\request\Request;
-use App\system\Validator;
+use PluginMaster\DB\DB;
 
 
 class NotesController extends Controller
@@ -15,7 +14,7 @@ class NotesController extends Controller
     {
         $request = new Request();
 
-        Validator::execute($request, [
+        $request->validate([
             'note' => 'required',
         ]);
 
@@ -39,13 +38,12 @@ class NotesController extends Controller
     function updateNote()
     {
         $request = new Request();
-
         $update = DB::table('demo_notes')
             ->where('id', $request->id)
             ->update([
-            "note" => $request->note,
-            "status" => $request->status,
-        ]);
+                "note" => $request->note,
+                "status" => $request->status,
+            ]);
 
         return json([
             "message" => " Updated Successfully"
@@ -70,12 +68,15 @@ class NotesController extends Controller
     {
         $request = new Request();
         $delete = DB::table('demo_notes')
-            ->where("id" , $request->id)
+            ->where("id", $request->id)
             ->delete();
 
         return json([
-            "message" => "Deleted Successfully"
+            "message" => "Deleted Successfully ssssssssssss",
+            "delete" => $delete,
         ]);
+
+
     }
 
 

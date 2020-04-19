@@ -1,18 +1,16 @@
 <?php
 
-
 use App\system\schema\Schema;
 
 class demo_users
 {
 
-
     public function up()
     {
-      return Schema::create('demo_users', function (Schema $column) {
+        return Schema::create('demo_users', function (Schema $column) {
             $column->intIncrements('id');
-            $column->string('name')->nullable() ;
-            $column->string('mobile') ;
+            $column->string('name')->nullable();
+            $column->string('mobile');
             $column->string('email')->nullable();
             $column->text('description')->nullable();
             $column->enum('status', ['ok', 'not']);

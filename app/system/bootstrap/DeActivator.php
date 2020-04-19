@@ -19,8 +19,8 @@ class DeActivator {
 
     public function deleteTable()
     {
-        global $wpdb, $table_prefix;
-        $migrationDir = plugin_dir_path(__FILE__) . '../../../database/migrations';
+        global $wpdb, $table_prefix,$plugin_path;
+        $migrationDir = $plugin_path. '/database/migrations';
 
         foreach (array_reverse(scandir($migrationDir)) as $filename) {
             $path = $migrationDir . '/' . $filename;

@@ -8,11 +8,7 @@ const store = new Vuex.Store({
         notePage: {
             title: "Personal Notes",
             head: "Notes"
-        },
-        homePage: {
-            title: "PluginMaster (an Application Development Framework for Wordpress)",
-            head: "Documentation"
-        },
+        }
     },
     mutations: {
 

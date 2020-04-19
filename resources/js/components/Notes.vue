@@ -19,9 +19,9 @@
                         <div class="note col-10  d-flex flex-row">
                             <div class="checkbox d-flex">
                                 <input class="form-check-input" type="checkbox" @click="taskCompleted($event, note, i)"
-                                       :value="note.status" :checked="note.status == 'completed'">
+                                       :value="note.status" :checked="note.status === 'completed'">
                             </div>
-                            <div class="note-text" :class="{'doneText' : note.status == 'completed' }"> {{note.note}}
+                            <div class="note-text" :class="{'doneText' : note.status === 'completed' }"> {{note.note}}
                             </div>
                         </div>
                         <div class="note-action col-2 text-right">
@@ -31,9 +31,9 @@
                     <div class="note-footer row">
                         <div class="col-3">{{summery.active}} Item<span v-if="summery.active > 1">s</span> Left</div>
                         <div class="col-6 justify-content-center d-flex">
-                            <a href="#" :class="{'active': filterBy == 'all'}" @click.prevent="filterBy = 'all'">All</a>
-                            <a href="#" :class="{'active': filterBy == 'active'}" @click.prevent="filterBy = 'active'">Active</a>
-                            <a href="#" :class="{'active': filterBy == 'completed'}"
+                            <a href="#" :class="{'active': filterBy === 'all'}" @click.prevent="filterBy = 'all'">All</a>
+                            <a href="#" :class="{'active': filterBy === 'active'}" @click.prevent="filterBy = 'active'">Active</a>
+                            <a href="#" :class="{'active': filterBy === 'completed'}"
                                @click.prevent="filterBy = 'completed'">Completed</a>
                         </div>
                         <div class="col-3" v-if="summery.completed > 0"><a href="#" class="text-danger"
@@ -77,11 +77,11 @@
                 return data;
             },
             filteredNotes() {
-                if (this.filterBy == 'all') {
+                if (this.filterBy === 'all') {
                     return this.notes;
                 }
                 return this.notes.filter(item => {
-                    return item.status == this.filterBy;
+                    return item.status === this.filterBy;
                 })
             }
         },
@@ -131,35 +131,34 @@
     }
 </script>
 
-<style>
+<style lang="scss">
 
     .note-list-container {
-        box-shadow: 0px 9px 9px 4px rgba(0, 0, 0, .2);
+        box-shadow: 0 9px 9px 4px rgba(0, 0, 0, .2);
         padding: 5px 15px;
-    }
 
-    .note-list-container > .note-list-box {
-        margin-bottom: 5px;
-        transition: all .5s;
-    }
-
-    .note-list-container > .note-list-box button, .note-list-container > .note-list-box button {
-        padding: 0px 5px;
-    }
-    .note-list-container > .note-list-box button, .note-list-container > .note-list-box input {
-        opacity: 0;
-    }
-
-    .note-list-container > .note-list-box:hover button, .note-list-container > .note-list-box:hover input {
-        opacity: 1;
-    }
-
-    .note-list-container > .note-list-box > .note > .checkbox{
-        margin-top: 10px;
-    }
-    .note-list-container > .note-list-box > .note > .note-text {
-        padding-left: 25px;
-        font-size: 18px;
+       .note-list-box {
+           margin-bottom: 5px;
+           transition: all .5s;
+           button{
+               padding: 0 5px;
+           }
+           button,input{
+               opacity: 0;
+           }
+           &:hover button, &:hover input{
+               opacity: 1;
+           }
+           .note{
+               .checkbox{
+                   margin-top: 10px;
+               }
+               .note-text{
+                   padding-left: 25px;
+                   font-size: 18px;
+               }
+           }
+       }
     }
 
 
@@ -170,25 +169,23 @@
     .note-footer {
         padding-top: 10px;
         border-top: 1px solid #d0cfcf;
+        a{
+            text-align: center;
+            padding-right: 5px;
+            text-decoration: none;
+            outline-width: 0;
+            border-width: 0;
+        }
+        a.active{
+            color: #ca23c4;
+            background: #e4e0e0;
+            padding: 0 5px;
+            margin-right: 5px;
+        }
+        &:hover{
+            color: green
+        }
     }
 
-    .note-footer a {
-        text-align: center;
-        padding-right: 5px;
-        text-decoration: none;
-        outline-width: 0;
-        border-width: 0px
-    }
 
-
-    .note-footer a.active {
-        color: #ca23c4;
-        background: #e4e0e0;
-        padding: 0px 5px;
-        margin-right: 5px;
-    }
-
-    .note-footer a:hover {
-        color: green
-    }
 </style>

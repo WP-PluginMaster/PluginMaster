@@ -3,8 +3,6 @@
 namespace App\controller\api;
 
 use App\system\controller\Controller;
-use App\system\db\builder\DB;
-use App\system\schema\Schema;
 
 
 class DashboardController extends Controller
@@ -12,8 +10,6 @@ class DashboardController extends Controller
 
     function dashboard($param)
     {
-
-
         return [
             "id" => $param['id'],
             "config" => config('environment') === 'local' ? config('endpoints.summery') : config('production_endpoints.summery')
@@ -25,7 +21,7 @@ class DashboardController extends Controller
     {
         global $table_prefix, $wpdb;
 
-         $table = $table_prefix . "$tableName";
+        $table = $table_prefix . "$tableName";
 
 
         if ($wpdb->get_var("show tables like '$table'") != $table) {

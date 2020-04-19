@@ -65,21 +65,21 @@ export function postRequest(url, data, loading = false) {
 
         fetch(corsData.root + 'PluginMaster/v1/' + url, options)
             .then(response => {
-                    let responseData =  response.json() ;
-                    if(response.status === 200){
-                        webToast.Success({
-                            status: "Success",
-                            "message" : response.message ? response.message : "Successfully Completed",
-                        })
-                        resolve(response);
-                        return {status: 200}
-                    }
+                let responseData = response.json();
+                if (response.status === 200) {
+                    webToast.Success({
+                        status: "Success",
+                        "message": response.message ? response.message : "Successfully Completed",
+                    })
+                    resolve(response);
+                    return {status: 200}
+                }
 
-               return responseData
+                return responseData
 
             })
             .then((response) => {
-                if(response.status !== 200){
+                if (response.status !== 200) {
                     webToast.Danger({
                         status: 'Sorry !',
                         message: response.message ? response.message : "Something went wrong",
@@ -92,7 +92,7 @@ export function postRequest(url, data, loading = false) {
                     loader.fadeOut().remove()
                 }
 
-            }) ;
+            });
 
     });
 }

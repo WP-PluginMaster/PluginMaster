@@ -16,8 +16,9 @@ class RestRouteRegister extends Router
 
     public function init()
     {
+        global $plugin_path;
         $route = $this;
-        require_once plugin_dir_path(__FILE__) . '../../../routes/route.php';
+        require_once $plugin_path. '/routes/route.php';
     }
 
     /**

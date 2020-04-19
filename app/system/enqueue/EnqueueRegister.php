@@ -22,13 +22,13 @@ class EnqueueRegister extends Enqueue
 
     public function init($hook)
     {
-        global $mainMenu;
+        global $mainMenu, $plugin_path;
         $currentNav = urldecode(explode('page=', $_SERVER['REQUEST_URI'])[1]);
 
         if ('toplevel_page_' . $mainMenu == $hook || strtolower($mainMenu) . '_page_' . $currentNav == $hook) {
 
             $enqueue = $this;
-            require_once plugin_dir_path(__FILE__) . '../../../enqueue/enqueue.php';
+            require_once $plugin_path . '/enqueue/enqueue.php';
         }
 
         if ($hook == 'plugins.php') {
@@ -46,7 +46,8 @@ class EnqueueRegister extends Enqueue
 
     public function deActiveActionData($links)
     {
-        $data = file_get_contents(plugin_dir_path(__FILE__) . '../../../enqueue/deactiveAction.php');
+        global $plugin_path;
+        $data = file_get_contents($plugin_path . '/enqueue/deactiveAction.php');
         array_push($links, $data);
         return $links;
     }
