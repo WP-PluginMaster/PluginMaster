@@ -6,36 +6,67 @@
 
 # Code Features   
  <ol type="1">
- <li> Database Migration System</li>
- <li> Simple Side Menu Declaration</li>
-<li> Easy Rest API Route Declaration</li>
-<li> Query Builder </li>
-<li> Simple Enqueue Declaration  </li>
-<li> Request Handling System  </li>
-<li> Validator  </li>
-<li> Build-in Vue JS Configuration  </li>
-<li> Rest Route & Sidebar Middleware (upcoming)  </li>
+<li> <a href="#DatabaseMigrationSystem"> Database Migration System </a></li>
+ <li><a href="#SimpleSideMenuDeclaration">  Simple Side Menu Declaration</a></li>
+<li><a href="#EasyRestAPIRouteDeclaration">  Easy Rest API Route Declaration</a></li>
+<li><a href="#QueryBuilder">  Query Builder</a></li>
+<li><a href="#SimpleEnqueueDeclaration">  Simple Enqueue Declaration</a></li>
+<li><a href="#RequestHandlingSystem">  Http Request Handling System</a></li>
+<li><a href="#Validator">  Request Validation</a></li>
+<li><a href="#SessionHandler">  HTTP Session</a></li>
+<li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
+<li><a href="#SessionHandler">  Session Handler </a></li>
+<li> Middleware (upcoming) </li>
+<li> Model (upcoming)  </li>
+<li> Action Handler (upcoming) </a></li>
+<li> Filter Handler (upcoming)  </li>
 </ol>
 
 # Installation 
-<ol>
-<li>  Clone from <code>"https://github.com/emrancu/PluginMaster"</code> to your plugin directory.  </li>
-<li>  Run <code>"composer dump-autoload"</code> . PluginMaster developer with <code>composer</code> support and <code>psr-4</code> autoloading. You can use any package using the composer. </li>
-<li>If you want to build vue (Build app is available with PluginMaster) run <code>"npm install"</code> . After installing required node modules run  <code>npm run dev</code> for building existing vue JS demo project. </li>
-<li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.  </li>
-<li> Active Plugin from WordPress Plugin Page. A demo project will setup with <code>DemoPlugin</code> side Menu. Demo project builds with Vue JS and Vue Route.  </li>
-  <li> Change api_namespace from <code> app/config/config.php</code> if needed</li>
-</ol>
+ <ul>
+  <li>
+  <ol>
+ <li>Go to <code>wp-content/plugins/</code> directory in your WordPress</li>
+ <li><code>composer create-project plugin-master/plugin-master</code> <b>OR</b> <code>composer
+                            create-project plugin-master/plugin-master project_name</code></li>
+ <li> A demo application includes with Vue JS . Just active from Plugin section</li>
+ </ol>
+</li>
+</ul>
+# Configuration 
+<ul>
+ <li>
+ <ol>
+ <li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.</li>
+ <li>Change Rest API Namespace from <code>config.php</code>, located in <code>app/config/</code>
+                        directory (You can add any configuration related data in <code>config.php </code>)
+                    </li>
+ </ol>
+ </li>
+ </ul>
 
 # 1. Database Migration System
+ <div id="DatabaseMigrationSystem"></div>
 
 <p> Migrations are typically paired with the <b>PluginMaster</b> schema builder to build your application's database schema. When plugin activates, all migration migrate to the database and when deactivate plugin, all table will be deleted. You just need to define the migration file.  </p>
  <b>Migration file directory : <code>database/migrations/</code></b>
  
  <b>Structure</b> 
  
- <p>The migration file name has 2 parts : first for sequence maintain for foreign key and second for the table name. The migration file name's second part must be the same as table name and also class name will be the same as the table name. File name like : <code>1_demo_users.php</code>. This means, <code>1</code> is for sequence maintain and <code>demo_users</code> is the table name and also class name. the table prefix will be set from the schema builder.</p>
-<p>A migration class contains one method: up. The up method is used to add new tables  to your database.</p>
+<p>The migration file name has 2 parts :
+ <ol>
+ <li>First for sequence maintain for foreign key and second for the  table name. </li>
+ <li>Second part must be the same as table name .</li>
+</ol>
+ <blockquote>  Also class name will be the same as the table name.<br> File name like : <code>1_demo_users.php</code>.
+                This means, <code>1</code> is for sequence maintain and <code>demo_users</code> is the table name and also class
+                name. the table prefix will be set from the schema builder.
+ </blockquote>
+
+<p>A migration class contains one method: up. The up method is used to add new tables to your
+                database.</p>
+ <b>Sample Migration File</b>
+ <p class="mt-3">File Name: <code>1_demo_users.php</code></p>
 <b>Sample Migration File</b>
 <pre>
 <code>
@@ -62,7 +93,7 @@ class demo_users
  </code>
  </pre>
 
-# Schema Functions 
+<b>Schema Functions </b>
  <ol>
 <li> <code>intIncrements($column)</code> : integer (10), auto_increment, primary key </li>
 <li> <code>bigIntIncrements($column)</code> : bigint (20), auto_increment, primary key </li>
@@ -90,7 +121,7 @@ $column->foreign('user_id')->on('demo_users.id'); </code>
 
 
 # 2. Simple Side Menu Declaration 
-
+ <div id="SimpleSideMenuDeclaration"></div>
 
 <p>Create a WP side menu in easy way. just declare your side nav with controller, method &, etc.   </p>
 <b> Side Menu declaration file : routes/sidenav.php </b><br>
@@ -117,17 +148,38 @@ $sidenav->main('DemoPlugin', ["icon" => "dashicons-admin-site",  "as" => 'DemoCo
 <li>One : menu slug . (Required)</li>
 <li>Two : menu options . Its type must be an array. <br>
 <b>Mandatory index:</b>  title (Menu Title), as ( controller and method must be with <code>@</code> sign) <br>
+  <blockquote>In <code>DemoController@main</code>: <code>DemoController</code> is controller name
+                        located at <code> app/controller/sidenav/ </code> and <code>main</code> is method name of
+                        DemoController
+ </blockquote>
+  <b>Optional index:</b> position (default is 500), removeFirstSubmenu ( for delete first submenu, default false) <br>
 </li>
+<li>Third: closer function for registering submenu under main menu</li>
  </ol>
- 
- 
- 
- 
+ <p class="mt-4"><b>The <code>sub method </code> has two parameters.</b></p>
+ <ol>
+ <li>One : menu slug . (Required)</li>
+ <li>Two : menu options . Its type must be an array. <br>
+  <b>Mandatory index:</b> title (Menu Title), as ( controller and method must be with
+  <code>@</code> sign) <br>
+  <blockquote>In <code>DemoController@main</code>: <code>DemoController</code> is controller name
+                        located at <code> app/controller/sidenav/ </code> and <code>sub</code> is method name of
+                        DemoController
+ </blockquote>
+
+ </li>
+ </ol>
+            
+            
+  
  # 3. Easy Rest API Route Declaration
+ <div id="EasyRestAPIRouteDeclaration"></div>
  
- 
-  <p>Create WP rest route in easy way.     </p>
-  <p> <b> Rest Route declaration file : routes/route.php </b><br> <b> Rest Route Controller must declare inside : app/controller/api/ </b></p>
+<p>Create WP rest route in easy way.     </p>
+<p> <b> Rest Route declaration file : routes/route.php </b>
+ <br> <b> Rest Route Controller must declare inside : app/controller/api/ </b></p>
+ <p><b>API Namespace:</b> Namespace by <code>api_namespace</code> of config.php. It's located in <code>app/config/config.php</code>
+            </p>
 <p class="mt-3"><b>Sample Structure</b></p>
 <pre><code>
 $route->get('dashboard/{id?}', 'DemoController@dashboard');
@@ -139,9 +191,9 @@ $route->post('add-note', 'DemoController@addNote');
 <ol>
  <li>Dynamic Parameter : <code>{parameter_name}</code></li>
 <li>Dynamic Optional Parameter : <code>{parameter_name?} </code></li>
-<li> Access Dynamic Param in Controller method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['id'] </code></li>
+<li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['id'] </code></li>
 </ol>
- 
+ <p>Second Parameter for Route: <b>Conteoller and Method Name ( with @ sign)</b></p>
  
  
  
