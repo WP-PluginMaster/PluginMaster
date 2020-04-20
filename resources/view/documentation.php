@@ -22,11 +22,12 @@
             <li><a href="#Validator">  Request Validation</a></li>
             <li><a href="#SessionHandler">  HTTP Session</a></li>
             <li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
+            <li><a href="#GlobalFunction">Global Functions </a></li>
             <li><a href="#SessionHandler">  Session Handler </a></li>
             <li>   Middleware (upcoming) </li>
             <li>   Model (upcoming)  </li>
-            <li>  Action Handler (upcoming) </a></li>
-            <li> Filter Handler (upcoming)  </li>
+            <li>   Action Handler (upcoming) </a></li>
+            <li>   Filter Handler (upcoming)  </li>
         </ol>
 
 
@@ -363,7 +364,6 @@ $route->post('add-note', 'DemoController@addNote');  </code> </pre>
 
             </ol>
 
-
         </div>
 
 
@@ -577,6 +577,23 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 
     </div>
 
+
+        <div id="GlobalFunction">
+            <h4 class="mt-5"> 8. <a href="#GlobalFunction">Global Functions </a></h4>
+
+        <ol>
+            <li><code>view()</code> : root of vue file : <code>resources/view/</code>. you have to pass only file name withour extention and directory. Example: <code> view('home/index') </code> </li>
+            <li> <code> json($data, $code)</code> : for returning as json with status code</li>
+
+            <li> <code> config($key)</code> : for returning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
+            <li> <code> current_url()</code> : for current url</code></li>
+            <li> <code> formErrors()</code> : for form validation errors as array</code></li>
+            <li> <code> formError($field_name)</code> : for single field  validation error </code></li>
+            <li> <code> session_flush($key, $value = null)</code> : for getting and setting <a href="#SessionHandler"> flush session</a> </code></li>
+            <li> <code> session($key, $value = null)</code> : for getting and setting <a href="#SessionHandler">  session </a> </code></li>
+
+        </ol>
+        </div>
 
     <div id="SessionHandler">
 

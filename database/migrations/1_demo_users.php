@@ -1,6 +1,6 @@
 <?php
 
-use App\system\schema\Schema;
+use PluginMaster\Schema\Schema;
 
 class demo_users
 {

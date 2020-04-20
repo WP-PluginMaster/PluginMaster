@@ -183,16 +183,16 @@
         },
         {
             "name": "plugin-master/schema",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emrancu/PluginMaster-Schema.git",
-                "reference": "fded4cef754f2135d74b8bceac1cd6be801183c4"
+                "reference": "f99200be41850dd2cf577073ba31b9c4388be45f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emrancu/PluginMaster-Schema/zipball/fded4cef754f2135d74b8bceac1cd6be801183c4",
-                "reference": "fded4cef754f2135d74b8bceac1cd6be801183c4",
+                "url": "https://api.github.com/repos/emrancu/PluginMaster-Schema/zipball/f99200be41850dd2cf577073ba31b9c4388be45f",
+                "reference": "f99200be41850dd2cf577073ba31b9c4388be45f",
                 "shasum": ""
             },
             "require": {
@@ -224,7 +224,7 @@
                 "WordPress Plugin Development framework",
                 "schema builder"
             ],
-            "time": "2020-04-19T14:59:08+00:00"
+            "time": "2020-04-19T15:25:12+00:00"
         },
         {
             "name": "plugin-master/sidemenu",

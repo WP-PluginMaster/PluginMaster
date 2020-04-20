@@ -1,12 +1,10 @@
 <?php
 
 
-use App\system\schema\Schema;
+use PluginMaster\Schema\Schema;
 
 class demo_notes
 {
-
-
     public function up()
     {
         return Schema::create('demo_notes', function (Schema $column) {

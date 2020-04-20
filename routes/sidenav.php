@@ -14,7 +14,7 @@
  *
  */
 
-$sidenav->main('PluginMaster', ["icon" => "dashicons-admin-site",  "as" => 'NotesController@documentation', "position" => 500, "removeFirstSubmenu" => true], function ($route) {
+$sidenav->main('PluginMaster', ["icon" => "dashicons-admin-site",  "as" => 'NotesController@index', "position" => 500, "removeFirstSubmenu" => true], function ($route) {
     $route->sub('Documentation', ["title" => "Documentation", "as" => 'DashboardController@documentation']);
     $route->sub('PluginMaster#/Home', ["title" => "Home", "as" => 'NotesController@index']);
     $route->sub('PluginMaster#/Notes', ["title" => "Notes", "as" => 'NotesController@index']);
