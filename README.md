@@ -589,6 +589,6 @@ if ( count(formErrors()) ) :
 <p>Developed by : <a href="https://alemran.me">AL EMRAN</a></p>
 
 # Support for this project
-Hey dude! Help me out for a couple of 🍻!
+Assalamu Alikum ! You can donate for the project.
 
 [![Beerpay](https://beerpay.io/emrancu/PluginMaster/badge.svg?style=beer-square)](https://beerpay.io/emrancu/PluginMaster)  [![Beerpay](https://beerpay.io/emrancu/PluginMaster/make-wish.svg?style=flat-square)](https://beerpay.io/emrancu/PluginMaster?focus=wish)
