@@ -15,7 +15,7 @@
 <li><a href="#Validator">  Request Validation</a></li>
 <li><a href="#SessionHandler">  HTTP Session</a></li>
 <li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
-<li><a href="#GlobalFunction">  Session Handler </a></li>
+<li><a href="#GlobalFunction">  Global Functions </a></li>
 <li><a href="#SessionHandler">  Session Handler </a></li>
 <li> Middleware (upcoming) </li> 
 <li> Action Handler (upcoming) </a></li>
