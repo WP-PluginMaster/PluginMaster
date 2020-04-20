@@ -182,15 +182,20 @@ $route->post('add-note', 'DemoController@addNote', true);
 </pre>
 <span><code>DemoController</code> is controller name and <code>dashboard</code> is method name</span>
 <p class="mt-2"><b> PluginMaster have two method: GET, POST   </b>  </p>
+<p>Both Route have 3 parts/parameter</p>
+<ul>
+  <li> <b>First Parameter for Route</b>: Route Name 
 <ol>
  <li>Dynamic Parameter : <code>{parameter_name}</code></li>
 <li>Dynamic Optional Parameter : <code>{parameter_name?} </code></li>
 <li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['id'] </code></li>
 </ol>
- <p>Second Parameter for Route: <b>Conteoller and Method Name ( with @ sign)</b></p> 
- <p>Second Parameter for CSRF protection (Optional): default value false. If you set true, can not access this route without <a href="#wpNonce">WP Nonce Token </a>. You must pass token in header with <code>X-WP-Nonce: token</code>  </p>
+    
+    </li>
+ <li><b>Second Parameter for Route</b>: <b>Conteoller and Method Name ( with @ sign)</b></li> 
+ <li><b>Third Parameter for CSRF protection (Optional)</b>: default value false. If you set true, can not access this route without <a href="#wpNonce">WP Nonce Token </a>. You must pass token in header with <code>X-WP-Nonce: token</code>  </li>
  
- 
+ </ul>
  
  
  # 4. DB Query Builder
