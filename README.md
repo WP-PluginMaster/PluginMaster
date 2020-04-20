@@ -177,7 +177,7 @@ $sidenav->main('DemoPlugin', ["icon" => "dashicons-admin-site",  "as" => 'DemoCo
 <p class="mt-3"><b>Sample Structure</b></p>
 <pre><code>
 $route->get('dashboard/{id?}', 'DemoController@dashboard');
-$route->post('add-note', 'DemoController@addNote'); 
+$route->post('add-note', 'DemoController@addNote', true); 
 </code>
 </pre>
 <span><code>DemoController</code> is controller name and <code>dashboard</code> is method name</span>
@@ -187,7 +187,8 @@ $route->post('add-note', 'DemoController@addNote');
 <li>Dynamic Optional Parameter : <code>{parameter_name?} </code></li>
 <li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['id'] </code></li>
 </ol>
- <p>Second Parameter for Route: <b>Conteoller and Method Name ( with @ sign)</b></p>
+ <p>Second Parameter for Route: <b>Conteoller and Method Name ( with @ sign)</b></p> 
+ <p>Second Parameter for CSRF protection (Optional): default value false. If you set true, can not access this route without <a href="#wpNonce">WP Nonce Token </a>. You must pass token in header with <code>X-WP-Nonce: token</code>  </p>
  
  
  
@@ -363,6 +364,7 @@ $route->post('add-note', 'DemoController@addNote');
 <pre>
 <code>
 $enqueue->footerScript('assets/js/index.js','DemoScriptIndex');
+<div id="wpNonce></div>
 $enqueue->csrfToken('DemoScriptIndex','corsData');
 </code>
 </pre>
