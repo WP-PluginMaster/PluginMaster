@@ -23,26 +23,20 @@
 </ol>
 
 # Installation 
- <ol>
-  <li>
-  <ol>
+ <ol> 
  <li>Go to <code>wp-content/plugins/</code> directory in your WordPress</li>
  <li>Open terminal and run : <code>composer create-project plugin-master/plugin-master</code> <b>OR</b> <code>composer
                             create-project plugin-master/plugin-master project_name</code></li>
  <li> A demo application includes with Vue JS . Just active from Plugin section</li>
- </ol>
-</li>
+ 
 </ol>
 # Configuration 
-<ol>
- <li>
- <ol>
+<ol> 
  <li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.</li>
  <li>Change Rest API Namespace from <code>config.php</code>, located in <code>app/config/</code>
                         directory (You can add any configuration related data in <code>config.php </code>)
                     </li>
- </ol>
- </li>
+ 
  </ol>
 
 # 1. Database Migration System
