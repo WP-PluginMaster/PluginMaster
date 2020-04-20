@@ -364,12 +364,12 @@ $route->post('add-note', 'DemoController@addNote', true);
 <li><code>  footerScriptCdn($path) :  </code> Example : <code>$enqueue->footerScriptCdn('http://alemran.me/js/index.js');</code> </li>
 <li><code>  style($path) :  </code> Example : <code>$enqueue->style('assets/css/style.css');</code> </li>
 <li><code>  styleCdn($path) :  </code> Example : <code>$enqueue->style('assets/js/index.css');</code> </li>
-<li><code> csrfToken($handler, $objectName):  </code> Example :
+<li><div id="wpNonce></div>
+  <code> csrfToken($handler, $objectName):  </code> Example :
 
 <pre>
 <code>
 $enqueue->footerScript('assets/js/index.js','DemoScriptIndex');
-<div id="wpNonce></div>
 $enqueue->csrfToken('DemoScriptIndex','corsData');
 </code>
 </pre>
