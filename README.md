@@ -15,9 +15,9 @@
 <li><a href="#Validator">  Request Validation</a></li>
 <li><a href="#SessionHandler">  HTTP Session</a></li>
 <li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
+<li><a href="#GlobalFunction">  Session Handler </a></li>
 <li><a href="#SessionHandler">  Session Handler </a></li>
-<li> Middleware (upcoming) </li>
-<li> Model (upcoming)  </li>
+<li> Middleware (upcoming) </li> 
 <li> Action Handler (upcoming) </a></li>
 <li> Filter Handler (upcoming)  </li>
 </ol>
@@ -199,49 +199,159 @@ $route->post('add-note', 'DemoController@addNote');
  
  
  # 4. DB Query Builder
- 
- 
- 
- 
- <p>PluginMaster's database query builder provides a convenient, fluent interface to creating and running database queries. It can be used to perform most database operations in your application </p>
+ <div id="QueryBuilder"></div>
+ <p>PluginMaster's database query builder provides a convenient, fluent interface to run
+                database queries. It can be used to perform most database operations in your application. </p>
+ <b>Namespace: PluginMaster\DB\DB;</b>
 # Retrieving Results 
 <ol>
 <li><b>  Retrieving A Single Row </b><br><code>  DB::table('users')->first();</code></li>
 <li><b>  Retrieving A multiple Row </b><br><code>  DB::table('users')->get();</code></li>
 </ol>
 # DB Functions 
-<ol>
-<li> <code>where($column, $value )</code> :
-                                example:
-<pre> <code>
-DB::table('users')
+ <ol>
+ <li><code>where($column, $value )</code> :
+ example:
+
+ <pre class="mt-2"><code>DB::table('users')
      ->where('id', 1)
-     ->get()
- </code></pre>
-<pre> <code>
-DB::table('users')
-     ->where('id', function($query){
+     ->get()</code></pre>
+
+  <pre class="mt-2"><code>DB::table('users')
+     ->where(function($query){
        $query->where('id', 1);
-       $query->orWhere('name', "emran");
+       $query->orWhere('name', "name");
      })
-     ->get()
- </code></pre>
+     ->get()</code></pre>
+
+ </li>
+  <li><code>orWhere($column, $value)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->orWhere('name', "name")
+     ->get()</code></pre>
+
+ <pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->orWhere(function($query){
+         $query->where('field', 'value);
+         $query->where('field', 'value);
+         })
+     ->first()</code></pre>
+
+ </li>
+ <li><code>whereRaw($query)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->whereRaw('id = 1')
+     ->first()</code></pre>
+    </li>
+
+  <li><code>orWhereRaw($query)</code> :
+  <pre class="mt-2"><code>DB::table('users')
+     ->whereRaw('id = 1')
+     ->orWhereRaw('id = 1')
+     ->first()</code></pre>
+ </li>
+
+
+ <li><code>orderBy($columns, $direction)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->orderBy('id', 'desc')</code></pre>
+                    <pre class="mt-2"><code>DB::table('users')
+     ->orderBy('id,name', 'desc')</code></pre>
+ </li>
+
+   <li><code>groupBy($columns)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->groupBy('id')</code></pre>
+                    <pre class="mt-2"><code>DB::table('users')
+     ->groupBy('id,name')</code></pre>
+ </li>
+
+
+  <li><code>limit($number)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->limit(number)->get()</code></pre>
+  </li>
+
+ <li><code>offset($number)</code> :
+ <pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->limit(number)->offset(number)->get()</code></pre>
+ </li>
+
+<li><code>select($fields)</code> :
+<pre class="mt-2"><code>DB::table('users')
+     ->select('id,name')
+        ->get()</code></pre>
+                </li>
+                <li><code>insert($data)</code> :
+                    <pre class="mt-2"><code>DB::table('users')
+     ->insert(['name' => "demo"])</code></pre>
+ </li>
+<li><code>update($data,$where)</code> :
+<pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->update(['name' => "demo"])</code></pre>
 </li>
-<li> <code>orWhere($column, $value)</code> : <code>DB::table('users')->where('id', 1)->orWhere('name', "emran")->get()</code>   </li>
-<li> <code>whereRaw($query)</code> : <code>DB::table('users')->whereRaw('id = 1')->first()</code>   </li>
-<li> <code>orderBy($columns, $direction)</code> : <code>DB::table('users')->orderBy('id,name', "desc")->get()</code>   </li>
-<li> <code>groupBy($columns)</code> : <code>DB::table('users')->groupBy('id,name')->get()</code>   </li>
-<li> <code>select($fields)</code> : <code>DB::table('users')->select('id,name')->get()</code>   </li>
-<li> <code>insert($data)</code> : <code>DB::table('users')->insert(['name' => "demo"])</code>   </li>
-<li> <code>update($data,$where)</code> : <code>DB::table('users')->update(['name' => "demo"], ["id" => 1])</code> (will change soon)  </li>
- <li> <code>delete($where)</code> : <code>DB::table('users')->delete(["id" => 1])</code> (will change soon)  </li>
-<li> Join (upcoming)   </li>
-</ol>
+<li><code>delete($where)</code> :
+<pre class="mt-2"><code>DB::table('users')
+     ->where('id', 1)
+     ->delete()</code></pre>
+</li>
+
+<li><code>join($table, $first, $operator = null, $second = null) (INNER JOIN)</code>:
+<pre class="mt-2"><code>DB::table('demo_notes as n')
+        ->join('demo_users as u', 'u.id', '=', 'n.user_id')
+        ->first()
+</code></pre>
+<pre class="mt-2"><code>DB::table('demo_notes as n')
+        ->join('demo_users as u', function($query){
+          $query->on( 'u.id', '=', 'n.user_id')
+          $query->orOn( 'u.id', '=', 'n.user_id')
+        })
+        ->first()
+</code></pre>
+
+ <pre class="mt-2"><code>DB::table('demo_notes as n')
+        ->join('demo_users as u', function($query) use($request){
+          $query->on( 'u.id', '=', 'n.user_id')
+          $query->onWhere( 'u.id', '=', $request->id)
+        })
+        ->first()
+</code></pre>
+
+
+ <blockquote>Note: Must use table alias for using join or leftJoin.</blockquote>
+</li>
+<li>
+<code>leftJoin($table, $first, $operator = null, $second = null) (LEFT JOIN)</code>: <b> Same as
+                        join()</b>
+</li>
+
+ <li><code>transaction()</code>:
+<pre class="mt-2"><code>DB::startTransaction(function(){
+    DB::table('demo_notes')
+      ->insert([
+         "note" => "Hello",
+       ]);
+})</code></pre>
+
+<pre class="mt-2"><code>DB::startTransaction(function(DB $query){
+    $query->table('demo_notes')
+      ->insert([
+         "note" => "Hello",
+       ]);
+})</code></pre>
+
+ </li>
+ </ol>
 
 
 
 # 5. Simple Enqueue Declaration 
-
+<div id="SimpleEnqueueDeclaration"></div>
 
  <p> Easy way to add css and js file to application</p>
 <b> Enqueue Declaration file : enqueue/enqueue.php </b><br>
@@ -257,76 +367,138 @@ DB::table('users')
 <li><code> csrfToken($handler, $objectName):  </code> Example :
 
 <pre>
-  <code>
+<code>
 $enqueue->footerScript('assets/js/index.js','DemoScriptIndex');
 $enqueue->csrfToken('DemoScriptIndex','corsData');
 </code>
 </pre>
+<p><code>DemoScriptIndex</code> is Handler and <code>corsData</code> is object name. You can access
+                        API ENDPOINT ROOT and security code from corsData object. </p>
+ <blockquote><b>Note:</b> CSRF token must define under a js file's Handler.</blockquote>
 </li>
 
-<li><code>   $enqueue->hotScript('file_name.js')  </code> for Vue JS hot mode (main url will be <code> http://localhost:8080/file_name.js</code>)</li>
+<li><code> $enqueue->hotScript('file_name.js') </code> for Webpack (DevServer) hot mode with Vue js
+                    (main url will be <code>
+                        http://localhost:8080/file_name.js</code>)
+ </li>
 </ol>
 
 
 
 # 6. Request Handling System
+<div id="RequestHandlingSystem" ></div>
 
-
-<p> Easy way to  access request data from native or AJAX</p>
-  <b> No need isset function to check. just call <code>$request->name</code> , it will return null if not set </b><br>
- <p class="mt-3"><b>Example</b></p>
-
- <pre>
- <code>
- use App\system\request\Request;
- $request = new Request();
- echo $request->name;
-</code>
-</pre>
-
+<p> Easy way to access request data from native or AJAX request</p>
+ <b> No need isset function to check. just call <code>$request->name</code> , it will return null if not
+            set </b><br>
+<p class="mt-3"><b>Example</b></p>
+<pre> <code>
+     use App\system\request\Request;
+     $request = new Request();
+     echo $request->name;
+    </code>
+    </pre>
+<p><b>Access Header:</b> <code>$request->header(name)</code></p>
+<p><b>Get All Data as Array:</b> <code>$request->all()</code></p>
+<p><b>Check Request Method :</b> <code>if($request->isMethod('post')){}</code></p>
 
 
 # 7. Validator 
 
 
 <p> Validate data is easy in PluginMaster</p>
- <p class="mt-3"><b>Example</b></p>
-
-<pre>
-<code>
+ <p class="mt-3"><b> Manually Validate ( not compatible for REST API) </b>: Example</p>
+  <pre>
+  <code>
  use App\system\Validator;
- Validator::execute($request, [
+  $validator = Validator::make($request, [
             'ID' => 'required|number|limit:10,11',
             'name' => 'required|wordLimit:10,20',
             'slug' => 'required|noSpecialChar',
         ]);
 
+ if ($validator->fails()) {
+     $errors =  $validator->errors();
+ }
+
 </code>
 </pre>
- <p>if validation fail then return and exit with :</p>
-<pre> <code>
-  return  json( [
-        "status" => $status,
-        "message" => "Please check required field",
-        "errors" => self::$message
-    ], 401);
- </code></pre>
- # Available Validation: 
+<blockquote>For checking validation fail: <code>$validator->fail();</code>. For Validation errors: <code>
+                $validator->errors() </code>.
+You can use <code>$validator->flashErrors();</code> for flashing errors as flash session and you can access
+            all flashed errors through <code>formErrors()</code> global function. Also you can access single field error
+            through <code>formError(field name).</code>
+</blockquote>
+ <b>Display Errors in View file :</b>
+<p>In controller</p>
+<pre><code>
+      use App\system\Validator;
+      $validator = Validator::make($request, [
+      'ID' => 'required|number|limit:10,11',
+      'name' => 'required|wordLimit:10,20',
+      'slug' => 'required|noSpecialChar',
+      ]);
+      
+    if ($validator->fails()) {
+      $errors =  $validator->formErrors();
+    }  
+</code> </pre>
+
+<p>In view file</p>
+<pre class="mt-3"><code>             
+if ( count(formErrors()) ) :
+      &lt;div class="alert alert-danger"&gt;
+           &lt;ul&gt;
+            &lt;php foreach (formErrors() as $key=>$value): ?&gt;
+                   &lt;li&gt; &lt;php  echo $value; ?&gt;  &lt;/li&gt;
+           &lt;php  endforeach; ?&gt;
+         &lt;/ul&gt;
+     &lt;/div&gt;
+   &lt;php endif;  ?&gt;
+
+  &lt;input type="text" name="email"&gt;
+  &lt;p&gt; &lt;php  formError('email'); ?&gt;  &lt;/p&gt;
+</code></pre>
+
+
+<p class="mt-3"><b> Stopping On Validation Failure (Compatible for REST API) </b>: If validation fail then stop
+            other execution, just return validation errors.</p>
+ <p>Example:</p>
+ <pre><code>
+                use App\system\request\Request;
+                $request = new Request();
+                $request->validate([
+                'name' => 'required',
+                ]);
+
+ </code> </pre>
+ <p>Error will return as like following: </p>
+<pre><code>
+             [
+                "message" => "Validation failed",
+                "errors" => [
+                 "name" => "name Field is required"
+                 ]
+              ]
+</code></pre>
+
+<b>Available Validation:</b>
 <ol>
-<li>required</li>
- <li>mobile (start with zero and must be in 0-9)</li>
-<li>number</li>
-<li>floatNumber</li>
-<li>noNumber( accept all character without number)</li>
-<li>letter( accept only letter :A-Za-z))</li>
-<li>noSpecialChar </li>
-<li>limit: min, max </li>
-<li>wordLimit: min, max </li>
-<li>email </li>
+    <li>required</li>
+    <li>mobile (start with zero and must be in 0-9)</li>
+    <li>number</li>
+    <li>floatNumber</li>
+    <li>noNumber( accept all character without number)</li>
+    <li>letter( accept only letter :A-Za-z))</li>
+    <li>noSpecialChar</li>
+    <li>limit: min, max</li>
+    <li>wordLimit: min, max</li>
+    <li>email</li>
 </ol>
 
 
 # 8. Build in Vue JS Configuration 
+<div id="BuildinVueJSConfiguration"></div>
 
  <p>  Build Vue JS application with your plugin</p>
  <p class="mt-3"><b>Configuration</b></p>
@@ -366,19 +538,43 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
   </pre>
                     
  
+ 
  # 9. Global Functions
  
- <ol>
-  <li><code>view()</code> : root of vue file : <code>resources/view/</code>. you have to pass only file name withour extention and directory. Example: <code> view('home/index') </code> </li>
-  <li> <code> json($data, $code)</code> : for returnning as json with status code</li> 
-  
-  <li> <code> config($key)</code> : for returnning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
-  
+<div id="GlobalFunction"></div>
 
-  
-  </ol>
-                    
+  <ol>
+ <li><code>view()</code> : root of vue file : <code>resources/view/</code>. you have to pass only file name withour extention and directory. Example: <code> view('home/index') </code> </li>
+<li> <code> json($data, $code)</code> : for returning as json with status code</li>
 
+<li> <code> config($key)</code> : for returning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
+<li> <code> current_url()</code> : for current url</code></li>
+<li> <code> formErrors()</code> : for form validation errors as array</code></li>
+<li> <code> formError($field_name)</code> : for single field  validation error </code></li>
+<li> <code> session_flush($key, $value = null)</code> : for getting and setting <a href="#SessionHandler"> flush session</a> </code></li>
+<li> <code> session($key, $value = null)</code> : for getting and setting <a href="#SessionHandler">  session </a> </code></li>
+
+</ol>
+  
+ #  Session Handler
+ 
+ <div id="SessionHandler"></div>
+<ol>
+<li>Get OR Set Flush Session: <br>
+<code>Session::flush(key)</code> for getting onetime Session and <code>Session::flush(key, value)</code>
+                for setting onetime session.
+<blockquote> Flush session unset after page loading completed</blockquote>
+</li>
+<li> Set Session:
+<code>Session::flush(key, value)</code>
+ </li>
+<li> Get Session:
+                <code>Session::get(key)</code>
+</li>
+<li> Forget Session:
+                <code>Session::forget(key)</code>
+</li>
+</ol>
 
 # License
 <p>The MIT License (MIT)</p>
