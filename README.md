@@ -1,4 +1,4 @@
-# PluginMaster (an Application Development Framework for Wordpress)
+# PluginMaster (an Application Development Framework for WordPress)
 # What is PluginMaster?
   <blockquote>
     « PluginMaster is an Application development framework for WordPress. It changes the flavor of plugin development.»
@@ -8,17 +8,16 @@
  <ol type="1">
 <li> <a href="#DatabaseMigrationSystem"> Database Migration System </a></li>
  <li><a href="#SimpleSideMenuDeclaration">  Simple Side Menu Declaration</a></li>
-<li><a href="#EasyRestAPIRouteDeclaration">  Easy Rest API Route Declaration</a></li>
-<li><a href="#QueryBuilder">  Query Builder</a></li>
+<li><a href="#EasyRestAPIRouteDeclaration">  Simple Rest API Declaration</a></li>
+<li><a href="#QueryBuilder">   Database Query Builder</a></li>
 <li><a href="#SimpleEnqueueDeclaration">  Simple Enqueue Declaration</a></li>
-<li><a href="#RequestHandlingSystem">  Http Request Handling System</a></li>
-<li><a href="#Validator">  Request Validation</a></li>
-<li><a href="#SessionHandler">  HTTP Session</a></li>
+<li><a href="#RequestHandlingSystem">  Http Request Handling </a></li>
+<li><a href="#Validator">  Request Validation</a></li> 
 <li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
 <li><a href="#GlobalFunction">  Global Functions </a></li>
 <li><a href="#SessionHandler">  Session Handler </a></li>
 <li> Middleware (upcoming) </li> 
-<li> Action Handler (upcoming) </a></li>
+<li> Action Handler (upcoming) </li>
 <li> Filter Handler (upcoming)  </li>
 </ol>
 
@@ -49,23 +48,18 @@
  
 <p>The migration file name has 2 parts :
  <ol>
- <li>First for sequence maintain for foreign key and second for the  table name. </li>
- <li>Second part must be the same as table name .</li>
+ <li><b>First</b>  for sequence maintain for foreign key and <b>second</b> for the  table name.  <b> Second </b> part must be the same as table name .</li>
 </ol>
  <blockquote>  Also class name will be the same as the table name.<br> File name like : <code>1_demo_users.php</code>.
                 This means, <code>1</code> is for sequence maintain and <code>demo_users</code> is the table name and also class
                 name. the table prefix will be set from the schema builder.
  </blockquote>
 
-<p>A migration class contains one method: up. The up method is used to add new tables to your
-                database.</p>
+<p>A migration class contains one method: up. The up method is used to add new tables to your database.</p>
  <b>Sample Migration File</b>
  <p class="mt-3">File Name: <code>1_demo_users.php</code></p>
-<b>Sample Migration File</b>
-<pre>
-<code>
-<?php
 
+<pre><code>
 use App\system\schema\Schema;
 
 class demo_users
@@ -79,6 +73,8 @@ class demo_users
             $column->string('email')->nullable();
             $column->text('description')->nullable();
             $column->enum('status', ['ok', 'not']);
+            $column->integer('user_id')->unsigned()->nullable();
+            $column->foreign('user_id')->on('demo_users.id');
             $column->timestamp('student_created_at')->default('current_timestamp')->onUpdateTimeStamp();
         });
     }
@@ -98,12 +94,12 @@ class demo_users
 <li> <code>enum($column, $values)</code> : enum( value, value) ($values must be array).  </li>
 <li> <code>date($column)</code> : date  </li>
 <li> <code>timestamp($column)</code> : timestamp  </li>
-<li> <code> nullable() </code> : NULL  </li>
-<li> <code> unsigned() </code> : UNSIGNED  </li>
-<li> <code> default($value)</code> : DEFAULT 'VALUE' (IF $VALUE == 'CURRENT_TIMESTAMP' OR 'current_timestamp' then set <code>CURRENT_TIMESTAMP </code></li>
-<li> <code> onUpdateTimeStamp()</code> : ON UPDATE CURRENT_TIMESTAMP  </li>
-<li> <code> foreign($column)</code> : make CONSTRAINT for foreign key  </li>
-<li> <code> on($reference)</code> : $reference means table.column. check following example.
+<li> <code>nullable() </code> : null  </li>
+<li> <code>unsigned() </code> : unsigned  </li>
+<li> <code>default($value)</code> : default 'value' (if $value == 'CURRENT_TIMESTAMP' OR 'current_timestamp' then set <code>CURRENT_TIMESTAMP </code></li>
+<li> <code>onUpdateTimeStamp()</code> : ON UPDATE CURRENT_TIMESTAMP  </li>
+<li> <code>foreign($column)</code> : make CONSTRAINT for foreign key  </li>
+<li> <code>on($reference)</code> : $reference means table.column. check following example.
 <pre>
 <code>    
 $column->integer('user_id')->unsigned();
@@ -172,27 +168,28 @@ $sidenav->main('DemoPlugin', ["icon" => "dashicons-admin-site",  "as" => 'DemoCo
 <p>Create WP rest route in easy way.     </p>
 <p> <b> Rest Route declaration file : routes/route.php </b>
  <br> <b> Rest Route Controller must declare inside : app/controller/api/ </b></p>
- <p><b>API Namespace:</b> Namespace by <code>api_namespace</code> of config.php. It's located in <code>app/config/config.php</code>
+ <p><b>API Namespace:</b> Namespace maintain by <code>api_namespace</code> of config.php. It's located in <code>app/config/config.php</code>
             </p>
 <p class="mt-3"><b>Sample Structure</b></p>
 <pre><code>
 $route->get('dashboard/{id?}', 'DemoController@dashboard');
-$route->post('add-note', 'DemoController@addNote', true); 
+$route->post('add-note', 'DemoController@addNote'); 
+$route->post('update-note', 'DemoController@addNote', true); 
 </code>
 </pre>
-<span><code>DemoController</code> is controller name and <code>dashboard</code> is method name</span>
-<p class="mt-2"><b> PluginMaster have two method: GET, POST   </b>  </p>
-<p>Both Route have 3 parts/parameter</p>
+<span><code>DemoController</code> is controller name and <code>dashboard</code> is method name , located in <code>app/controller/api/</code> directory</span>
+<p class="mt-2"><b> PluginMaster has two methods: GET, POST   </b>  </p>
+<p>Both Route has 3 parts/parameters</p>
 <ul>
   <li> <b>First Parameter</b>: Route Name 
 <ol>
  <li>Dynamic Parameter : <code>{parameter_name}</code></li>
 <li>Dynamic Optional Parameter : <code>{parameter_name?} </code></li>
-<li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['id'] </code></li>
+<li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['param_name'] </code></li>
 </ol>
     
-    </li>
- <li><b>Second Parameter</b>: <b>Conteoller and Method Name ( with @ sign)</b></li> 
+</li>
+ <li><b>Second Parameter</b>:  Conteoller and Method Name ( with @ sign) </li> 
  <li><b>Third Parameter </b>: CSRF protection (Optional).Default value false. If you set true, can not access this route without <a href="#wpNonce">WP Nonce Token </a>. You must pass token in header with <code>X-WP-Nonce: token</code>  </li>
  
  </ul>
@@ -202,16 +199,18 @@ $route->post('add-note', 'DemoController@addNote', true);
  <div id="QueryBuilder"></div>
  <p>PluginMaster's database query builder provides a convenient, fluent interface to run
                 database queries. It can be used to perform most database operations in your application. </p>
- <b>Namespace: PluginMaster\DB\DB;</b>
-# Retrieving Results 
+ <b>Namespace: <code>PluginMaster\DB\DB;</code></b><br> 
+ 
+<br>
+<b>DB Functions </b>
 <ol>
-<li><b>  Retrieving A Single Row </b><br><code>  DB::table('users')->first();</code></li>
-<li><b>  Retrieving A multiple Row </b><br><code>  DB::table('users')->get();</code></li>
+<li>   Retrieving A Single Row<br><code>  DB::table('users')->first();</code></li>
+<li>  Retrieving A multiple Row <br><code>  DB::table('users')->get();</code></li>
 </ol>
-# DB Functions 
+
  <ol>
  <li><code>where($column, $value )</code> :
- example:
+ 
 
  <pre class="mt-2"><code>DB::table('users')
      ->where('id', 1)
@@ -358,13 +357,14 @@ $route->post('add-note', 'DemoController@addNote', true);
 <b>Plugin Deactivation Script Declaration : enqueue/deactiveAction.php </b>
 <p class="mt-3"><b>Functions</b></p>
 <ol>
-<li><code>  headerScript($path) :  </code> Example : <code>$enqueue->headerScript('assets/js/index.js');</code> </li>
-<li><code>  headerScriptCdn($path) :  </code> Example : <code>$enqueue->headerScriptCdn('http://alemran.me/js/index.js');</code> </li>
-<li><code>  footerScript($path) :  </code> Example : <code>$enqueue->footerScript('assets/js/index.js');</code> </li>
-<li><code>  footerScriptCdn($path) :  </code> Example : <code>$enqueue->footerScriptCdn('http://alemran.me/js/index.js');</code> </li>
-<li><code>  style($path) :  </code> Example : <code>$enqueue->style('assets/css/style.css');</code> </li>
-<li><code>  styleCdn($path) :  </code> Example : <code>$enqueue->style('assets/js/index.css');</code> </li>
-<li id="wpNonce"> <code> csrfToken($handler, $objectName):  </code> Example :
+<li><code>  headerScript($path) :  </code>  : <br>
+    <code>$enqueue->headerScript('assets/js/index.js');</code> </li>
+<li><code>  headerScriptCdn($path) :  </code> : <br> <code>$enqueue->headerScriptCdn('http://alemran.me/js/index.js');</code> </li>
+<li><code>  footerScript($path) :  </code>: <br> <code>$enqueue->footerScript('assets/js/index.js');</code> </li>
+<li><code>  footerScriptCdn($path) :  </code> :<br> <code>$enqueue->footerScriptCdn('http://alemran.me/js/index.js');</code> </li>
+<li><code>  style($path) :  </code> :<br> <code>$enqueue->style('assets/css/style.css');</code> </li>
+<li><code>  styleCdn($path) :  </code>:<br> <code>$enqueue->style('assets/js/index.css');</code> </li>
+<li id="wpNonce"> <code> csrfToken($handler, $objectName):  </code> :<br>
 
 <pre>
 <code>
@@ -372,14 +372,11 @@ $enqueue->footerScript('assets/js/index.js','DemoScriptIndex');
 $enqueue->csrfToken('DemoScriptIndex','corsData');
 </code>
 </pre>
-<p><code>DemoScriptIndex</code> is Handler and <code>corsData</code> is object name. You can access
-                        API ENDPOINT ROOT and security code from corsData object. </p>
+<p><code>DemoScriptIndex</code> is Handler and <code>corsData</code> is object name. You can access   api  ROOT url and token  corsData object. </p>
  <blockquote><b>Note:</b> CSRF token must define under a js file's Handler.</blockquote>
 </li>
 
-<li><code> $enqueue->hotScript('file_name.js') </code> for Webpack (DevServer) hot mode with Vue js
-                    (main url will be <code>
-                        http://localhost:8080/file_name.js</code>)
+<li><code> $enqueue->hotScript('file_name.js') </code> for Webpack (DevServer) hot mode with Vue js (main url will be <code>  http://localhost:8080/file_name.js</code>)
  </li>
 </ol>
 
@@ -407,7 +404,7 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 
 
 <p> Validate data is easy in PluginMaster</p>
- <p class="mt-3"><b> Manually Validate ( not compatible for REST API) </b>: Example</p>
+ <p class="mt-3"><b> Manually Validate ( not compatible for REST API) </b>:  </p>
   <pre>
   <code>
  use App\system\Validator;
@@ -423,12 +420,10 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 
 </code>
 </pre>
-<blockquote>For checking validation fail: <code>$validator->fail();</code>. For Validation errors: <code>
-                $validator->errors() </code>.
-You can use <code>$validator->flashErrors();</code> for flashing errors as flash session and you can access
-            all flashed errors through <code>formErrors()</code> global function. Also you can access single field error
-            through <code>formError(field name).</code>
-</blockquote>
+<p>For checking validation fail: <code>$validator->fail();</code>.</p>
+<p>For Validation errors: <code> $validator->errors() </code>.</p> 
+<p>You can use <code>$validator->flashErrors();</code> for flashing errors as flash session and you can access  all flashed errors through <code>formErrors()</code> global function. Also you can access single field error  through <code>formError(field name).</code></p>
+ 
  <b>Display Errors in View file :</b>
 <p>In controller</p>
 <pre><code>
@@ -438,14 +433,15 @@ You can use <code>$validator->flashErrors();</code> for flashing errors as flash
       'name' => 'required|wordLimit:10,20',
       'slug' => 'required|noSpecialChar',
       ]);
-      
+ </code> </pre>    
+  <pre><code>    
     if ($validator->fails()) {
       $errors =  $validator->formErrors();
     }  
 </code> </pre>
 
 <p>In view file</p>
-<pre class="mt-3"><code>             
+<pre><code>             
 if ( count(formErrors()) ) :
       &lt;div class="alert alert-danger"&gt;
            &lt;ul&gt;
@@ -459,16 +455,19 @@ if ( count(formErrors()) ) :
   &lt;input type="text" name="email"&gt;
   &lt;p&gt; &lt;php  formError('email'); ?&gt;  &lt;/p&gt;
 </code></pre>
+<b>OR</b>
+<p>You can pass errors to view file with compact</p>
+<pre>
+view('path to view', compact('errors'));
+</pre>
 
-
-<p class="mt-3"><b> Stopping On Validation Failure (Compatible for REST API) </b>: If validation fail then stop
-            other execution, just return validation errors.</p>
+<p class="mt-3"><b>Stopping On Validation Failure (Compatible for REST API) </b>: If validation fail then stop   other execution, just return validation errors.</p>
  <p>Example:</p>
  <pre><code>
-                use App\system\request\Request;
+          use App\system\request\Request;
                 $request = new Request();
                 $request->validate([
-                'name' => 'required',
+                  'name' => 'required',
                 ]);
 
  </code> </pre>
@@ -555,7 +554,7 @@ if ( count(formErrors()) ) :
 <li> <code> json($data, $code)</code> : for returning as json with status code</li>
 
 <li> <code> config($key)</code> : for returning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
-<li> <code> current_url()</code> : for current url</code></li>
+<li> <code> current_url()</code> : for current url</code></pre>
 <li> <code> formErrors()</code> : for form validation errors as array</code></li>
 <li> <code> formError($field_name)</code> : for single field  validation error </code></li>
 <li> <code> session_flush($key, $value = null)</code> : for getting and setting <a href="#SessionHandler"> flush session</a> </code></li>
