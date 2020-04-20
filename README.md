@@ -23,18 +23,18 @@
 </ol>
 
 # Installation 
- <ul>
+ <ol>
   <li>
   <ol>
  <li>Go to <code>wp-content/plugins/</code> directory in your WordPress</li>
- <li><code>composer create-project plugin-master/plugin-master</code> <b>OR</b> <code>composer
+ <li>Open terminal and run : <code>composer create-project plugin-master/plugin-master</code> <b>OR</b> <code>composer
                             create-project plugin-master/plugin-master project_name</code></li>
  <li> A demo application includes with Vue JS . Just active from Plugin section</li>
  </ol>
 </li>
-</ul>
+</ol>
 # Configuration 
-<ul>
+<ol>
  <li>
  <ol>
  <li> Change your Plugin name, version etc from <code>index.php</code> page in root folder.</li>
@@ -43,7 +43,7 @@
                     </li>
  </ol>
  </li>
- </ul>
+ </ol>
 
 # 1. Database Migration System
  <div id="DatabaseMigrationSystem"></div>
