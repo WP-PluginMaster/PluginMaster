@@ -544,7 +544,14 @@ if ( count(formErrors()) ) :
 <div id="GlobalFunction"></div>
 
   <ol>
- <li><code>view()</code> : root of vue file : <code>resources/view/</code>. you have to pass only file name withour extention and directory. Example: <code> view('home/index') </code> </li>
+ <li><code>view()</code> : root of view file : <code>resources/view/</code>. you have to pass only file name withour extention  . Example: <code> view('home/index') </code> . 
+  <br> <b> Also you can pass data to view with <code>compact </code>
+     <code><pre>
+       $title = "......";
+       $data = [] ;
+       return view('home/index', compact('title', 'data'))
+     </pre></code>
+  </li>
 <li> <code> json($data, $code)</code> : for returning as json with status code</li>
 
 <li> <code> config($key)</code> : for returning configuration data. you can set/ change  configuration data from : <code>add/config/config.php</code></li>
