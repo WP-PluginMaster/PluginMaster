@@ -2,9 +2,10 @@
 
 namespace App\system\bootstrap;
 
+use App\system\core\Settings;
+
 class Activator
 {
-
     /**
      * @return void
      */
@@ -15,8 +16,8 @@ class Activator
 
     public function initMigration()
     {
-        global $wpdb, $plugin_path;
-        $migrationDir = $plugin_path . '/database/migrations';
+        global $wpdb;
+        $migrationDir = Settings::$plugin_path . '/database/migrations';
 
         $charset = $wpdb->get_charset_collate();
 

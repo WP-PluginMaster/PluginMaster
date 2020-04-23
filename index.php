@@ -30,19 +30,12 @@ if (!defined('WPINC')) {
 }
 
 
-define('PLUGIN_NAME_VERSION', '1.0.0');
-
-global $plugin_base ,$plugin_path;
-
-$plugin_base = plugin_basename(__FILE__);
-$plugin_path = plugin_dir_path(__FILE__);
-
-
-
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
 use App\system\bootstrap\Boot;
+use App\system\core\Settings;
 
+Settings::init(__FILE__);
 Boot::init();
 
 

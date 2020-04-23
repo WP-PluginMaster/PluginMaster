@@ -9,7 +9,7 @@ class ConfigHandler
 
     public function __construct()
     {
-        $this->config = include plugin_dir_path(__FILE__) . '../../../app/config/config.php';
+        $this->config = include Settings::$plugin_path . '/app/config/config.php';
 
     }
 

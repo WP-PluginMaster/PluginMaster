@@ -3,6 +3,7 @@
 namespace App\system\sidenav;
 
 
+use App\system\core\Settings;
 use PluginMaster\SideMenu\SideMenu;
 
 class SideMenuRegister extends SideMenu
@@ -12,14 +13,13 @@ class SideMenuRegister extends SideMenu
     {
         global $plugin_path;
         $sidenav = $this;
-        require_once $plugin_path . '/routes/sidenav.php';
+        require_once Settings::$plugin_path . '/routes/sidenav.php';
 
     }
 
     public function main($nav, $options, $closure = null)
     {
-        global $mainMenu;
-        $mainMenu = $nav;
+        Settings::$main_menu = $nav;
         $this->mainMenu($nav, $options);
 
         if ($closure instanceof \Closure) {

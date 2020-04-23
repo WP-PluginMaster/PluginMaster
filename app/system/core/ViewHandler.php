@@ -17,15 +17,12 @@ public $data = "Hello" ;
      */
     public static function makeView($path, $data)
     {
-        global $plugin_path;
 
         if (count($data)) {
             extract($data);
         }
 
-      //  $session = new Session() ;
-
-        include  $plugin_path . '/resources/view/' . $path . '.php';
+        include  Settings::$plugin_path . '/resources/view/' . $path . '.php';
 
     }
 

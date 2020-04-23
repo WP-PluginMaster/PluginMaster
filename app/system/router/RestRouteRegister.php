@@ -2,6 +2,7 @@
 
 namespace App\system\router;
 
+use App\system\core\Settings;
 use PluginMaster\Routing\Router;
 
 class RestRouteRegister extends Router
@@ -16,9 +17,8 @@ class RestRouteRegister extends Router
 
     public function init()
     {
-        global $plugin_path;
         $route = $this;
-        require_once $plugin_path. '/routes/route.php';
+        require_once Settings::$plugin_path. '/routes/route.php';
     }
 
     /**

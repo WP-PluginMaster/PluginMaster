@@ -1,9 +1,8 @@
 <div id="vueApplication"></div>
 <div class="wrap">
     <h2 class="mb-2">
-        <?php echo $pageTitle; ?>
+        <?php  echo $pageTitle; ?>
     </h2>
-
     <div>
         <h4>What is PluginMaster ?</h4>
         <blockquote>
