@@ -1,9 +1,10 @@
 <?php
 
 
+
 /**
- * for using hot reload system from webpack
- *  $enqueue->hotScript(file_name)
+ * Add Enqueue
+ *  for admin
  */
 
 
