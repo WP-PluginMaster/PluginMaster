@@ -383,7 +383,7 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 
 
 # 6. Easy Shortcode Handler
- <div id="#ShortCode"> </div> 
+ <div id="ShortCode"> </div> 
  <p>Create and manage shortcode in easy way</p>
  <b> Shortcode Declaration file : shortcode/shortcode.php </b><br>
  <b>Controller root directory for shortcode : app/controller/shortcode/ </b><br>
