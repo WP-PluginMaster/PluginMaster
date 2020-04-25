@@ -11,6 +11,7 @@
 <li><a href="#EasyRestAPIRouteDeclaration">  Simple Rest API Declaration</a></li>
 <li><a href="#QueryBuilder">   Database Query Builder</a></li>
 <li><a href="#SimpleEnqueueDeclaration">  Simple Enqueue Declaration</a></li>
+<li><a href="#ShortCode"> Easy Shortcode Handler </a></li>
 <li><a href="#RequestHandlingSystem">  Http Request Handling </a></li>
 <li><a href="#Validator">  Request Validation</a></li> 
 <li><a href="#BuildinVueJSConfiguration">  Build-in Vue JS Configuration</a></li>
@@ -381,8 +382,25 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 </ol>
 
 
+# 6. Easy Shortcode Handler
+ <div href="#ShortCode"> </div> 
+ <p>Create and manage shortcode in easy way</p>
+ <b> Shortcode Declaration file : shortcode/shortcode.php </b><br>
+ <b>Controller root directory for shortcode : app/controller/shortcode/ </b><br>
+ <b>Example: </b>
+ <pre> <code> $shortCode->add('pluginmaster', 'ShortCodeController@index' ) ; </code>  </pre>
+ <p><code>pluginmaster</code> is the name of shortcode. <code>ShortCodeController</code> is controller and <code>index</code> is method name.</p>
+ <p>Method Sample</p>
+  <pre><code>
+    public function index(){
+          $data = DB::table('table_name')->get();
+        return  view('shortcode', compact('data')) ;
+    }
+  </code></pre>
+  
+  
 
-# 6. Request Handling System
+# 7. Request Handling System
 <div id="RequestHandlingSystem" ></div>
 
 <p> Easy way to access request data from native or AJAX request</p>
@@ -400,7 +418,7 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 <p><b>Check Request Method :</b> <code>if($request->isMethod('post')){}</code></p>
 
 
-# 7. Validator 
+# 8. Validator 
 
 
 <p> Validate data is easy in PluginMaster</p>
@@ -496,7 +514,7 @@ view('path to view', compact('errors'));
 </ol>
 
 
-# 8. Build in Vue JS Configuration 
+# 9. Build in Vue JS Configuration 
 <div id="BuildinVueJSConfiguration"></div>
 
  <p>  Build Vue JS application with your plugin</p>
@@ -538,7 +556,7 @@ view('path to view', compact('errors'));
                     
  
  
- # 9. Global Functions
+ # 10. Global Functions
  
 <div id="GlobalFunction"></div>
 
@@ -562,7 +580,7 @@ view('path to view', compact('errors'));
 
 </ol>
   
- #  Session Handler
+ # 11.  Session Handler
  
  <div id="SessionHandler"></div>
 <ol>
