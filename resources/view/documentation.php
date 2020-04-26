@@ -3,6 +3,8 @@
     <h2 class="mb-2">
         <?php  echo $pageTitle; ?>
     </h2>
+
+
     <div>
         <h4>What is PluginMaster ?</h4>
         <blockquote>
@@ -17,6 +19,7 @@
             <li><a href="#EasyRestAPIRouteDeclaration">  Easy Rest API Route Declaration</a></li>
             <li><a href="#QueryBuilder">  Query Builder</a></li>
             <li><a href="#SimpleEnqueueDeclaration">  Simple Enqueue Declaration</a></li>
+            <li><a href="#ShortCode"> Easy Shortcode Handler</a></li>
             <li><a href="#RequestHandlingSystem">  Http Request Handling System</a></li>
             <li><a href="#Validator">  Request Validation</a></li>
             <li><a href="#SessionHandler">  HTTP Session</a></li>
@@ -411,6 +414,23 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
             </ol>
 
         </div>
+
+        <div id="ShortCode">
+            <h4 class="mt-5"> 6. <a href="#ShortCode">Easy Shortcode Handler</a></h4>
+            <p> Create and manage shortcode in easy way </p>
+            <b> Shortcode Declaration file : shortcode/shortcode.php </b><br>
+            <b>Controller root directory for shortcode : app/controller/shortcode/ </b><br>
+            <b>Example: </b>
+         <pre> <code> $shortCode->add('pluginmaster', 'ShortCodeController@index' ) ; </code>  </pre>
+            <p><code>pluginmaster</code> is the name of shortcode. <code>ShortCodeController</code> is controller and <code>index</code> is method name.</p>
+       <p>Method Sample</p>
+  <pre><code>
+    public function index(){
+          $data = DB::table('table_name')->get();
+        return  view('shortcode', compact('data')) ;
+    }
+  </code></pre>
+</div>
 
      <div id="RequestHandlingSystem" >
 

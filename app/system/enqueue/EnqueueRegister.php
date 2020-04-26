@@ -22,8 +22,11 @@ class EnqueueRegister extends Enqueue
      */
     public function initAsset()
     {
-        add_action('admin_enqueue_scripts', array($this, 'init_admin_enqueue'));
-        add_action('wp_enqueue_scripts', array($this, 'init_front_enqueue'));
+        if (is_admin()) {
+            add_action('admin_enqueue_scripts', array($this, 'init_admin_enqueue'));
+        } else {
+            add_action('wp_enqueue_scripts', array($this, 'init_front_enqueue'));
+        }
     }
 
     /**
@@ -35,7 +38,7 @@ class EnqueueRegister extends Enqueue
             $this->deActiveAction();
         } else {
             $currentURI = explode('page=', $_SERVER['REQUEST_URI']);
-            $currentNav = urldecode(isset($currentURI[1]) ? $currentURI[1] : '');
+            $currentNav = isset($currentURI[1]) ? urldecode($currentURI[1]) : '';
 
             if ('toplevel_page_' . Settings::$main_menu === $hook || strtolower(Settings::$main_menu) . '_page_' . $currentNav == $hook) {
 
@@ -65,13 +68,15 @@ class EnqueueRegister extends Enqueue
     }
 
 
-/**
-     *
+    /**
+     * @param $links
+     * @return mixed
      */
-    private function deActiveActionData()
+    public function deActiveActionData($links)
     {
-        return   file_get_contents( Settings::$plugin_path . '/enqueue/deactiveAction.php');
+        $data = file_get_contents(Settings::$plugin_path . '/enqueue/deactiveAction.php');
+        array_push($links, $data);
+        return $links;
     }
-
 
 }
