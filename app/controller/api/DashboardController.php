@@ -16,26 +16,5 @@ class DashboardController extends Controller
         ];
     }
 
-
-    public function create($tableName, $sql, $charset_collate)
-    {
-        global $table_prefix, $wpdb;
-
-        $table = $table_prefix . "$tableName";
-
-
-        if ($wpdb->get_var("show tables like '$table'") != $table) {
-
-            $finalSql = $sql . $charset_collate;
-            $this->execute($finalSql);
-        }
-    }
-
-    public function execute($sql)
-    {
-        require_once(ABSPATH . '/wp-admin/includes/upgrade.php');
-        dbDelta($sql);
-    }
-
-
+ 
 }

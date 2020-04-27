@@ -17,7 +17,7 @@ class Activator
     public function initMigration()
     {
         global $wpdb;
-        $migrationDir = Settings::$plugin_path . '/database/migrations';
+        $migrationDir = Settings::$plugin_root . '/database/migrations';
 
         $charset = $wpdb->get_charset_collate();
 
