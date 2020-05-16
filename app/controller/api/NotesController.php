@@ -72,7 +72,7 @@ class NotesController extends Controller
             ->delete();
 
         return json([
-            "message" => "Deleted Successfully ssssssssssss",
+            "message" => "Deleted Successfully",
             "delete" => $delete,
         ]);
 

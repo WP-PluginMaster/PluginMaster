@@ -2,12 +2,12 @@
 
 use PluginMaster\Schema\Schema;
 
-class demo_users
+class demo_user
 {
 
     public function up()
     {
-        return Schema::create('demo_users', function (Schema $column) {
+        return Schema::create('demo_user', function (Schema $column) {
             $column->intIncrements('id');
             $column->string('name')->nullable();
             $column->string('mobile');

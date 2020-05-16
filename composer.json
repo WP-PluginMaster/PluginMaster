@@ -22,7 +22,8 @@
   "autoload": {
     "classmap": [],
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "AppSidenav\\": "app/system/sidenav/"
     }
   },
   "require": {

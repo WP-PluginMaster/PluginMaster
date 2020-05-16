@@ -3,6 +3,7 @@
 namespace App\controller\api;
 
 use App\system\controller\Controller;
+use App\system\core\Settings;
 
 
 class DashboardController extends Controller
@@ -12,9 +13,11 @@ class DashboardController extends Controller
     {
         return [
             "id" => $param['id'],
-            "config" => config('environment') === 'local' ? config('endpoints.summery') : config('production_endpoints.summery')
+            "env" => config('environment')
         ];
     }
 
- 
+
+
+
 }

@@ -30,12 +30,10 @@ if (!defined('WPINC')) {
 }
 
 
-require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+require_once  'vendor/autoload.php';
 
 use App\system\bootstrap\Boot;
 use App\system\core\Settings;
 
 Settings::init(__FILE__);
 Boot::init();
-
-
