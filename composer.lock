@@ -49,6 +49,10 @@
                 "WordPress Query Builder",
                 "query builder"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-DB/issues",
+                "source": "https://github.com/emrancu/PluginMaster-DB"
+            },
             "time": "2020-04-16T06:49:03+00:00"
         },
         {
@@ -92,6 +96,10 @@
                 "WordPress Plugin Development framework",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-Enqueue/issues",
+                "source": "https://github.com/emrancu/PluginMaster-Enqueue"
+            },
             "time": "2020-04-07T03:53:50+00:00"
         },
         {
@@ -136,6 +144,10 @@
                 "request",
                 "request handler"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-Request/issues",
+                "source": "https://github.com/emrancu/PluginMaster-Request"
+            },
             "time": "2020-04-11T03:29:45+00:00"
         },
         {
@@ -179,6 +191,10 @@
                 "WordPress Plugin Development framework",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-Routing/issues",
+                "source": "https://github.com/emrancu/PluginMaster-Routing"
+            },
             "time": "2020-04-06T05:11:48+00:00"
         },
         {
@@ -224,6 +240,10 @@
                 "WordPress Plugin Development framework",
                 "schema builder"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-Schema/issues",
+                "source": "https://github.com/emrancu/PluginMaster-Schema"
+            },
             "time": "2020-04-19T15:25:12+00:00"
         },
         {
@@ -267,6 +287,10 @@
                 "WordPress Plugin Development framework",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-SideMenu/issues",
+                "source": "https://github.com/emrancu/PluginMaster-SideMenu"
+            },
             "time": "2020-04-06T13:08:31+00:00"
         },
         {
@@ -312,6 +336,10 @@
                 "WordPress Plugin Development framework",
                 "WordPress Request Validator"
             ],
+            "support": {
+                "issues": "https://github.com/emrancu/PluginMaster-Validator/issues",
+                "source": "https://github.com/emrancu/PluginMaster-Validator"
+            },
             "time": "2020-04-12T01:20:31+00:00"
         }
     ],
@@ -322,5 +350,6 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
