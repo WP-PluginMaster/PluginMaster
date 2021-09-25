@@ -12,4 +12,4 @@ let data = [
 ];
 
 
-module.exports = builder.react(data);
+module.exports = builder.vue(data);
