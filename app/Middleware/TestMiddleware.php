@@ -8,7 +8,7 @@ class TestMiddleware implements MiddlewareInterface
 {
 
     public function handler( \WP_REST_Request $request ) {
-        return $request->get_method() == 'GET';
+        return  true;
     }
 
 }

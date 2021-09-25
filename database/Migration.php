@@ -14,7 +14,8 @@ class Migration implements MigrationInterface
      */
     public static function handler() {
 
-        Schema::create( 'demo_notes', function ( Schema $column ) {
+       /* 
+	   Schema::create( 'demo_notes', function ( Schema $column ) {
             $column->intIncrements( 'id' );
             $column->integer( 'user_id' ) ;
             $column->text( 'note' )->nullable();
@@ -22,6 +23,8 @@ class Migration implements MigrationInterface
             $column->timestamp( 'created_at' )->default( 'current_timestamp' );
             $column->timestamp( 'updated_at' )->nullable()->onUpdateTimeStamp();
         } )->execute();
+		
+		*/
 
 
     }

@@ -11,9 +11,4 @@ class ApiController extends Controller
         echo $this->request->url();
     }
 
-    public function getProductsName($option){
-        echo  "Dynamic API data" ;
-    }
-
-
 }

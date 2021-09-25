@@ -36,27 +36,6 @@ return [
     'api_namespace'    => "PluginMaster/v1",
 
     /**
-     * side menu config
-     */
-    'side_menu'        => [
-        'cache' => true // file cache
-    ],
-
-    /**
-     * enqueue config
-     */
-    'api'              => [
-        'cache' => true // file cache
-    ],
-
-    /**
-     * enqueue config
-     */
-    'enqueue'          => [
-        'cache' => true // file cache
-    ],
-
-    /**
      * add your custom Service Providers here
      * service provider path App/Providers
      * @type array
