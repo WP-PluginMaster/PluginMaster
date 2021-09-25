@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <h1>Hello PluginMaster</h1>
+        <h1>Hello PluginMaster Vue Application</h1>
 
     </div>
 

@@ -21,18 +21,23 @@
   "type": "project",
   "autoload": {
     "classmap": [],
+    "files": [
+      "bootstrap/System/Helpers/helpers.php"
+    ],
     "psr-4": {
-      "App\\": "app/",
-      "AppSidenav\\": "app/system/sidenav/"
+      "UIDom\\Elementor\\App\\": "app/",
+      "UIDom\\Elementor\\Bootstrap\\": "bootstrap/",
+      "UIDom\\Elementor\\Database\\": "database/"
     }
   },
   "require": {
-    "plugin-master/routing": "^1.0",
-    "plugin-master/sidemenu": "^1.0",
-    "plugin-master/enqueue": "^1.0",
-    "plugin-master/request": "^1.0",
+    "php": "^7.0|^8.0",
+    "php-di/php-di": "^6.3",
+    "plugin-master/contracts": "^1.0",
     "plugin-master/db": "^1.0",
+    "plugin-master/request": "^1.0",
     "plugin-master/validator": "^1.0",
+    "plugin-master/foundation": "^1.0",
     "plugin-master/schema": "^1.0"
   },
   "minimum-stability": "dev",
