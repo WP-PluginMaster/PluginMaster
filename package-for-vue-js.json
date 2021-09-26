@@ -18,7 +18,7 @@
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "babel-loader": "^8.2.2",
-    "plugin-master-js-build": "^1.0.2",
+    "plugin-master-js-build": "^1.0.3",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "vue-template-compiler": "^2.6.14",
