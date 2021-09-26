@@ -25,9 +25,9 @@
       "bootstrap/System/Helpers/helpers.php"
     ],
     "psr-4": {
-      "UIDom\\Elementor\\App\\": "app/",
-      "UIDom\\Elementor\\Bootstrap\\": "bootstrap/",
-      "UIDom\\Elementor\\Database\\": "database/"
+      "PluginMaster\\App\\": "app/",
+      "PluginMaster\\Bootstrap\\": "bootstrap/",
+      "PluginMaster\\Database\\": "database/"
     }
   },
   "require": {
