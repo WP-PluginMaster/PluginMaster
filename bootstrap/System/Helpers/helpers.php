@@ -1,7 +1,10 @@
 <?php
 
+
 use PluginMaster\Bootstrap\System\Application;
 use PluginMaster\Bootstrap\System\Config;
+use PluginMaster\Bootstrap\System\Helpers\App;
+use PluginMaster\Bootstrap\System\Helpers\View;
 
 
 if ( !function_exists( 'plugin_master_app' ) ) {
@@ -9,12 +12,10 @@ if ( !function_exists( 'plugin_master_app' ) ) {
     /**
      * Get the available container instance.
      * @param null $class
-     * @return \DI\T|mixed|object|Application
-     * @throws \DI\DependencyException
-     * @throws \DI\NotFoundException
+     * @return object|Application
      */
 
-    function plugin_master_app($class = null) {
+    function plugin_master_app( $class = null ) {
         if ( is_null( $class ) ) {
             return Application::getInstance();
         }
@@ -34,9 +35,8 @@ if ( !function_exists( 'plugin_master_config' ) ) {
      */
 
     function plugin_master_config( $key ) {
-        return Config::get($key);
+        return Config::get( $key );
     }
-
 
 }
 
@@ -45,7 +45,6 @@ if ( !function_exists( 'plugin_master_url' ) ) {
 
     /**
      * Get config.
-     * @param $key
      * @return mixed
      */
 
@@ -53,5 +52,18 @@ if ( !function_exists( 'plugin_master_url' ) ) {
         return Application::getInstance()->baseUrl();
     }
 
+}
+
+if ( !function_exists( 'plugin_master_view' ) ) {
+
+    /**
+     * Get view file.
+     * @param $path
+     * @return mixed
+     */
+
+    function plugin_master_view( $path ) {
+        return App::view( $path );
+    }
 
 }

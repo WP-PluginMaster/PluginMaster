@@ -1,7 +1,7 @@
 <?php
 
 use PluginMaster\App\Middleware\TestMiddleware;
-use PluginMaster\App\Providers\CacheServiceProvider;
+use PluginMaster\App\Providers\TestServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\EnqueueServiceProvider;
@@ -17,7 +17,7 @@ return [
     'name'    => "Plugin Master",
 
     /**
-     * application/plugin slug
+     * application/plugin slug / text domain
      * @type string
      */
     'slug'    => "plugin-master",
@@ -41,7 +41,7 @@ return [
      * @type array
      */
     'providers'        => [
-        CacheServiceProvider::class,
+        TestServiceProvider::class,
     ],
 
     /**

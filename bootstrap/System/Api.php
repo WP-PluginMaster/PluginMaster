@@ -62,12 +62,12 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param $config
+     * @param $middlewareName
      * @param $callback
      */
-    public static function middleware( $config, $callback ) {
+    public static function middleware( $middlewareName, $callback ) {
 
-        static::$middleware = $config['middleware'] ?? null;
+        static::$middleware =  $middlewareName  ;
 
         if ( gettype( $callback ) == 'object' ) {
 
