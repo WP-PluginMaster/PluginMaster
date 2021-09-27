@@ -1,5 +1,5 @@
 <?php
-namespace  PluginMaster\App\Controllers\Shortcodes;
+namespace  PluginMaster\App\Http\Controllers\Shortcodes;
 
 use PluginMaster\Bootstrap\System\Controller;
 

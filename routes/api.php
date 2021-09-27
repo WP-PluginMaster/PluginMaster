@@ -1,7 +1,7 @@
 <?php
 
 
-use PluginMaster\App\Controllers\Api\ApiController;
+use PluginMaster\App\Http\Controllers\Api\ApiController;
 use PluginMaster\Bootstrap\System\Api;
 
 

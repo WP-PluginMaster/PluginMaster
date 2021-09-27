@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginMaster\App\Controllers\Api;
+namespace PluginMaster\App\Http\Controllers\Api;
 
 use PluginMaster\Bootstrap\System\Controller;
 use PluginMaster\Bootstrap\System\Helpers\Response;

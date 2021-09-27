@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginMaster\App\Middleware;
+namespace PluginMaster\App\Http\Middleware;
 
 use PluginMaster\Contracts\Middleware\MiddlewareInterface;
 

@@ -1,7 +1,7 @@
 <?php
 
 
-use PluginMaster\App\Controllers\Actions\ActionController;
+use PluginMaster\App\Http\Controllers\Actions\ActionController;
 
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace PluginMaster\App\Controllers\SideMenu;
+namespace PluginMaster\App\Http\Controllers\SideMenu;
 
 use PluginMaster\Bootstrap\System\Controller;
 use PluginMaster\Bootstrap\System\Session;

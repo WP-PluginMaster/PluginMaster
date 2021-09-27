@@ -1,6 +1,6 @@
 <?php
 
-use PluginMaster\App\Middleware\TestMiddleware;
+use PluginMaster\App\Http\Middleware\TestMiddleware;
 use PluginMaster\App\Providers\TestServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider;
