@@ -3,17 +3,16 @@
 namespace PluginMaster\App\Http\Controllers\SideMenu;
 
 use PluginMaster\Bootstrap\System\Controller;
-use PluginMaster\Bootstrap\System\Session;
-use PluginMaster\Bootstrap\System\View;
+use PluginMaster\Bootstrap\System\Helpers\App;
 
 class SideMenuController extends Controller
 {
 
     public function index() {
-        Session::forget("title" );
-        $title = "Hello EMRAN" ;
 
-        return View::add( 'index',compact('title') );
+        $title = "This is PluginMaster for creating plugin in better way.";
+
+        return App::view( 'index', compact( 'title' ) );
     }
 
 

@@ -9,7 +9,7 @@ class ActionController extends Controller
 {
 
     public function __invoke( $request ) {
-        App::view( "index", [ "title" => "From Action" ] );
+        App::view( "index", [ "title" => "This is PluginMaster for creating plugin in better way." ] );
     }
 
 
