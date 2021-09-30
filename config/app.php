@@ -35,6 +35,14 @@ return [
 
     'api_namespace'    => "PluginMaster/v1",
 
+
+    /**
+     * enable symfony twig template engine
+     * @type bool
+     */
+    'twig_template'    => true,
+
+
     /**
      * add your custom Service Providers here
      * service provider path App/Providers

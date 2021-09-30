@@ -3,11 +3,17 @@
 
 namespace PluginMaster\Bootstrap\System\Helpers;
 
-
 use PluginMaster\Bootstrap\System\Application;
+use PluginMaster\Foundation\View\ViewHandler;
+
 
 class App
 {
+
+    /**
+     * @var ViewHandler
+     */
+    protected static $viewHandler;
 
     /**
      * @return mixed|string
@@ -49,7 +55,7 @@ class App
      * @return mixed|string
      */
     public static function textDomain() {
-        return static::get()->config('slug');
+        return static::get()->config( 'slug' );
     }
 
     /**
@@ -58,28 +64,25 @@ class App
      * @return string
      */
     public static function view( $path, $data = [] ) {
-
-        if ( count( $data ) ) {
-            extract( $data );
-        }
-
-        return static::resolveViewFile( $path );
-
+        return static::resolveViewFile( $path, $data );
     }
 
     /**
      * @param $path
+     * @param array $data
      * @return mixed
      */
-    private static function resolveViewFile( $path ) {
+    private static function resolveViewFile( $path, $data = [] ) {
 
-        $viewPath = '';
+        if ( !static::$viewHandler ) {
+            $app = static::get();
 
-        foreach ( explode( '.', $path ) as $path ) {
-            $viewPath .= '/' . $path;
+            $options = $app->config( 'twig_template' ) ? [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ) ] : [] ;
+
+            static::$viewHandler = $app->get( ViewHandler::class )->setConfig( $app->viewPath( 'views' ), $options );
         }
 
-        return include App::get()->resourcePath( $viewPath . '.php' );
+        return static::$viewHandler->render( $path, $data );
 
     }
 

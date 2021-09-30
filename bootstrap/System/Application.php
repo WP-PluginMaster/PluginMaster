@@ -207,7 +207,7 @@ class Application extends Container implements ApplicationInterface
      * @param string $path
      * @return mixed
      */
-    public function resourcePath( string $path = null ): string {
+    public function viewPath( string $path = null ): string {
         return $this->basePath . DIRECTORY_SEPARATOR . 'resources/views' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 
