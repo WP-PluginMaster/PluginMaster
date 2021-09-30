@@ -20,7 +20,7 @@ class SideMenuServiceProvider implements ServiceProviderInterface
 
         add_action( 'admin_menu', function () use ( $app ) {
 
-            $app->get( SideMenuHandler::class )->setNamespace( $this->controllerNamespace )
+            $app->get( SideMenuHandler::class )->setAppInstance($app)->setNamespace( $this->controllerNamespace )
                 ->loadMenuFile( $app->routePath( 'sidemenu.php' ) );
 
         } );
@@ -29,7 +29,7 @@ class SideMenuServiceProvider implements ServiceProviderInterface
 
             $app->get( SideMenuHandler::class )->removeFirstSubMenu();
 
-        } );
+        },12 );
 
     }
 
