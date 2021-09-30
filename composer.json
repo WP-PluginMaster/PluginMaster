@@ -40,6 +40,9 @@
     "plugin-master/foundation": "^1.0",
     "plugin-master/schema": "^1.0"
   },
+  "require-dev": {
+    "automattic/jetpack-autoloader": "2.10.1"
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }

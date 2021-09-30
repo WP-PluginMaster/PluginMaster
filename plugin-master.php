@@ -18,7 +18,7 @@
 if ( !defined( 'ABSPATH' ) ) exit;
 
 
-require_once 'vendor/autoload.php';
+require_once  plugin_dir_path( __FILE__ ) . '/vendor/autoload_packages.php';
 
 
 use PluginMaster\Bootstrap\Bootstrap;

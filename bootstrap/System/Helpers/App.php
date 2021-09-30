@@ -58,32 +58,4 @@ class App
         return static::get()->config( 'slug' );
     }
 
-    /**
-     * @param $path
-     * @param $data
-     * @return string
-     */
-    public static function view( $path, $data = [] ) {
-        return static::resolveViewFile( $path, $data );
-    }
-
-    /**
-     * @param $path
-     * @param array $data
-     * @return mixed
-     */
-    private static function resolveViewFile( $path, $data = [] ) {
-
-        if ( !static::$viewHandler ) {
-            $app = static::get();
-
-            $options = $app->config( 'twig_template' ) ? [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ) ] : [] ;
-
-            static::$viewHandler = $app->get( ViewHandler::class )->setConfig( $app->viewPath( 'views' ), $options );
-        }
-
-        return static::$viewHandler->render( $path, $data );
-
-    }
-
 }

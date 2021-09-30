@@ -4,6 +4,7 @@ namespace PluginMaster\App\Http\Controllers\SideMenu;
 
 use PluginMaster\Bootstrap\System\Controller;
 use PluginMaster\Bootstrap\System\Helpers\App;
+use PluginMaster\Bootstrap\System\Helpers\View;
 
 class SideMenuController extends Controller
 {
@@ -12,7 +13,7 @@ class SideMenuController extends Controller
 
         $title = "This is PluginMaster for creating plugin in better way.";
 
-        return App::view( 'index', compact( 'title' ) );
+        return View::render( 'index', compact( 'title' )  );
     }
 
 

@@ -8,7 +8,7 @@ use DI\NotFoundException;
 use PluginMaster\Contracts\Foundation\ApplicationInterface;
 use PluginMaster\Foundation\Config\ConfigHandler;
 
-class Application extends Container implements ApplicationInterface
+class Application  implements ApplicationInterface
 {
 
     /**
@@ -52,12 +52,39 @@ class Application extends Container implements ApplicationInterface
      */
     private $version;
 
+    /**
+     * @var Container
+     */
+    protected $container;
+
 
     public function __construct( string $path ) {
-        parent::__construct();
+
+        $this->container =  new Container() ;
+
         $this->setBasePath( $path );
         $this->setAppConfig();
         $this->setVersion( $this->config( 'version' ) );
+
+    }
+
+    /**
+     * @param $class
+     * @return \DI\T|mixed
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    public function get( $class){
+        return $this->container->get($class) ;
+    }
+
+    /**
+     * @param $callable
+     * @param array $parameters
+     * @return mixed
+     */
+    public function call( $callable, array $parameters = []){
+        return $this->container->call($callable,  $parameters ) ;
     }
 
     /**

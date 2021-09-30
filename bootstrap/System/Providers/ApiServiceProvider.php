@@ -10,7 +10,7 @@ use PluginMaster\Foundation\Api\ApiHandler;
 class ApiServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Controllers\\Api\\';
+    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Api\\';
 
     public function boot() {
 

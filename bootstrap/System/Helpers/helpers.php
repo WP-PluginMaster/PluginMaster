@@ -4,6 +4,7 @@
 use PluginMaster\Bootstrap\System\Application;
 use PluginMaster\Bootstrap\System\Config;
 use PluginMaster\Bootstrap\System\Helpers\App;
+use PluginMaster\Bootstrap\System\Helpers\View;
 
 
 if ( !function_exists( 'plugin_master_app' ) ) {
@@ -63,7 +64,7 @@ if ( !function_exists( 'plugin_master_view' ) ) {
      */
 
     function plugin_master_view( $path, $data = [] ) {
-        return App::view( $path , $data);
+        return View::render( $path , $data);
     }
 
 }

@@ -11,7 +11,7 @@ use PluginMaster\Foundation\SideMenu\SideMenuHandler;
 class SideMenuServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Controllers\\SideMenu\\';
+    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\SideMenu\\';
 
     public function boot() {
 

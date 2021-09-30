@@ -12,7 +12,7 @@ use PluginMaster\Foundation\Shortcode\ShortcodeHandler;
 class ActionServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Controllers\\Actions\\';
+    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Actions\\';
 
     public function boot() {
         $app = App::get();
