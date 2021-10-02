@@ -3,7 +3,6 @@
 namespace PluginMaster\App\Http\Controllers\SideMenu;
 
 use PluginMaster\Bootstrap\System\Controller;
-use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Bootstrap\System\Helpers\View;
 
 class SideMenuController extends Controller

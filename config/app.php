@@ -6,6 +6,7 @@ use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\EnqueueServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\InitialDataProvider;
+use PluginMaster\Bootstrap\System\Providers\ShortcodeServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\SideMenuServiceProvider;
 
 return [
@@ -40,7 +41,7 @@ return [
      * enable symfony twig template engine
      * @type bool
      */
-    'twig_template'    => true,
+    'twig_template'    => false,
 
 
     /**
@@ -72,6 +73,7 @@ return [
         EnqueueServiceProvider::class,
         InitialDataProvider::class,
         ActionServiceProvider::class,
+        ShortcodeServiceProvider::class,
     ],
 
 

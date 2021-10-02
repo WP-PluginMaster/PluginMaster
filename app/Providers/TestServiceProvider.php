@@ -11,7 +11,6 @@ class TestServiceProvider implements ServiceProviderInterface
 
     public function boot() {
 
-
     }
 
 }

@@ -24,7 +24,9 @@ class Bootstrap
          * start session for application
          * @need for "PluginMaster\Bootstrap\System\Session" class
          */
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         /**
          * register activation hook

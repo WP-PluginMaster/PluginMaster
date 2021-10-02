@@ -7,7 +7,6 @@ namespace PluginMaster\Bootstrap\System\Providers;
 use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Contracts\Provider\ServiceProviderInterface;
 use PluginMaster\Foundation\Action\ActionHandler;
-use PluginMaster\Foundation\Shortcode\ShortcodeHandler;
 
 class ActionServiceProvider implements ServiceProviderInterface
 {
