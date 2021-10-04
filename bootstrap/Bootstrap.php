@@ -41,22 +41,6 @@ class Bootstrap
         register_deactivation_hook( $path, [ new DeActivation(), 'index' ] );
 
         /**
-         * Upgrade hook
-         *
-         */
-        add_action( 'upgrader_process_complete', function ( $upgraderObject, $options ) use ( $path ) {
-
-            if ( $options['action'] == 'update' && $options['type'] == 'plugin' ) {
-                if ( isset( $options['plugins'][ plugin_basename( $path ) ] ) ) {
-                    (new Upgrade())->upgraded( $upgraderObject, $options );
-                }
-            }
-
-        } );
-
-
-
-        /**
          * Start application with container and boot service providers
          */
         add_action( 'plugins_loaded', function () use ( $app ) {
