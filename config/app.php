@@ -43,6 +43,12 @@ return [
      */
     'twig_template'    => false,
 
+    /**
+     * enable symfony twig template auto reload
+     * @type bool
+     */
+    'twig_auto_reload'    => false,
+
 
     /**
      * add your custom Service Providers here

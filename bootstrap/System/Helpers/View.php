@@ -18,11 +18,11 @@ class View
     /**
      * @param $path
      * @param array $data
-     * @param bool $noTemplate
+     * @param bool $avoidTemplate
      * @return string
      */
-    public static function render( $path, $data = [], $noTemplate = false ) {
-        return static::resolveView()->render( $path, $data, $noTemplate );
+    public static function render( $path, $data = [], $avoidTemplate = false ) {
+        return static::resolveView()->render( $path, $data, $avoidTemplate );
     }
 
     /**
@@ -33,21 +33,14 @@ class View
         if ( !static::$viewHandler ) {
             $app = App::get();
 
-            $options = $app->config( 'twig_template' ) ? [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ) ] : [];
-
+            $options = $app->config( 'twig_template' ) ?
+                [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ), 'auto_reload' => $app->config( 'twig_auto_reload' ) ?? false ]
+                : [];
             static::$viewHandler = $app->get( ViewHandler::class )->setConfig( $app->viewPath(), $options );
         }
 
         return static::$viewHandler;
 
-    }
-
-    /**
-     * @param $path
-     * @return void
-     */
-    public static function removeCache( $path = null ) {
-        static::resolveView()->removeCache( $path );
     }
 
 }
