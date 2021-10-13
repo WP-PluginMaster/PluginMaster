@@ -12,15 +12,9 @@ class Enqueue implements EnqueueInterface
 {
 
     /**
-     * @var bool
-     */
-    protected static $admin = false;
-
-    /**
      * @var null
      */
     private static $instance = null;
-
 
     /**
      * @var null
@@ -28,20 +22,27 @@ class Enqueue implements EnqueueInterface
     private static $enqueueManager = null;
 
     /**
+     * @var null
+     */
+    private static $hook = null;
+
+    /**
      * @return Enqueue
      */
-    public static function front() {
-        static::$admin = false;
+    public static function front()
+    {
+        static::$hook = 'wp_enqueue_scripts';
         return self::getInstance();
     }
 
     /**
      * @return Enqueue|null
      */
-    private static function getInstance() {
-        if ( null === self::$instance ) {
-            self::$instance       = new self();
-            self::$enqueueManager = App::get( EnqueueHandler::class );
+    private static function getInstance()
+    {
+        if (null === self::$instance) {
+            self::$instance = new self();
+            self::$enqueueManager = App::get(EnqueueHandler::class);
         }
 
         return self::$instance;
@@ -50,91 +51,120 @@ class Enqueue implements EnqueueInterface
     /**
      * @return Enqueue
      */
-    public static function admin() {
-        static::$admin = true;
+    public static function admin()
+    {
+        static::$hook = 'admin_enqueue_scripts';
+        return static::getInstance();
+    }
+
+    /**
+     * @param $hook
+     * @return Enqueue
+     */
+    public static function on($hook)
+    {
+        static::$hook = $hook;
         return static::getInstance();
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function headerScript( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, true, false, false ], static::$admin );
+    public function headerScript($path, $options = [])
+    {
+        self::$enqueueManager->register([
+            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => false, 'hook' => static::$hook
+        ]);
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function headerScriptCdn( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, true, false, true ], static::$admin );
+    public function headerScriptCdn($path, $options = [])
+    {
+        self::$enqueueManager->register([
+            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => false, 'cdn' => true,
+            'hook'    => static::$hook
+        ]);
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function footerScript( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, true, true, false ], static::$admin );
+    public function footerScript($path, $options = [])
+    {
+        self::$enqueueManager->register([
+            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => true, 'hook' => static::$hook
+        ]);
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function footerScriptCdn( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, true, true, true ], static::$admin );
+    public function footerScriptCdn($path, $options = [])
+    {
+        self::$enqueueManager->register([
+            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => true, 'cdn' => true,
+            'hook'    => static::$hook
+        ]);
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function style( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, false, 'all', false ], static::$admin );
+    public function style($path, $options = [])
+    {
+        self::$enqueueManager->register(['options' => $options, 'path' => $path, 'hook' => static::$hook]);
     }
 
     /**
      * @param $path
-     * @param array $options
+     * @param  array  $options
      */
-    public function styleCdn( $path, $options = [] ) {
-        self::$enqueueManager->register( [ $path, $options, false, 'all', true ], static::$admin );
+    public function styleCdn($path, $options = [])
+    {
+        self::$enqueueManager->register([
+            'options' => $options, 'path' => $path, 'cdn' => true, 'hook' => static::$hook
+        ]);
     }
 
     /**
-     * @param $handle
+     * @param $handler
      * @param $objectName
      * @param $data
      */
-    public function localizeScript( $handle, $objectName, $data ) {
-        self::$enqueueManager->register( [ $handle, $objectName, $data, static::$admin ], static::$admin, 'localizeScript' );
+    public function localizeScript($handle, $objectName, $data)
+    {
+        self::$enqueueManager->register([
+            'param' => [$handle, $objectName, $data], 'type' => 'localizeScript', 'hook' => static::$hook
+        ]);
     }
 
     /**
      * @param $data
-     * @param array $option
+     * @param  array  $option
      */
-    public function inlineScript( $data, $option = [] ) {
-        self::$enqueueManager->register( [ $data, $option ], static::$admin, 'inlineScript' );
+    public function inlineScript($data, $option = [])
+    {
+        self::$enqueueManager->register([
+            'param' => [$data, $option], 'type' => 'inlineScript', 'hook' => static::$hook
+        ]);
     }
 
     /**
      * @param $data
-     * @param string $handle
+     * @param  string  $handle
      */
-    public function inlineStyle( $data, $handle = '' ) {
-        self::$enqueueManager->register( [ $data, $handle ], static::$admin, 'inlineStyle' );
-    }
-
-    /**
-     * @param $filePath
-     * @param int $port
-     */
-    public function hotScript( $filePath, $port = 8080 ) {
-        $path = 'http://localhost:' . $port . '/assets/' . $filePath;
-        wp_enqueue_script( 'hot-' . uniqid(), $path, [], false, true );
+    public function inlineStyle($data, $handle = '')
+    {
+        self::$enqueueManager->register([
+            'param' => [$data, $handle], 'type' => 'inlineStyle', 'hook' => static::$hook
+        ]);
     }
 
 }

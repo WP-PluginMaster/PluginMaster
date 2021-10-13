@@ -23,17 +23,18 @@ class SideMenu implements SideMenuInterface
      *
      * @param $slug
      * @param $options
-     * @param null $callback
+     * @param  null  $callback
      */
-    public static function parent( $slug, $options, $callback = null ) {
+    public static function parent($slug, $options, $callback = null)
+    {
 
         static::$parentSlug = $slug;
 
-        static::registerMenu( $slug, $options, true );
+        static::registerMenu($slug, $options, true);
 
-        if ( gettype( $callback ) == 'object' ) {
+        if (gettype($callback) == 'object') {
 
-            call_user_func( $callback );
+            call_user_func($callback);
 
             // reset slug
             static::$parentSlug = null;
@@ -44,16 +45,17 @@ class SideMenu implements SideMenuInterface
     /**
      * @param $slug
      * @param $options
-     * @param bool $parent
+     * @param  bool  $parent
      */
-    private static function registerMenu( $slug, $options, $parent = false ) {
-        $instance = App::get( SideMenuHandler::class );
-        $instance->validateOptions( $options, $parent );
+    private static function registerMenu($slug, $options, $parent = false)
+    {
+        $instance = App::get(SideMenuHandler::class);
+        $instance->validateOptions($options, $parent);
 
-        if ( $parent ) {
-            $instance->addMenuPage( $slug, $options );
+        if ($parent) {
+            $instance->addMenuPage($slug, $options);
         } else {
-            $instance->addSubMenuPage( $slug, $options, static::$parentSlug );
+            $instance->addSubMenuPage($slug, $options, static::$parentSlug);
         }
 
     }
@@ -63,9 +65,10 @@ class SideMenu implements SideMenuInterface
      * @param $slug
      * @param $options
      */
-    public static function child( $slug, $options ) {
+    public static function child($slug, $options)
+    {
 
-        static::registerMenu( $slug, $options, false );
+        static::registerMenu($slug, $options, false);
     }
 
 }

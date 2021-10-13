@@ -16,16 +16,18 @@ class Config implements ConfigInterface
      *
      * @return mixed
      */
-    public static function get( $key ) {
-        return static::getInstance()->resolveData( $key );
+    public static function get($key)
+    {
+        return static::getInstance()->resolveData($key);
     }
 
     /**
      * @return ConfigHandler
      */
-    private static function getInstance() {
-        if ( !self::$instance ) {
-            self::$instance = App::get( ConfigHandler::class );
+    private static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = App::get(ConfigHandler::class);
         }
 
         return self::$instance;
@@ -35,7 +37,8 @@ class Config implements ConfigInterface
      * @param $key
      * @return mixed
      */
-    public static function set( $key ) {
+    public static function set($key)
+    {
     }
 
 

@@ -13,7 +13,8 @@ class Activation
      * fire this method when plugin activate
      * define your functionality here
      */
-    public function index(){
+    public function index()
+    {
         /**
          * run migration
          * @for creating custom table or sql execution

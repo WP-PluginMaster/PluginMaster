@@ -6,26 +6,27 @@ use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Bootstrap\System\Helpers\View;
 
 
-if ( !function_exists( 'plugin_master_app' ) ) {
+if (!function_exists('plugin_master_app')) {
 
     /**
      * Get the available container instance.
-     * @param null $class
+     * @param  null  $class
      * @return object|Application
      */
 
-    function plugin_master_app( $class = null ) {
-        if ( is_null( $class ) ) {
+    function plugin_master_app($class = null)
+    {
+        if (is_null($class)) {
             return Application::getInstance();
         }
 
-        return Application::getInstance()->get( $class );
+        return Application::getInstance()->get($class);
     }
 
 }
 
 
-if ( !function_exists( 'plugin_master_config' ) ) {
+if (!function_exists('plugin_master_config')) {
 
     /**
      * Get config.
@@ -33,52 +34,71 @@ if ( !function_exists( 'plugin_master_config' ) ) {
      * @return mixed
      */
 
-    function plugin_master_config( $key ) {
-        return Config::get( $key );
+    function plugin_master_config($key)
+    {
+        return Config::get($key);
     }
 
 }
 
 
-if ( !function_exists( 'plugin_master_url' ) ) {
+if (!function_exists('plugin_master_url')) {
 
     /**
      * Get config.
      * @return mixed
      */
 
-    function plugin_master_url() {
+    function plugin_master_url()
+    {
         return App::get()->baseUrl();
     }
 
 }
 
 
-if ( !function_exists( 'plugin_master_view' ) ) {
+if (!function_exists('plugin_master_view')) {
 
     /**
      * Get view file.
      * @param $path
-     * @param array $data
-     * @param bool $noTemplate
+     * @param  array  $data
+     * @param  bool  $noTemplate
      * @return mixed
      */
 
-    function plugin_master_view( $path, $data = [], $noTemplate = false ) {
-        return View::render( $path , $data, $noTemplate);
+    function plugin_master_view($path, $data = [], $noTemplate = false)
+    {
+        return View::render($path, $data, $noTemplate);
     }
 
 }
 
 
-if ( !function_exists( 'plugin_master_domain' ) ) {
+if (!function_exists('plugin_master_domain')) {
 
     /**
      * Get text domain / slug.
      */
 
-    function plugin_master_domain() {
-      return App::get()->config( 'slug' );
+    function plugin_master_domain()
+    {
+        return App::get()->config('slug');
+    }
+
+}
+
+if (!function_exists('plugin_master_e')) {
+
+    /**
+     * Retrieve the translation of $text and escapes it for safe use in HTML output.
+     * @param $text
+     * @return string
+     */
+
+    function plugin_master_e($text)
+    {
+        return esc_html__($text, App::get()->config('slug'));
     }
 
 }

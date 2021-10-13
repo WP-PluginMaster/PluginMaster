@@ -13,23 +13,24 @@ class SideMenuServiceProvider implements ServiceProviderInterface
 
     protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\SideMenu\\';
 
-    public function boot() {
+    public function boot()
+    {
 
 
         $app = App::get();
 
-        add_action( 'admin_menu', function () use ( $app ) {
+        add_action('admin_menu', function () use ($app) {
 
-            $app->get( SideMenuHandler::class )->setAppInstance($app)->setNamespace( $this->controllerNamespace )
-                ->loadMenuFile( $app->routePath( 'sidemenu.php' ) );
+            $app->get(SideMenuHandler::class)->setAppInstance($app)->setNamespace($this->controllerNamespace)
+                ->loadMenuFile($app->routePath('sidemenu.php'));
 
-        } );
+        });
 
-        add_action( 'admin_menu', function () use ( $app ) {
+        add_action('admin_menu', function () use ($app) {
 
-            $app->get( SideMenuHandler::class )->removeFirstSubMenu();
+            $app->get(SideMenuHandler::class)->removeFirstSubMenu();
 
-        },12 );
+        }, 12);
 
     }
 

@@ -47,7 +47,7 @@ return [
      * enable symfony twig template auto reload
      * @type bool
      */
-    'twig_auto_reload'    => false,
+    'twig_auto_reload' => false,
 
 
     /**

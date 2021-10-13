@@ -16,15 +16,17 @@ class Cache implements CacheInterface
      * @param $directory
      * @return mixed
      */
-    public static function get( $fileName, $directory = null ) {
-        return static::getHandler()->get( $fileName, $directory );
+    public static function get($fileName, $directory = null)
+    {
+        return static::getHandler()->get($fileName, $directory);
     }
 
 
-    private static function getHandler() {
-        if ( !static::$cacheHandlerInstance ) {
+    private static function getHandler()
+    {
+        if (!static::$cacheHandlerInstance) {
             $app                          = App::get();
-            static::$cacheHandlerInstance = $app->get( CacheHandler::class )->setAppVersion( $app->version() )->setCachePath( $app->cachePath() );
+            static::$cacheHandlerInstance = $app->get(CacheHandler::class)->setAppVersion($app->version())->setCachePath($app->cachePath());
         }
         return static::$cacheHandlerInstance;
     }
@@ -35,8 +37,9 @@ class Cache implements CacheInterface
      * @param $directory
      * @return mixed
      */
-    public static function set( $fileName, $content, $directory = null ) {
-        return static::getHandler()->createFile( $fileName, $content, $directory );
+    public static function set($fileName, $content, $directory = null)
+    {
+        return static::getHandler()->createFile($fileName, $content, $directory);
     }
 
     /**
@@ -45,18 +48,20 @@ class Cache implements CacheInterface
      * @param $directory
      * @return mixed
      */
-    public static function reset() {
+    public static function reset()
+    {
         return static::getHandler()->reset();
     }
 
 
     /**
      * @param $fileName
-     * @param null $directory
+     * @param  null  $directory
      * @return mixed
      */
-    public static function check( $fileName, $directory = null ) {
-        return static::getHandler()->check( $fileName, $directory );
+    public static function check($fileName, $directory = null)
+    {
+        return static::getHandler()->check($fileName, $directory);
     }
 
 }

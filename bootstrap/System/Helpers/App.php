@@ -18,20 +18,22 @@ class App
     /**
      * @return mixed|string
      */
-    public static function basePath() {
+    public static function basePath()
+    {
         return static::get()->basePath();
     }
 
     /**
-     * @param null $class
+     * @param  null  $class
      * @return Application|null
      */
-    public static function get( $class = null ) {
-        if ( is_null( $class ) ) {
+    public static function get($class = null)
+    {
+        if (is_null($class)) {
             return Application::getInstance();
         }
 
-        return Application::getInstance()->get( $class );
+        return Application::getInstance()->get($class);
     }
 
     /**
@@ -40,22 +42,25 @@ class App
      * @param $key
      * @return Application|null
      */
-    public static function config( $key ) {
-        return static::get()->config( $key );
+    public static function config($key)
+    {
+        return static::get()->config($key);
     }
 
     /**
      * @return mixed|string
      */
-    public static function baseUrl() {
+    public static function baseUrl()
+    {
         return static::get()->baseUrl();
     }
 
     /**
      * @return mixed|string
      */
-    public static function textDomain() {
-        return static::get()->config( 'slug' );
+    public static function textDomain()
+    {
+        return static::get()->config('slug');
     }
 
 }

@@ -13,12 +13,13 @@ class ActionServiceProvider implements ServiceProviderInterface
 
     protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Actions\\';
 
-    public function boot() {
+    public function boot()
+    {
         $app = App::get();
-        $app->get( ActionHandler::class )
-            ->setAppInstance( $app )
-            ->setControllerNamespace( $this->controllerNamespace )
-            ->loadFile( $app->hooksPath( 'action.php' ) );
+        $app->get(ActionHandler::class)
+            ->setAppInstance($app)
+            ->setControllerNamespace($this->controllerNamespace)
+            ->loadFile($app->hooksPath('action.php'));
     }
 
 

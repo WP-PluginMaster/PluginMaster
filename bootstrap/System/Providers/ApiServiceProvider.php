@@ -12,23 +12,24 @@ class ApiServiceProvider implements ServiceProviderInterface
 
     protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Api\\';
 
-    public function boot() {
+    public function boot()
+    {
 
         $app = App::get();
 
-        add_action( 'rest_api_init', function () use ( $app ) {
-            $app->get( ApiHandler::class )
-                ->setAppInstance( $app )
-                ->setNamespace( $app->config( 'api_namespace' ) )
-                ->setControllerNamespace( $this->controllerNamespace )
-                ->setMiddleware( $app->config( 'middleware' ) )
-                ->loadRoutes( $app->routePath( 'api.php' ) );
-        } );
+        add_action('rest_api_init', function () use ($app) {
+            $app->get(ApiHandler::class)
+                ->setAppInstance($app)
+                ->setNamespace($app->config('api_namespace'))
+                ->setControllerNamespace($this->controllerNamespace)
+                ->setMiddleware($app->config('middleware'))
+                ->loadRoutes($app->routePath('api.php'));
+        });
 
-        add_action( 'rest_api_init', function () use ( $app ) {
-            $app->get( ApiHandler::class )
+        add_action('rest_api_init', function () use ($app) {
+            $app->get(ApiHandler::class)
                 ->apiGenerate();
-        }, 100 );
+        }, 100);
 
 
     }

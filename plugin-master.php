@@ -15,10 +15,12 @@
 
 
 // Exit if accessed directly.
-if ( !defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
 
-require_once  plugin_dir_path( __FILE__ ) . '/vendor/autoload_packages.php';
+require_once plugin_dir_path(__FILE__).'/vendor/autoload_packages.php';
 
 
 use PluginMaster\Bootstrap\Bootstrap;
@@ -28,8 +30,7 @@ use PluginMaster\Bootstrap\Bootstrap;
  */
 
 
-
- Bootstrap::boot( __FILE__ );
+Bootstrap::boot(__FILE__);
 
 
 

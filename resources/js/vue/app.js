@@ -10,9 +10,7 @@ new Vue({
     data: function () {
         return {
             name: 'PluginMaster'
-       }
+        }
     },
-    methods: {
-
-    }
+    methods: {}
 })

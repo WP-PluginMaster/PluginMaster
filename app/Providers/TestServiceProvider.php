@@ -9,7 +9,8 @@ use PluginMaster\Contracts\Provider\ServiceProviderInterface;
 class TestServiceProvider implements ServiceProviderInterface
 {
 
-    public function boot() {
+    public function boot()
+    {
 
     }
 

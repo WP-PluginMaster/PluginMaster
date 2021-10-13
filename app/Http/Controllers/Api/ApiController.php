@@ -9,21 +9,23 @@ use WP_REST_Request;
 class ApiController extends Controller
 {
 
-    public function __invoke( WP_REST_Request $request ) {
+    public function __invoke(WP_REST_Request $request)
+    {
 
-        return Response::json( [
+        return Response::json([
             "url"  => $this->request->url(),
-            "name" => $request->get_param( 'name' ),
-        ] );
+            "name" => $request->get_param('name'),
+        ]);
     }
 
-    public function getProductsName( WP_REST_Request $request ) {
+    public function getProductsName(WP_REST_Request $request)
+    {
 
-        return Response::json( [
+        return Response::json([
             "url"     => $this->request->url(),
-            "name"    => $request->get_param( 'name' ),
+            "name"    => $request->get_param('name'),
             "dynamic" => "This is dynamic api",
-        ] );
+        ]);
     }
 
 }

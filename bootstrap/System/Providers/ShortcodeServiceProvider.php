@@ -13,12 +13,13 @@ class ShortcodeServiceProvider implements ServiceProviderInterface
 
     protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Shortcodes\\';
 
-    public function boot() {
+    public function boot()
+    {
         $app = App::get();
-        $app->get( ShortcodeHandler::class )
-            ->setAppInstance( $app )
-            ->setControllerNamespace( $this->controllerNamespace )
-            ->loadFile( $app->hooksPath( 'shortcode.php' ) );
+        $app->get(ShortcodeHandler::class)
+            ->setAppInstance($app)
+            ->setControllerNamespace($this->controllerNamespace)
+            ->loadFile($app->hooksPath('shortcode.php'));
     }
 
 
