@@ -1,0 +1,9 @@
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+
+use PluginMaster\Console\ConsoleApplication;
+
+
+ConsoleApplication::run(__DIR__);
