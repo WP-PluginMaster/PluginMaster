@@ -18,16 +18,20 @@ class EnqueueServiceProvider implements ServiceProviderInterface
 
         $app->get(EnqueueHandler::class)->setAppInstance($app)->loadEnqueueFile($app->enqueuePath('enqueue.php'));
 
-        add_action('admin_enqueue_scripts', function () use ($app) {
-            $app->get(EnqueueHandler::class)->initEnqueue(true);
-        });
+        if (is_admin()) {
 
-        add_action('wp_enqueue_scripts', function () use ($app) {
-            $app->get(EnqueueHandler::class)->initEnqueue();
-        }, 100);
+            add_action('admin_init', function () use ($app) {
+                $app->get(EnqueueHandler::class)->initEnqueue();
+            });
 
+        } else {
+
+            add_action('wp_head', function () use ($app) {
+                $app->get(EnqueueHandler::class)->initEnqueue();
+            });
+
+        }
 
     }
-
 
 }
