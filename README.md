@@ -1,4 +1,9 @@
-# PluginMaster (an Application Development Framework for WordPress)
+## PluginMaster (an Application Development Framework for WordPress)
+
+
+<h1 style="text-align: center;width:100%"> <a href="https://wppluginmaster.com" >Website</a> || <a href="https://wppluginmaster.com" > Full Documentation </a>  </h1>
+
+
 # What is PluginMaster?
   <blockquote>
     « PluginMaster is an Application development framework for WordPress. It changes the flavor of plugin development.»
