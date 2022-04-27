@@ -19,7 +19,7 @@ class ActionServiceProvider implements ServiceProviderInterface
         $app->get(ActionHandler::class)
             ->setAppInstance($app)
             ->setControllerNamespace($this->controllerNamespace)
-            ->loadFile($app->hooksPath('action.php'));
+            ->loadFile($app->path('hooks/action.php'));
     }
 
 

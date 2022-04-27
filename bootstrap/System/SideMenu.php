@@ -57,7 +57,6 @@ class SideMenu implements SideMenuInterface
         } else {
             $instance->addSubMenuPage($slug, $options, static::$parentSlug);
         }
-
     }
 
     /**

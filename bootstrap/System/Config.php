@@ -9,7 +9,18 @@ use PluginMaster\Foundation\Config\ConfigHandler;
 class Config implements ConfigInterface
 {
 
+    /**
+     * @var ConfigHandler
+     */
     protected static $instance;
+
+    /**
+     * store accessed config with hashmap
+     *
+     * @var array
+     */
+    private static $accessedConfig;
+
 
     /**
      * @param $key
@@ -18,7 +29,16 @@ class Config implements ConfigInterface
      */
     public static function get($key)
     {
-        return static::getInstance()->resolveData($key);
+
+        if (isset(static::$accessedConfig[$key])) {
+            return static::$accessedConfig[$key];
+        }
+
+        $data = static::getInstance()->resolveData($key);
+
+        static::$accessedConfig[$key] = $data;
+
+        return $data;
     }
 
     /**

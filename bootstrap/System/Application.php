@@ -5,7 +5,6 @@ namespace PluginMaster\Bootstrap\System;
 use DI\Container;
 use DI\DependencyException;
 use DI\NotFoundException;
-use DI\T;
 use PluginMaster\Contracts\Foundation\ApplicationInterface;
 use PluginMaster\Foundation\Config\ConfigHandler;
 
@@ -16,48 +15,49 @@ class Application implements ApplicationInterface
      * @var null
      */
     protected static $instance = null;
-
+    /**
+     * @var Container
+     */
+    public Container $container;
     /**
      * The base path for the Laravel installation.
      *
      * @var string
      */
-    protected $basePath;
-
+    protected string $basePath;
+    /**
+     * @var boolean
+     */
+    protected bool $booted = false;
     /**
      * @var string
      */
-    protected $booted = false;
-
-    /**
-     * @var array
-     */
-    protected $pluginFile;
-
+    protected string $pluginFile;
     /**
      * @var string
      */
-    protected $pluginBasename;
-
-
+    protected string $pluginBasename;
     /**
      * @var array
      */
-    protected $config = [];
-    /**
-     * @var Container
-     */
-    protected $container;
+    protected array $config = [];
     /**
      * The PluginMaster version.
      *
      * @var string
      */
-    private $version;
+    private string $version;
+
+    /**
+     * store accessed config with hashmap
+     *
+     * @var array
+     */
+    private array $accessedConfig;
+
 
     public function __construct(string $path)
     {
-
         $this->container = new Container();
 
         $this->setBasePath($path);
@@ -75,8 +75,8 @@ class Application implements ApplicationInterface
      */
     public function setBasePath($path): void
     {
-        $this->pluginFile     = $path;
-        $this->basePath       = untrailingslashit(plugin_dir_path($path));
+        $this->pluginFile = $path;
+        $this->basePath = untrailingslashit(plugin_dir_path($path));
         $this->pluginBasename = plugin_basename($path);
     }
 
@@ -99,11 +99,10 @@ class Application implements ApplicationInterface
 
     /**
      * @param $class
-     * @return T|mixed
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function get($class)
+    public function get($class): object
     {
         return $this->container->get($class);
     }
@@ -134,6 +133,9 @@ class Application implements ApplicationInterface
      */
     public function config($key)
     {
+        if (isset($this->accessedConfig[$key])) {
+            return $this->accessedConfig[$key];
+        }
 
         $keys = explode('.', $key);
 
@@ -143,6 +145,8 @@ class Application implements ApplicationInterface
             $finalData = $finalData[$key] ?? '';
         }
 
+        $this->accessedConfig[$key] = $finalData;
+
         return $finalData;
     }
 
@@ -150,9 +154,8 @@ class Application implements ApplicationInterface
      * @param  null  $path
      * @return Application
      */
-    public static function getInstance($path = null)
+    public static function getInstance($path = null): Application
     {
-
         if (null === self::$instance) {
             self::$instance = new self($path);
         }
@@ -184,7 +187,7 @@ class Application implements ApplicationInterface
      * @param  string  $path
      * @return mixed
      */
-    public function basePath($path = null): string
+    public function path($path = null): string
     {
         return $this->basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
@@ -211,83 +214,16 @@ class Application implements ApplicationInterface
      * @param  string  $path
      * @return mixed
      */
-    public function bootstrapPath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'bootstrap'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function appPath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'app'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function databasePath(string $path = ''): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'database'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
     public function viewPath(string $path = null): string
     {
         return $this->basePath.DIRECTORY_SEPARATOR.'resources/views'.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**
+     * application cache path
      * @param  string  $path
      * @return mixed
      */
-    public function assetPath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'assets'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function enqueuePath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'enqueues'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function hookPath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'hooks'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function routePath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'routes'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
-    /**
-     * @param  string  $path
-     * @return mixed
-     */
-    public function hooksPath(string $path = null): string
-    {
-        return $this->basePath.DIRECTORY_SEPARATOR.'hooks'.($path ? DIRECTORY_SEPARATOR.$path : $path);
-    }
-
     public function cachePath($path = null): string
     {
         return wp_upload_dir()['basedir'].DIRECTORY_SEPARATOR.$this->config('slug').($path ? DIRECTORY_SEPARATOR.$path : '');
@@ -324,7 +260,6 @@ class Application implements ApplicationInterface
      */
     protected function bootProvider(): void
     {
-
         /**
          * run system service providers
          */
@@ -334,9 +269,8 @@ class Application implements ApplicationInterface
             }
         }
 
-
         /**
-         * run your service providers for your modules / functionalities
+         * run application service providers for modules / functionalities
          */
         foreach ($this->config('providers') as $serviceProvider) {
             if (method_exists($serviceProvider, 'boot')) {
@@ -354,6 +288,5 @@ class Application implements ApplicationInterface
     {
         return $this->container->call($callable, $parameters);
     }
-
 
 }

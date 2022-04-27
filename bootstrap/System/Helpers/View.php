@@ -1,8 +1,9 @@
 <?php
 
 
-namespace PluginMaster\Bootstrap\System\Helpers;
+namespace UIDons\Bootstrap\System\Helpers;
 
+use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Foundation\View\ViewHandler;
 
 
@@ -31,21 +32,17 @@ class View
      */
     private static function resolveView()
     {
-
         if (!static::$viewHandler) {
             $app = App::get();
+            $options['template'] = $app->config('template_engine') ;
+            $options['text_domain'] = $app->config('slug') ;
+            $options['cache_path'] = $app->cachePath('views');
 
-            $options             = $app->config('twig_template') ?
-                [
-                    'cache_path'  => $app->cachePath('views'), 'text_domain' => $app->config('slug'),
-                    'auto_reload' => $app->config('twig_auto_reload') ?? false
-                ]
-                : [];
-            static::$viewHandler = $app->get(ViewHandler::class)->setConfig($app->viewPath(), $options);
+            static::$viewHandler = new ViewHandler( $app->viewPath(),  $options ) ;
         }
 
         return static::$viewHandler;
-
     }
+
 
 }

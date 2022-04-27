@@ -20,7 +20,7 @@ class App
      */
     public static function basePath()
     {
-        return static::get()->basePath();
+        return static::get()->path();
     }
 
     /**

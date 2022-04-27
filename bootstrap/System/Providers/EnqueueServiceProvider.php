@@ -16,7 +16,7 @@ class EnqueueServiceProvider implements ServiceProviderInterface
 
         $app = App::get();
 
-        $app->get(EnqueueHandler::class)->setAppInstance($app)->loadEnqueueFile($app->enqueuePath('enqueue.php'));
+        $app->get(EnqueueHandler::class)->setAppInstance($app)->loadEnqueueFile($app->path('enqueues/enqueue.php'));
 
         if (is_admin()) {
 

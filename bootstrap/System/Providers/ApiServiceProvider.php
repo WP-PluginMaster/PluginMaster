@@ -23,7 +23,7 @@ class ApiServiceProvider implements ServiceProviderInterface
                 ->setNamespace($app->config('api_namespace'))
                 ->setControllerNamespace($this->controllerNamespace)
                 ->setMiddleware($app->config('middleware'))
-                ->loadRoutes($app->routePath('api.php'));
+                ->loadRoutes($app->path('routes/api.php'));
         });
 
         add_action('rest_api_init', function () use ($app) {

@@ -36,19 +36,17 @@ return [
 
     'api_namespace'    => "PluginMaster/v1",
 
-
-    /**
-     * enable symfony twig template engine
-     * @type bool
-     */
-    'twig_template'    => false,
-
-    /**
-     * enable symfony twig template auto reload
-     * @type bool
-     */
-    'twig_auto_reload' => false,
-
+    "template_engine" => [
+        "name" => "php", // 'twig'
+        "config" => [
+            /**
+             * if twig
+             * enable symfony twig template auto reload
+             * @type bool
+             */
+           // "auto_reload" => false // true
+        ]
+    ] ,
 
     /**
      * add your custom Service Providers here
