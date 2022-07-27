@@ -14,7 +14,6 @@ class Bootstrap
      */
     public static function boot($path): void
     {
-
         /**
          * get application instance
          */
@@ -45,9 +44,7 @@ class Bootstrap
          * Start application with container and boot service providers
          */
         add_action('plugins_loaded', function () use ($app) {
-
             $app->boot();
-
         }, 100);
 
         /**

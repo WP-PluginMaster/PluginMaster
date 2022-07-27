@@ -12,14 +12,14 @@ class Enqueue implements EnqueueInterface
 {
 
     /**
-     * @var null
+     * @var Enqueue|null
      */
-    private static $instance = null;
+    private static ?self $instance = null;
 
     /**
-     * @var null
+     * @var EnqueueHandler|null
      */
-    private static $enqueueManager = null;
+    private static ?EnqueueHandler $enqueueManager = null;
 
     /**
      * @var null
@@ -29,7 +29,7 @@ class Enqueue implements EnqueueInterface
     /**
      * @return Enqueue
      */
-    public static function front()
+    public static function front(): self
     {
         static::$hook = 'wp_enqueue_scripts';
         return self::getInstance();
@@ -51,119 +51,144 @@ class Enqueue implements EnqueueInterface
     /**
      * @return Enqueue
      */
-    public static function admin()
+    public static function admin(): self
     {
         static::$hook = 'admin_enqueue_scripts';
         return static::getInstance();
     }
 
     /**
-     * @param $hook
+     * @param  string  $hook
      * @return Enqueue
      */
-    public static function on($hook)
+    public static function on(string $hook): self
     {
         static::$hook = $hook;
         return static::getInstance();
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function headerScript($path, $options = [])
+    public function headerScript(string $path, array $options = []): void
     {
         self::$enqueueManager->register([
-            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => false, 'hook' => static::$hook
+            'options' => $options,
+            'path' => $path,
+            'script' => true,
+            'in_footer' => false,
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function headerScriptCdn($path, $options = [])
+    public function headerScriptCdn(string $path, array $options = []): void
     {
         self::$enqueueManager->register([
-            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => false, 'cdn' => true,
-            'hook'    => static::$hook
+            'options' => $options,
+            'path' => $path,
+            'script' => true,
+            'in_footer' => false,
+            'cdn' => true,
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function footerScript($path, $options = [])
+    public function footerScript(string $path, array $options = []): void
     {
         self::$enqueueManager->register([
-            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => true, 'hook' => static::$hook
+            'options' => $options,
+            'path' => $path,
+            'script' => true,
+            'in_footer' => true,
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function footerScriptCdn($path, $options = [])
+    public function footerScriptCdn(string $path, array $options = []): void
     {
         self::$enqueueManager->register([
-            'options' => $options, 'path' => $path, 'script' => true, 'in_footer' => true, 'cdn' => true,
-            'hook'    => static::$hook
+            'options' => $options,
+            'path' => $path,
+            'script' => true,
+            'in_footer' => true,
+            'cdn' => true,
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function style($path, $options = [])
+    public function style(string $path, array $options = []): void
     {
         self::$enqueueManager->register(['options' => $options, 'path' => $path, 'hook' => static::$hook]);
     }
 
     /**
-     * @param $path
+     * @param  string  $path
      * @param  array  $options
      */
-    public function styleCdn($path, $options = [])
+    public function styleCdn(string $path, array $options = []): void
     {
         self::$enqueueManager->register([
-            'options' => $options, 'path' => $path, 'cdn' => true, 'hook' => static::$hook
+            'options' => $options,
+            'path' => $path,
+            'cdn' => true,
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $handler
-     * @param $objectName
-     * @param $data
+     * @param  string  $handle
+     * @param  string  $objectName
+     * @param  mixed  $data
      */
-    public function localizeScript($handle, $objectName, $data)
+    public function localizeScript(string $handle, string $objectName, mixed $data): void
     {
         self::$enqueueManager->register([
-            'param' => [$handle, $objectName, $data], 'type' => 'localizeScript', 'hook' => static::$hook
+            'param' => [$handle, $objectName, $data],
+            'type' => 'localizeScript',
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $data
+     * @param  string  $data
      * @param  array  $option
      */
-    public function inlineScript($data, $option = [])
+    public function inlineScript(string $data, array $option = []): void
     {
         self::$enqueueManager->register([
-            'param' => [$data, $option], 'type' => 'inlineScript', 'hook' => static::$hook
+            'param' => [$data, $option],
+            'type' => 'inlineScript',
+            'hook' => static::$hook
         ]);
     }
 
     /**
-     * @param $data
+     * @param  string  $data
      * @param  string  $handle
      */
-    public function inlineStyle($data, $handle = '')
+    public function inlineStyle(string $data, string $handle = ''): void
     {
         self::$enqueueManager->register([
-            'param' => [$data, $handle], 'type' => 'inlineStyle', 'hook' => static::$hook
+            'param' => [$data, $handle],
+            'type' => 'inlineStyle',
+            'hook' => static::$hook
         ]);
     }
 

@@ -8,7 +8,7 @@ use WP_REST_Request;
 class TestMiddleware implements MiddlewareInterface
 {
 
-    public function handler(WP_REST_Request $request)
+    public function handler(WP_REST_Request $request): bool
     {
         return true;
     }

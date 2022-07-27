@@ -34,11 +34,11 @@ class View
     {
         if (!static::$viewHandler) {
             $app = App::get();
-            $options['template'] = $app->config('template_engine') ;
-            $options['text_domain'] = $app->config('slug') ;
+            $options['template'] = $app->config('template_engine');
+            $options['text_domain'] = $app->config('slug');
             $options['cache_path'] = $app->cachePath('views');
 
-            static::$viewHandler = new ViewHandler( $app->viewPath(),  $options ) ;
+            static::$viewHandler = new ViewHandler($app->viewPath(), $options);
         }
 
         return static::$viewHandler;

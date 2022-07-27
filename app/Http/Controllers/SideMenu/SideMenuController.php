@@ -10,7 +10,6 @@ class SideMenuController extends Controller
 
     public function index()
     {
-
         $title = "This is PluginMaster for creating plugin in better way.";
 
         return View::render('index', compact('title'));

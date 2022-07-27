@@ -25,8 +25,10 @@ class Cache implements CacheInterface
     private static function getHandler()
     {
         if (!static::$cacheHandlerInstance) {
-            $app                          = App::get();
-            static::$cacheHandlerInstance = $app->get(CacheHandler::class)->setAppVersion($app->version())->setCachePath($app->cachePath());
+            $app = App::get();
+            static::$cacheHandlerInstance = $app->get(CacheHandler::class)->setAppVersion(
+                $app->version()
+            )->setCachePath($app->cachePath());
         }
         return static::$cacheHandlerInstance;
     }

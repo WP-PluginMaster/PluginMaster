@@ -15,23 +15,16 @@ class SideMenuServiceProvider implements ServiceProviderInterface
 
     public function boot()
     {
-
-
         $app = App::get();
 
         add_action('admin_menu', function () use ($app) {
-
             $app->get(SideMenuHandler::class)->setAppInstance($app)->setNamespace($this->controllerNamespace)
                 ->loadMenuFile($app->path('sidemenu.php'));
-
         });
 
         add_action('admin_menu', function () use ($app) {
-
             $app->get(SideMenuHandler::class)->removeFirstSubMenu();
-
         }, 12);
-
     }
 
 

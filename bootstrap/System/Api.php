@@ -31,16 +31,14 @@ class Api implements ApiInterface
      */
     public static function group($config, $callback)
     {
-
-        static::$prefix     = isset($config['prefix']) ? '/'.$config['prefix'] : null;
+        static::$prefix = isset($config['prefix']) ? '/'.$config['prefix'] : null;
         static::$middleware = $config['middleware'] ?? null;
 
         if (gettype($callback) == 'object') {
-
             call_user_func($callback);
 
             // reset prefix and middleware
-            static::$prefix     = null;
+            static::$prefix = null;
             static::$middleware = null;
         }
     }
@@ -51,11 +49,9 @@ class Api implements ApiInterface
      */
     public static function prefix($prefix, $callback)
     {
-
         static::$prefix = '/'.$prefix;
 
         if (gettype($callback) == 'object') {
-
             call_user_func($callback);
 
             // reset prefix
@@ -69,11 +65,9 @@ class Api implements ApiInterface
      */
     public static function middleware($middlewareName, $callback)
     {
-
         static::$middleware = $middlewareName;
 
         if (gettype($callback) == 'object') {
-
             call_user_func($callback);
 
             // reset middleware

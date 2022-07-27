@@ -14,7 +14,6 @@ class ApiServiceProvider implements ServiceProviderInterface
 
     public function boot()
     {
-
         $app = App::get();
 
         add_action('rest_api_init', function () use ($app) {
@@ -30,8 +29,6 @@ class ApiServiceProvider implements ServiceProviderInterface
             $app->get(ApiHandler::class)
                 ->apiGenerate();
         }, 100);
-
-
     }
 
 

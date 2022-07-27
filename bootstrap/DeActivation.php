@@ -14,7 +14,6 @@ class DeActivation
      */
     public function index()
     {
-
         // write here your code for executing after plugin de-activated
 
     }

@@ -6,8 +6,7 @@ use PluginMaster\Bootstrap\System\Helpers\View;
 use PluginMaster\Request\Request;
 
 
-if ( ! function_exists('pluginmaster_app')) {
-
+if (!function_exists('pluginmaster_app')) {
     /**
      * Get the available container instance.
      *
@@ -24,12 +23,10 @@ if ( ! function_exists('pluginmaster_app')) {
 
         return Application::getInstance()->get($class);
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_config')) {
-
+if (!function_exists('pluginmaster_config')) {
     /**
      * Get config.
      *
@@ -42,12 +39,10 @@ if ( ! function_exists('pluginmaster_config')) {
     {
         return Config::get($key);
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_url')) {
-
+if (!function_exists('pluginmaster_url')) {
     /**
      * Get config.
      * @return mixed
@@ -57,12 +52,10 @@ if ( ! function_exists('pluginmaster_url')) {
     {
         return pluginmaster_app()->baseUrl();
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_view')) {
-
+if (!function_exists('pluginmaster_view')) {
     /**
      * Get view file.
      *
@@ -77,12 +70,10 @@ if ( ! function_exists('pluginmaster_view')) {
     {
         return View::render($path, $data, $noTemplate);
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_domain')) {
-
+if (!function_exists('pluginmaster_domain')) {
     /**
      * Get text domain / slug.
      */
@@ -91,11 +82,9 @@ if ( ! function_exists('pluginmaster_domain')) {
     {
         return Config::get('app.slug');
     }
-
 }
 
-if ( ! function_exists('pluginmaster_text')) {
-
+if (!function_exists('pluginmaster_text')) {
     /**
      * Get translated text.
      *
@@ -111,8 +100,7 @@ if ( ! function_exists('pluginmaster_text')) {
     }
 }
 
-if ( ! function_exists('pluginmaster_text')) {
-
+if (!function_exists('pluginmaster_text')) {
     /**
      * Get translated text.
      *
@@ -128,8 +116,7 @@ if ( ! function_exists('pluginmaster_text')) {
     }
 }
 
-if ( ! function_exists('pluginmaster_text_p')) {
-
+if (!function_exists('pluginmaster_text_p')) {
     /**
      * Get translated text and print .
      *
@@ -146,8 +133,7 @@ if ( ! function_exists('pluginmaster_text_p')) {
 }
 
 
-if ( ! function_exists('pluginmaster_title')) {
-
+if (!function_exists('pluginmaster_title')) {
     /**
      * Get translated title .
      *
@@ -164,8 +150,7 @@ if ( ! function_exists('pluginmaster_title')) {
 }
 
 
-if ( ! function_exists('pluginmaster_title_p')) {
-
+if (!function_exists('pluginmaster_title_p')) {
     /**
      * Get translated title and print .
      *
@@ -182,8 +167,7 @@ if ( ! function_exists('pluginmaster_title_p')) {
 }
 
 
-if ( ! function_exists('pluginmaster_request')) {
-
+if (!function_exists('pluginmaster_request')) {
     /**
      * Retrieve the translation of $text and escapes it for safe use in HTML output.
      *
@@ -196,11 +180,9 @@ if ( ! function_exists('pluginmaster_request')) {
     {
         return pluginmaster_app()->get(Request::class);
     }
-
 }
 
-if ( ! function_exists('pluginmaster_api')) {
-
+if (!function_exists('pluginmaster_api')) {
     /**
      * Retrieve the rest api url.
      *
@@ -213,12 +195,10 @@ if ( ! function_exists('pluginmaster_api')) {
     {
         return get_rest_url('', Config::get('app.api_namespace').($path ? '/'.$path : ''));
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_api')) {
-
+if (!function_exists('pluginmaster_api')) {
     /**
      * Retrieve the translation of $text and escapes it for safe use in HTML output.
      *
@@ -231,12 +211,10 @@ if ( ! function_exists('pluginmaster_api')) {
     {
         return get_rest_url('', Config::get('app.api_namespace').($path ? '/'.$path : ''));
     }
-
 }
 
 
-if ( ! function_exists('pluginmaster_path')) {
-
+if (!function_exists('pluginmaster_path')) {
     /**
      *
      * @param  string  $path
@@ -248,11 +226,9 @@ if ( ! function_exists('pluginmaster_path')) {
     {
         return pluginmaster_app()->path($path);
     }
-
 }
 
-if ( ! function_exists('pluginmaster_asset')) {
-
+if (!function_exists('pluginmaster_asset')) {
     /**
      *
      * @param  string  $path
@@ -264,5 +240,4 @@ if ( ! function_exists('pluginmaster_asset')) {
     {
         return pluginmaster_app()->asset($path);
     }
-
 }

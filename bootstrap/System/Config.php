@@ -29,7 +29,6 @@ class Config implements ConfigInterface
      */
     public static function get($key)
     {
-
         if (isset(static::$accessedConfig[$key])) {
             return static::$accessedConfig[$key];
         }

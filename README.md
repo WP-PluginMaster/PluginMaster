@@ -1,15 +1,15 @@
 ## PluginMaster (an Application Development Framework for WordPress)
 
-
 <h1 style="text-align: center;width:100%"> <a href="https://wppluginmaster.com" >Website</a> || <a href="https://wppluginmaster.com" > Full Documentation </a>  </h1>
 
-
 # What is PluginMaster?
+
   <blockquote>
     « PluginMaster is an Application development framework for WordPress. It changes the flavor of plugin development.»
   </blockquote>
 
-# Code Features   
+# Code Features
+
  <ol type="1">
 <li> <a href="#DatabaseMigrationSystem"> Database Migration System </a></li>
  <li><a href="#SimpleSideMenuDeclaration">  Simple Side Menu Declaration</a></li>
@@ -27,13 +27,14 @@
 <li> Filter Handler (upcoming)  </li>
 </ol>
 
-# Installation 
+# Installation
+
  <ol> 
  <li>Go to <code>wp-content/plugins/</code> directory in your WordPress</li>
  <li>Open terminal and run : <code>composer create-project plugin-master/plugin-master</code> <b>OR</b> <code>composer
                             create-project plugin-master/plugin-master project_name</code></li>
  <li> A demo application includes with Vue JS . Just active from Plugin section</li>
- 
+
 </ol>
 # Configuration 
 <ol> 
@@ -41,17 +42,18 @@
  <li>Change Rest API Namespace from <code>config.php</code>, located in <code>app/config/</code>
                         directory (You can add any configuration related data in <code>config.php </code>)
                     </li>
- 
+
  </ol>
 
 # 1. Database Migration System
+
  <div id="DatabaseMigrationSystem"></div>
 
 <p> Migrations are typically paired with the <b>PluginMaster</b> schema builder to build your application's database schema. When plugin activates, all migration migrate to the database and when deactivate plugin, all table will be deleted. You just need to define the migration file.  </p>
  <b>Migration file directory : <code>database/migrations/</code></b>
- 
- <b>Structure</b> 
- 
+
+<b>Structure</b>
+
 <p>The migration file name has 2 parts :
  <ol>
  <li><b>First</b>  for sequence maintain for foreign key and <b>second</b> for the  table name.  <b> Second </b> part must be the same as table name .</li>
@@ -115,8 +117,8 @@ $column->foreign('user_id')->on('demo_users.id'); </code>
 </li>
 </ol>
 
+# 2. Simple Side Menu Declaration
 
-# 2. Simple Side Menu Declaration 
  <div id="SimpleSideMenuDeclaration"></div>
 
 <p>Create a WP side menu in easy way. just declare your side nav with controller, method &, etc.   </p>
@@ -165,12 +167,11 @@ $sidenav->main('DemoPlugin', ["icon" => "dashicons-admin-site",  "as" => 'DemoCo
 
  </li>
  </ol>
-            
-            
-  
- # 3. Easy Rest API Route Declaration
+
+# 3. Easy Rest API Route Declaration
+
  <div id="EasyRestAPIRouteDeclaration"></div>
- 
+
 <p>Create WP rest route in easy way.     </p>
 <p> <b> Rest Route declaration file : routes/route.php </b>
  <br> <b> Rest Route Controller must declare inside : app/controller/api/ </b></p>
@@ -193,20 +194,20 @@ $route->post('update-note', 'DemoController@addNote', true);
 <li>Dynamic Optional Parameter : <code>{parameter_name?} </code></li>
 <li> Access Dynamic Param in Controller's method : set parameter like : <code>function dashboard($variable)</code> then <code>$variable['param_name'] </code></li>
 </ol>
-    
+
 </li>
  <li><b>Second Parameter</b>:  Conteoller and Method Name ( with @ sign) </li> 
  <li><b>Third Parameter </b>: CSRF protection (Optional).Default value false. If you set true, can not access this route without <a href="#wpNonce">WP Nonce Token </a>. You must pass token in header with <code>X-WP-Nonce: token</code>  </li>
- 
+
  </ul>
- 
- 
- # 4. DB Query Builder
+
+# 4. DB Query Builder
+
  <div id="QueryBuilder"></div>
  <p>PluginMaster's database query builder provides a convenient, fluent interface to run
                 database queries. It can be used to perform most database operations in your application. </p>
  <b>Namespace: <code>PluginMaster\DB\DB;</code></b><br> 
- 
+
 <br>
 <b>DB Functions </b>
 <ol>
@@ -216,7 +217,7 @@ $route->post('update-note', 'DemoController@addNote', true);
 
  <ol>
  <li><code>where($column, $value )</code> :
- 
+
 
  <pre class="mt-2"><code>DB::table('users')
      ->where('id', 1)
@@ -353,9 +354,8 @@ $route->post('update-note', 'DemoController@addNote', true);
  </li>
  </ol>
 
+# 5. Simple Enqueue Declaration
 
-
-# 5. Simple Enqueue Declaration 
 <div id="SimpleEnqueueDeclaration"></div>
 
  <p> Easy way to add css and js file to application</p>
@@ -386,8 +386,8 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
  </li>
 </ol>
 
-
 # 6. Easy Shortcode Handler
+
  <div id="ShortCode"> </div> 
  <p>Create and manage shortcode in easy way</p>
  <b> Shortcode Declaration file : shortcode/shortcode.php </b><br>
@@ -402,10 +402,9 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
         return  view('shortcode', compact('data')) ;
     }
   </code></pre>
-  
-  
 
 # 7. Request Handling System
+
 <div id="RequestHandlingSystem" ></div>
 
 <p> Easy way to access request data from native or AJAX request</p>
@@ -422,9 +421,7 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
 <p><b>Get All Data as Array:</b> <code>$request->all()</code></p>
 <p><b>Check Request Method :</b> <code>if($request->isMethod('post')){}</code></p>
 
-
-# 8. Validator 
-
+# 8. Validator
 
 <p> Validate data is easy in PluginMaster</p>
  <p class="mt-3"><b> Manually Validate ( not compatible for REST API) </b>:  </p>
@@ -437,17 +434,17 @@ $enqueue->csrfToken('DemoScriptIndex','corsData');
             'slug' => 'required|noSpecialChar',
         ]);
 
- if ($validator->fails()) {
-     $errors =  $validator->errors();
- }
+if ($validator->fails()) {
+$errors = $validator->errors();
+}
 
 </code>
 </pre>
 <p>For checking validation fail: <code>$validator->fail();</code>.</p>
 <p>For Validation errors: <code> $validator->errors() </code>.</p> 
 <p>You can use <code>$validator->flashErrors();</code> for flashing errors as flash session and you can access  all flashed errors through <code>formErrors()</code> global function. Also you can access single field error  through <code>formError(field name).</code></p>
- 
- <b>Display Errors in View file :</b>
+
+<b>Display Errors in View file :</b>
 <p>In controller</p>
 <pre><code>
       use App\system\Validator;
@@ -475,8 +472,8 @@ if ( count(formErrors()) ) :
      &lt;/div&gt;
    &lt;php endif;  ?&gt;
 
-  &lt;input type="text" name="email"&gt;
-  &lt;p&gt; &lt;php  formError('email'); ?&gt;  &lt;/p&gt;
+&lt;input type="text" name="email"&gt;
+&lt;p&gt; &lt;php formError('email'); ?&gt; &lt;/p&gt;
 </code></pre>
 <b>OR</b>
 <p>You can pass errors to view file with compact</p>
@@ -518,8 +515,8 @@ view('path to view', compact('errors'));
     <li>email</li>
 </ol>
 
+# 9. Build in Vue JS Configuration
 
-# 9. Build in Vue JS Configuration 
 <div id="BuildinVueJSConfiguration"></div>
 
  <p>  Build Vue JS application with your plugin</p>
@@ -558,11 +555,9 @@ view('path to view', compact('errors'));
 ];
   </code>
   </pre>
-                    
- 
- 
- # 10. Global Functions
- 
+
+# 10. Global Functions
+
 <div id="GlobalFunction"></div>
 
   <ol>
@@ -584,9 +579,9 @@ view('path to view', compact('errors'));
 <li> <code> session($key, $value = null)</code> : for getting and setting <a href="#SessionHandler">  session </a> </code></li>
 
 </ol>
-  
- # 11.  Session Handler
- 
+
+# 11. Session Handler
+
  <div id="SessionHandler"></div>
 <ol>
 <li>Get OR Set Flush Session: <br>
@@ -606,11 +601,13 @@ view('path to view', compact('errors'));
 </ol>
 
 # License
+
 <p>The MIT License (MIT)</p>
 
 <p>Developed by : <a href="https://alemran.me">AL EMRAN</a></p>
 
 # Support for this project
+
 Assalamu Alikum ! You can donate for the project.
 
 [![Beerpay](https://beerpay.io/emrancu/PluginMaster/badge.svg?style=beer-square)](https://beerpay.io/emrancu/PluginMaster)  [![Beerpay](https://beerpay.io/emrancu/PluginMaster/make-wish.svg?style=flat-square)](https://beerpay.io/emrancu/PluginMaster?focus=wish)

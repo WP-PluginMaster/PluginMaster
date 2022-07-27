@@ -63,7 +63,6 @@ class Application implements ApplicationInterface
         $this->setBasePath($path);
         $this->setAppConfig();
         $this->setVersion($this->config('version'));
-
     }
 
     /**
@@ -226,7 +225,9 @@ class Application implements ApplicationInterface
      */
     public function cachePath($path = null): string
     {
-        return wp_upload_dir()['basedir'].DIRECTORY_SEPARATOR.$this->config('slug').($path ? DIRECTORY_SEPARATOR.$path : '');
+        return wp_upload_dir()['basedir'].DIRECTORY_SEPARATOR.$this->config(
+                'slug'
+            ).($path ? DIRECTORY_SEPARATOR.$path : '');
     }
 
     /**

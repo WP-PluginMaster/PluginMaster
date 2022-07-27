@@ -11,9 +11,8 @@ class Migration implements MigrationInterface
      * execute your schema here
      * or call class where you execute schema
      */
-    public static function handler()
+    public static function handler(): void
     {
-
         /*
         Schema::create( 'demo_notes', function ( Schema $column ) {
              $column->intIncrements( 'id' );
@@ -25,8 +24,6 @@ class Migration implements MigrationInterface
          } )->execute();
 
          */
-
-
     }
 
 }
