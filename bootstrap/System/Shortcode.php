@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PluginMaster\Bootstrap\System;
-
 
 use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Contracts\Shortcode\ShortcodeInterface;
@@ -12,21 +10,21 @@ class Shortcode implements ShortcodeInterface
 {
 
     /**
-     * @var object
+     * @var ShortcodeHandler
      */
-    private static object $shortcodeHandler;
+    private static ShortcodeHandler $shortcodeHandler;
 
 
     /**
-     * @param $name
-     * @param $callback
+     * @param string $name
+     * @param mixed $callback
      */
-    public static function add($name, $callback): void
+    public static function add(string $name, $callback)
     {
         static::handler()->add($name, $callback);
     }
 
-    private static function handler(): object
+    private static function handler(): ShortcodeHandler
     {
         if (!static::$shortcodeHandler) {
             static::$shortcodeHandler = App::get(ShortcodeHandler::class);

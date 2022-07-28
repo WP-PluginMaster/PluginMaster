@@ -11,9 +11,9 @@ use PluginMaster\Foundation\Shortcode\ShortcodeHandler;
 class ShortcodeServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Shortcodes\\';
+    protected string $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Shortcodes\\';
 
-    public function boot()
+    public function boot(): void
     {
         $app = App::get();
         $app->get(ShortcodeHandler::class)

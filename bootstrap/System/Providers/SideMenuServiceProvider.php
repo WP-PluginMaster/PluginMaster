@@ -11,15 +11,15 @@ use PluginMaster\Foundation\SideMenu\SideMenuHandler;
 class SideMenuServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\SideMenu\\';
+    protected string $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\SideMenu\\';
 
-    public function boot()
+    public function boot(): void
     {
         $app = App::get();
 
         add_action('admin_menu', function () use ($app) {
             $app->get(SideMenuHandler::class)->setAppInstance($app)->setNamespace($this->controllerNamespace)
-                ->loadMenuFile($app->path('sidemenu.php'));
+                ->loadMenuFile($app->routePath('sidemenu.php'));
         });
 
         add_action('admin_menu', function () use ($app) {

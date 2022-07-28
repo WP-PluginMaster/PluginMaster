@@ -11,21 +11,20 @@ use PluginMaster\Foundation\Enqueue\EnqueueHandler;
 class EnqueueServiceProvider implements ServiceProviderInterface
 {
 
-    public function boot()
+    public function boot(): void
     {
         $app = App::get();
 
-        $app->get(EnqueueHandler::class)->setAppInstance($app)->loadEnqueueFile($app->path('enqueues/enqueue.php'));
+        $app->get(EnqueueHandler::class)->setAppInstance($app)->loadEnqueueFile($app->enqueuePath('enqueue.php'));
 
-        if (is_admin()) {
-            add_action('admin_init', function () use ($app) {
-                $app->get(EnqueueHandler::class)->initEnqueue();
-            });
-        } else {
-            add_action('wp_head', function () use ($app) {
-                $app->get(EnqueueHandler::class)->initEnqueue();
-            });
-        }
+        add_action('admin_enqueue_scripts', function () use ($app) {
+            $app->get(EnqueueHandler::class)->initEnqueue(true);
+        });
+
+        add_action('wp_enqueue_scripts', function () use ($app) {
+            $app->get(EnqueueHandler::class)->initEnqueue();
+        }, 100);
     }
+
 
 }

@@ -13,25 +13,26 @@ class Api implements ApiInterface
     /**
      * @var string
      */
-    public static $prefix;
+    public static string $prefix;
 
     /**
      * @var string
      */
-    private static $middleware;
+    private static string $middleware;
 
-
-    private static $apiHandler;
-
+    /**
+     * @var ApiHandler
+     */
+    private static ApiHandler $apiHandler;
 
     /**
      * setting up api prefix and middleware as array with  $config
-     * @param $config
-     * @param $callback
+     * @param array $config
+     * @param callable $callback
      */
-    public static function group($config, $callback)
+    public static function group(array $config, callable $callback): void
     {
-        static::$prefix = isset($config['prefix']) ? '/'.$config['prefix'] : null;
+        static::$prefix = isset($config['prefix']) ? '/' . $config['prefix'] : null;
         static::$middleware = $config['middleware'] ?? null;
 
         if (gettype($callback) == 'object') {
@@ -44,12 +45,12 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param $prefix
-     * @param $callback
+     * @param string $prefix
+     * @param callable $callback
      */
-    public static function prefix($prefix, $callback)
+    public static function prefix(string $prefix, callable $callback): void
     {
-        static::$prefix = '/'.$prefix;
+        static::$prefix = '/' . $prefix;
 
         if (gettype($callback) == 'object') {
             call_user_func($callback);
@@ -60,10 +61,10 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param $middlewareName
-     * @param $callback
+     * @param string $middlewareName
+     * @param callable $callback
      */
-    public static function middleware($middlewareName, $callback)
+    public static function middleware(string $middlewareName, callable $callback): void
     {
         static::$middleware = $middlewareName;
 
@@ -76,20 +77,20 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param $route
+     * @param string $route
      * @param $callback
-     * @param  bool  $public
+     * @param bool $public
      */
-    public static function get($route, $callback, $public = false)
+    public static function get(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'GET', $callback, $public]);
     }
 
     /**
-     * @param $api
-     * @param  bool  $dynamic
+     * @param array $api
+     * @param bool $dynamic
      */
-    private static function registerAPI($api, $dynamic = false)
+    private static function registerAPI(array $api, bool $dynamic = false): void
     {
         $api[] = static::$prefix;
         $api[] = static::$middleware;
@@ -103,64 +104,62 @@ class Api implements ApiInterface
     }
 
     /**
-     * @param $route
-     * @param $callback
-     * @param  bool  $public
+     * @param string $route
+     * @param string|callable $callback
+     * @param bool $public
      */
-    public static function post($route, $callback, $public = false)
+    public static function post(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'POST', $callback, $public]);
     }
 
     /**
-     * @param $route
-     * @param $callback
-     * @param  bool  $public
+     * @param string $route
+     * @param string|callable $callback
+     * @param bool $public
      */
-    public static function put($route, $callback, $public = false)
+    public static function put(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'PUT', $callback, $public]);
     }
 
     /**
-     * @param $route
-     * @param $callback
-     * @param  bool  $public
+     * @param string $route
+     * @param string|callable $callback
+     * @param bool $public
      */
-    public static function patch($route, $callback, $public = false)
+    public static function patch(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'PATCH', $callback, $public]);
     }
 
     /**
-     * @param $route
-     * @param $callback
-     * @param  bool  $public
+     * @param string $route
+     * @param string|callable $callback
+     * @param bool $public
      */
-    public static function delete($route, $callback, $public = false)
+    public static function delete(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'DELETE', $callback, $public]);
     }
 
     /**
-     * @param $route
-     * @param $callback
-     * @param  bool  $public
+     * @param string $route
+     * @param string|callable $callback
+     * @param bool $public
      */
-    public static function all($route, $callback, $public = false)
+    public static function all(string $route, $callback, bool $public = false): void
     {
         static::registerAPI([$route, 'GET, POST, PUT, PATCH, DELETE', $callback, $public]);
     }
 
     /**
-     * @param $route
-     * @param $class
-     * @param  bool  $public
+     * @param string $route
+     * @param string $class
+     * @param bool $public
      */
-    public static function dynamic($route, $class, $public = false)
+    public static function dynamic(string $route, string $class, bool $public = false): void
     {
         static::registerAPI([$route, 'GET, POST, PUT, PATCH, DELETE', $class, $public], true);
     }
-
-
 }

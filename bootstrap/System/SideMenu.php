@@ -12,18 +12,18 @@ class SideMenu implements SideMenuInterface
 {
 
     /**
-     * @var null
+     * @var string|null
      */
-    protected static $parentSlug = null;
+    protected static ?string $parentSlug = null;
 
 
     /**
      * $option['as'] required
      * $option['title'] for both- page & menu
      *
-     * @param  string  $slug
-     * @param  array  $options
-     * @param  callable|null  $callback
+     * @param string $slug
+     * @param array $options
+     * @param callable|null $callback
      */
     public static function parent(string $slug, array $options, callable $callback = null): void
     {
@@ -41,13 +41,13 @@ class SideMenu implements SideMenuInterface
 
 
     /**
-     * @param  string  $slug
-     * @param  array  $options
-     * @param  bool  $parent
+     * @param $slug
+     * @param $options
+     * @param bool $parent
      */
-    private static function registerMenu(string $slug, array $options, bool $parent = false)
+    private static function registerMenu($slug, $options, $parent = false)
     {
-        /** @var  SideMenuHandler $instance */
+        /** @var SideMenuHandler $instance */
         $instance = App::get(SideMenuHandler::class);
         $instance->validateOptions($options, $parent);
 
@@ -60,10 +60,10 @@ class SideMenu implements SideMenuInterface
 
     /**
      * $option['as'] required
-     * @param $slug
-     * @param $options
+     * @param string $slug
+     * @param array $options
      */
-    public static function child($slug, $options): void
+    public static function child(string $slug, array $options): void
     {
         static::registerMenu($slug, $options, false);
     }

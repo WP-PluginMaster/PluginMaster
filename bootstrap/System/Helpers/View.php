@@ -1,9 +1,8 @@
 <?php
 
 
-namespace UIDons\Bootstrap\System\Helpers;
+namespace PluginMaster\Bootstrap\System\Helpers;
 
-use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Foundation\View\ViewHandler;
 
 
@@ -18,31 +17,37 @@ class View
 
     /**
      * @param $path
-     * @param  array  $data
-     * @param  bool  $avoidTemplate
+     * @param array $data
+     * @param bool $noTemplate
      * @return string
      */
-    public static function render($path, $data = [], $avoidTemplate = false)
-    {
-        return static::resolveView()->render($path, $data, $avoidTemplate);
+    public static function render( $path, $data = [], $noTemplate = false ) {
+        return static::resolveView()->render( $path, $data, $noTemplate );
     }
 
     /**
      * @return mixed
      */
-    private static function resolveView()
-    {
-        if (!static::$viewHandler) {
-            $app = App::get();
-            $options['template'] = $app->config('template_engine');
-            $options['text_domain'] = $app->config('slug');
-            $options['cache_path'] = $app->cachePath('views');
+    private static function resolveView() {
 
-            static::$viewHandler = new ViewHandler($app->viewPath(), $options);
+        if ( !static::$viewHandler ) {
+            $app = App::get();
+
+            $options = $app->config( 'twig_template' ) ? [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ) ] : [];
+
+            static::$viewHandler = $app->get( ViewHandler::class )->setConfig( $app->viewPath(), $options );
         }
 
         return static::$viewHandler;
+
     }
 
+    /**
+     * @param $path
+     * @return void
+     */
+    public static function removeCache( $path = null ) {
+        static::resolveView()->removeCache( $path );
+    }
 
 }

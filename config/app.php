@@ -15,13 +15,13 @@ return [
      * application/plugin name
      * @type string
      */
-    'name' => "Plugin Master",
+    'name'    => "Plugin Master",
 
     /**
      * application/plugin slug / text domain
      * @type string
      */
-    'slug' => "plugin-master",
+    'slug'    => "plugin-master",
 
     /**
      * application/plugin version
@@ -34,26 +34,22 @@ return [
      * @type string
      */
 
-    'api_namespace' => "PluginMaster/v1",
+    'api_namespace'    => "PluginMaster/v1",
 
-    "template_engine" => [
-        "name" => "php", // 'twig'
-        "config" => [
-            /**
-             * if twig
-             * enable symfony twig template auto reload
-             * @type bool
-             */
-            // "auto_reload" => false // true
-        ]
-    ],
+
+    /**
+     * enable symfony twig template engine
+     * @type bool
+     */
+    'twig_template'    => false,
+
 
     /**
      * add your custom Service Providers here
      * service provider path App/Providers
      * @type array
      */
-    'providers' => [
+    'providers'        => [
         TestServiceProvider::class,
     ],
 
@@ -62,7 +58,7 @@ return [
      * middleware path App/Middleware
      * @type array
      */
-    'middleware' => [
+    'middleware'       => [
         'test' => TestMiddleware::class
     ],
     /**

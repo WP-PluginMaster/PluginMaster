@@ -11,7 +11,7 @@ use PluginMaster\Foundation\Action\ActionHandler;
 class ActionServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Actions\\';
+    protected string $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Actions\\';
 
     public function boot(): void
     {
@@ -19,7 +19,7 @@ class ActionServiceProvider implements ServiceProviderInterface
         $app->get(ActionHandler::class)
             ->setAppInstance($app)
             ->setControllerNamespace($this->controllerNamespace)
-            ->loadFile($app->path('hooks/action.php'));
+            ->loadFile($app->hooksPath('action.php'));
     }
 
 

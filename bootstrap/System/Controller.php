@@ -12,12 +12,12 @@ class Controller
     /**
      * @var Request
      */
-    protected $request;
+    protected $request ;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->request = App::get()->get(Request::class);
     }
+
 
 
 }

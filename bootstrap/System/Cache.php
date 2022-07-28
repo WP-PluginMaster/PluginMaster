@@ -9,20 +9,22 @@ use PluginMaster\Foundation\Cache\CacheHandler;
 class Cache implements CacheInterface
 {
 
-    protected static $cacheHandlerInstance;
+    protected static CacheHandler $cacheHandlerInstance;
 
     /**
-     * @param $fileName
-     * @param $directory
+     * @param string $fileName
+     * @param string|null $directory
      * @return mixed
      */
-    public static function get($fileName, $directory = null)
+    public static function get(string $fileName, string $directory = null)
     {
         return static::getHandler()->get($fileName, $directory);
     }
 
-
-    private static function getHandler()
+    /**
+     * @return CacheHandler
+     */
+    private static function getHandler(): CacheHandler
     {
         if (!static::$cacheHandlerInstance) {
             $app = App::get();
@@ -30,40 +32,36 @@ class Cache implements CacheInterface
                 $app->version()
             )->setCachePath($app->cachePath());
         }
+
         return static::$cacheHandlerInstance;
     }
 
     /**
-     * @param $fileName
+     * @param string $fileName
      * @param $content
-     * @param $directory
-     * @return mixed
+     * @param null $directory
+     * @return bool|int
      */
-    public static function set($fileName, $content, $directory = null)
+    public static function set(string $fileName, $content, $directory = null): bool
     {
         return static::getHandler()->createFile($fileName, $content, $directory);
     }
 
     /**
-     * @param $fileName
-     * @param $content
-     * @param $directory
-     * @return mixed
+     * @return bool|int
      */
-    public static function reset()
+    public static function reset(): bool
     {
         return static::getHandler()->reset();
     }
 
-
     /**
-     * @param $fileName
-     * @param  null  $directory
-     * @return mixed
+     * @param string $fileName
+     * @param string|null $directory
+     * @return bool
      */
-    public static function check($fileName, $directory = null)
+    public static function check(string $fileName, string $directory = null): bool
     {
         return static::getHandler()->check($fileName, $directory);
     }
-
 }

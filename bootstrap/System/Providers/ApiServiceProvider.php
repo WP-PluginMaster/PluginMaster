@@ -10,9 +10,9 @@ use PluginMaster\Foundation\Api\ApiHandler;
 class ApiServiceProvider implements ServiceProviderInterface
 {
 
-    protected $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Api\\';
+    protected string $controllerNamespace = 'PluginMaster\\App\\Http\\Controllers\\Api\\';
 
-    public function boot()
+    public function boot(): void
     {
         $app = App::get();
 
@@ -22,7 +22,7 @@ class ApiServiceProvider implements ServiceProviderInterface
                 ->setNamespace($app->config('api_namespace'))
                 ->setControllerNamespace($this->controllerNamespace)
                 ->setMiddleware($app->config('middleware'))
-                ->loadRoutes($app->path('routes/api.php'));
+                ->loadRoutes($app->routePath('api.php'));
         });
 
         add_action('rest_api_init', function () use ($app) {

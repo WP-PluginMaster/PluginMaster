@@ -1,25 +1,25 @@
 <template>
-  <div>
+    <div>
 
-    <h1>Hello PluginMaster Vue Application</h1>
+        <h1>Hello PluginMaster Vue Application</h1>
 
-  </div>
+    </div>
 
 
 </template>
 
 <script>
 
-export default {
+    export default {
 
-  created() {
+        created() {
 
-  }
+        }
 
-}
+    }
 
 </script>
 
-<style>
+<style >
 
 </style>

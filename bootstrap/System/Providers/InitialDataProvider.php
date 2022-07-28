@@ -14,7 +14,7 @@ class InitialDataProvider implements ServiceProviderInterface
      * execute  service provider code
      * @for setting up initial localize script data
      */
-    public function boot()
+    public function boot(): void
     {
         /**
          * Application instance

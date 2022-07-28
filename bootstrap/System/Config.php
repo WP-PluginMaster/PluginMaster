@@ -9,44 +9,23 @@ use PluginMaster\Foundation\Config\ConfigHandler;
 class Config implements ConfigInterface
 {
 
-    /**
-     * @var ConfigHandler
-     */
-    protected static $instance;
-
-    /**
-     * store accessed config with hashmap
-     *
-     * @var array
-     */
-    private static $accessedConfig;
-
+    protected static ?ConfigHandler $instance = null;
 
     /**
      * @param $key
      *
      * @return mixed
      */
-    public static function get($key)
-    {
-        if (isset(static::$accessedConfig[$key])) {
-            return static::$accessedConfig[$key];
-        }
-
-        $data = static::getInstance()->resolveData($key);
-
-        static::$accessedConfig[$key] = $data;
-
-        return $data;
+    public static function get( $key ) {
+        return static::getInstance()->resolveData( $key );
     }
 
     /**
      * @return ConfigHandler
      */
-    private static function getInstance()
-    {
-        if (!self::$instance) {
-            self::$instance = App::get(ConfigHandler::class);
+    private static function getInstance() {
+        if ( !self::$instance ) {
+            self::$instance = App::get( ConfigHandler::class );
         }
 
         return self::$instance;
@@ -56,8 +35,7 @@ class Config implements ConfigInterface
      * @param $key
      * @return mixed
      */
-    public static function set($key)
-    {
+    public static function set( $key ) {
     }
 
 

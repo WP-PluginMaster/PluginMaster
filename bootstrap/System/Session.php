@@ -7,59 +7,60 @@ use PluginMaster\Contracts\Session\SessionInterface;
 
 class Session implements SessionInterface
 {
-    private static $flashKey;
+    private static string $flashKey = '';
 
     /**
      * remove onetime/flush session
      */
     public static function destroyFlush(): void
     {
-        if (isset($_SESSION[static::getFlushKey()]['flush'])) {
-            unset ($_SESSION[static::getFlushKey()]['flush']);
+        if (isset($_SESSION[self::getFlushKey()]['flush'])) {
+            unset ($_SESSION[self::getFlushKey()]['flush']);
         }
     }
 
     /**
      * get flush key from application slug
-     * @return mixed
+     * @return string
      */
-    private static function getFlushKey()
+    private static function getFlushKey(): string
     {
-        if (!static::$flashKey) {
-            static::$flashKey = Config::get('app.slug');
+        if (!self::$flashKey) {
+            self::$flashKey = Config::get('app.slug');
         }
-        return static::$flashKey;
+        return self::$flashKey;
     }
 
     /**
      * set & get flush session
      * if not pass message then return session data with key
-     * @param $key
-     * @param  null  $message
+     * @param string $key
+     * @param null $message
      * @return void
      */
-    public static function flush($key, $message = null): void
+    public static function flush(string $key, $message = null): void
     {
         if ($message) {
-            $_SESSION[static::getFlushKey()]['flush'][$key] = $message;
+            $_SESSION[self::getFlushKey()]['flush'][$key] = $message;
         } else {
-            $_SESSION[static::getFlushKey()]['flush'][$key] ?? '';
+             $_SESSION[self::getFlushKey()]['flush'][$key] ?? '';
         }
     }
 
-    public static function set(string $name, mixed $message): void
+    public static function set(string $name, $message): void
     {
-        $_SESSION[static::getFlushKey()][$name] = $message;
+        $_SESSION[self::getFlushKey()][$name] = $message;
     }
 
-    public static function get(string $key): mixed
+    public static function get(string $key)
     {
-        return $_SESSION[static::getFlushKey()][$key] ?? null;
+        return $_SESSION[self::getFlushKey()][$key] ?? null;
     }
 
-    public static function forget(string $key): void
+
+    public static function forget($key): void
     {
-        unset($_SESSION[static::getFlushKey()][$key]);
+        unset($_SESSION[self::getFlushKey()][$key]);
     }
 
 }
