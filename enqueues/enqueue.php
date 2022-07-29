@@ -2,9 +2,10 @@
 
 use PluginMaster\Bootstrap\System\Enqueue;
 
+Enqueue::admin()->script( 'js/app.js' )->inFooter();
 
-Enqueue::admin()->footerScript( 'js/app.js' );
-Enqueue::admin()->style( 'css/index.css' );
+Enqueue::admin()->script('css/index.css')->version('123212')->inFooter();
+
 
 
 
