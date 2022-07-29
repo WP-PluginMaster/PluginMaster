@@ -102,7 +102,7 @@ class Application implements ApplicationInterface
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function get(string $class)
+    public function get(string $class): object
     {
         return $this->container->get($class);
     }
