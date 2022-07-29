@@ -9,7 +9,6 @@ use PluginMaster\Foundation\Enqueue\EnqueueHandler;
 
 class Enqueue implements EnqueueInterface
 {
-
     /**
      * @var string
      */
@@ -20,20 +19,10 @@ class Enqueue implements EnqueueInterface
      */
     private static ?self $instance = null;
 
-
     /**
-     * @var EnqueueHandler|null
+     * @var array
      */
-    private static ?EnqueueHandler $enqueueManager = null;
-
-    /**
-     * @return Enqueue
-     */
-    public static function front(): self
-    {
-        static::$hook = 'admin_enqueue_scripts';
-        return self::getInstance();
-    }
+    protected array $data;
 
     /**
      * @return Enqueue|null
@@ -41,8 +30,7 @@ class Enqueue implements EnqueueInterface
     private static function getInstance(): self
     {
         if (null === self::$instance) {
-            self::$instance = new self();
-            self::$enqueueManager = App::get(EnqueueHandler::class);
+            self::$instance = App::get(Enqueue::class) ;
         }
 
         return self::$instance;
@@ -51,9 +39,18 @@ class Enqueue implements EnqueueInterface
     /**
      * @return Enqueue
      */
-    public static function admin(): self
+    public static function front(): self
     {
         static::$hook = 'wp_enqueue_scripts';
+        return self::getInstance();
+    }
+
+    /**
+     * @return Enqueue
+     */
+    public static function admin(): self
+    {
+        static::$hook = 'admin_enqueue_scripts';
         return static::getInstance();
     }
 
@@ -65,56 +62,137 @@ class Enqueue implements EnqueueInterface
 
     /**
      * @param string $path
-     * @param array $options
+     * @param string|null $id
+     * @return Enqueue
      */
-    public function headerScript(string $path, array $options = []): void
+    public function script(string $path, ?string $id = null): self
     {
-        self::$enqueueManager->register([$path, $options, true, false, false], static::$hook);
+        $this->data[] = [
+            'id' => $id,
+            'path' => $path,
+            'script' => true,
+            'hook' => static::$hook,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * @param array $deps
+     * @return Enqueue
+     */
+    public function dependency(array $deps): self
+    {
+        $this->data[$this->getCurrentIndex()]['dependency'] = $deps;
+
+        return $this;
+    }
+
+    private function getCurrentIndex(): int
+    {
+        return count($this->data) -1;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return Enqueue
+     */
+    public function inHeader(): self
+    {
+        $this->data[$this->getCurrentIndex()]['in_footer'] = false;
+
+        return $this;
+    }
+
+    /**
+     * @return Enqueue
+     */
+    public function inFooter(): self
+    {
+        $this->data[$this->getCurrentIndex()]['in_footer'] = true;
+
+        return $this;
+    }
+
+    /**
+     * @param string $ver
+     * @return Enqueue
+     */
+    public function version(string $ver): self
+    {
+        $this->data[$this->getCurrentIndex()]['version'] = $ver;
+
+        return $this;
+    }
+
+    /**
+     * @param array $attributes
+     * @return Enqueue
+     */
+    public function attributes(array $attributes): self
+    {
+        $this->data[$this->getCurrentIndex()]['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * @param string $cdnPath
+     * @param string|null $id
+     * @return Enqueue
+     */
+    public function scriptCdn(string $cdnPath, ?string $id = null): self
+    {
+        $this->data[]  = [
+            'id' => $id,
+            'path' => $cdnPath,
+            'cdn' => true,
+            'script' => true,
+            'hook' => static::$hook,
+        ];
+
+        return $this;
     }
 
     /**
      * @param string $path
-     * @param array $options
+     * @param string|null $id
+     * @param string $media
+     * @return Enqueue
      */
-    public function headerScriptCdn(string $path, array $options = []): void
+    public function style(string $path, ?string $id = null, string $media = 'all'): self
     {
-        self::$enqueueManager->register([$path, $options, true, false, true], static::$hook);
+        $this->data[] = [
+            'id' => $id,
+            'path' => $path,
+            'media' => $media,
+            'hook' => static::$hook,
+        ];
+
+        return $this;
     }
 
     /**
-     * @param string $path
-     * @param array $options
+     * @param string $cdnPath
+     * @param string|null $id
+     * @param string $media
+     * @return Enqueue
      */
-    public function footerScript(string $path, array $options = []): void
+    public function styleCdn(string $cdnPath, ?string $id = null, string $media = 'all'): self
     {
-        self::$enqueueManager->register([$path, $options, true, true, false], static::$hook);
-    }
+        $this->data[] = [
+            'id' => $id,
+            'path' => $cdnPath,
+            'media' => $media,
+            'cdn' => true,
+            'hook' => static::$hook,
+        ];
 
-    /**
-     * @param string $path
-     * @param array $options
-     */
-    public function footerScriptCdn(string $path, array $options = []): void
-    {
-        self::$enqueueManager->register([$path, $options, true, true, true], static::$hook);
-    }
-
-    /**
-     * @param string $path
-     * @param array $options
-     */
-    public function style(string $path, array $options = []): void
-    {
-        self::$enqueueManager->register([$path, $options, false, 'all', false], static::$hook);
-    }
-
-    /**
-     * @param string $path
-     * @param array $options
-     */
-    public function styleCdn(string $path, array $options = []): void
-    {
-        self::$enqueueManager->register([$path, $options, false, 'all', true], static::$hook);
+        return $this;
     }
 
     /**
@@ -124,11 +202,11 @@ class Enqueue implements EnqueueInterface
      */
     public function localizeScript(string $handle, string $objectName, $data): void
     {
-        self::$enqueueManager->register(
-            [$handle, $objectName, $data, static::$hook],
-            static::$hook,
-            'localizeScript'
-        );
+        $this->data[]  = [
+            'param' => [$handle, $objectName, $data],
+            'type' => 'localizeScript',
+            'hook' => static::$hook,
+        ];
     }
 
     /**
@@ -137,7 +215,11 @@ class Enqueue implements EnqueueInterface
      */
     public function inlineScript(string $data, array $option = []): void
     {
-        self::$enqueueManager->register([$data, $option], static::$hook, 'inlineScript');
+        $this->data[]  = [
+            'param' => [$data, $option],
+            'type' => 'inlineScript',
+            'hook' => static::$hook,
+        ];
     }
 
     /**
@@ -146,18 +228,13 @@ class Enqueue implements EnqueueInterface
      */
     public function inlineStyle(string $data, string $handle = ''): void
     {
-        self::$enqueueManager->register([$data, $handle], static::$hook, 'inlineStyle');
+        $this->data[]  = [
+            'param' => [$data, $handle],
+            'type' => 'inlineStyle',
+            'hook' => static::$hook,
+        ];
     }
 
-    /**
-     * @param string $filePath
-     * @param int $port
-     */
-    public function hotScript(string $filePath, int $port = 8080): void
-    {
-        $path = 'http://localhost:' . $port . '/assets/' . $filePath;
-        wp_enqueue_script('hot-' . uniqid(), $path, [], false, true);
-    }
 }
 
 
