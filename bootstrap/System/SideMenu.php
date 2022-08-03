@@ -1,71 +1,147 @@
 <?php
 
-
 namespace PluginMaster\Bootstrap\System;
-
 
 use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Contracts\SideMenu\SideMenuInterface;
-use PluginMaster\Foundation\SideMenu\SideMenuHandler;
 
 class SideMenu implements SideMenuInterface
 {
+    /**
+     * @var array
+     */
+    public array $data ;
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected static ?string $parentSlug = null;
+    public string $prentSlug ;
 
 
     /**
-     * $option['as'] required
-     * $option['title'] for both- page & menu
-     *
-     * @param string $slug
-     * @param array $options
-     * @param callable|null $callback
+     * @var SideMenu|null
      */
-    public static function parent(string $slug, array $options, callable $callback = null): void
+    private static ?self $instance = null;
+
+
+    /**
+     * @return SideMenu
+     */
+    private static function getInstance(): self
     {
-        static::$parentSlug = $slug;
-
-        static::registerMenu($slug, $options, true);
-
-        if (gettype($callback) == 'object') {
-            call_user_func($callback);
-
-            // reset slug
-            static::$parentSlug = null;
+        if (null === self::$instance) {
+            self::$instance = App::get(SideMenu::class);
         }
-    }
 
-
-    /**
-     * @param $slug
-     * @param $options
-     * @param bool $parent
-     */
-    private static function registerMenu($slug, $options, $parent = false)
-    {
-        /** @var SideMenuHandler $instance */
-        $instance = App::get(SideMenuHandler::class);
-        $instance->validateOptions($options, $parent);
-
-        if ($parent) {
-            $instance->addMenuPage($slug, $options);
-        } else {
-            $instance->addSubMenuPage($slug, $options, static::$parentSlug);
-        }
+        return self::$instance;
     }
 
     /**
-     * $option['as'] required
-     * @param string $slug
-     * @param array $options
+     * @param string $title
+     * @param string|null $slug
+     * @return SideMenu
      */
-    public static function child(string $slug, array $options): void
+    public static function parent(string $title, string $slug = null): self
     {
-        static::registerMenu($slug, $options, false);
+        $slug = $slug ?? str_replace(' ', '-', strtolower($title));
+
+        static::getInstance()->prentSlug  = $slug;
+
+        static::getInstance()->data[] = [
+          'title' => $title,
+          'menu_title' => $title,
+          'slug' =>   $slug,
+      ];
+
+        return  static::getInstance();
+    }
+
+    private function getCurrentIndex(): int
+    {
+        return count($this->data) - 1;
+    }
+
+    public function capability(string $capability = 'manage_options'): self
+    {
+        $this->data[$this->getCurrentIndex()]['capability'] = $capability;
+
+        return $this;
+    }
+
+    public function menuTitle(string $title): self
+    {
+        $this->data[$this->getCurrentIndex()]['menu_title'] = $title;
+
+        return $this;
+    }
+
+    public function callback($callback): self
+    {
+        $this->data[$this->getCurrentIndex()]['callback'] = $callback;
+
+        return $this;
+    }
+
+    public function icon(string $icon): self
+    {
+        $this->data[$this->getCurrentIndex()]['icon'] = $icon;
+
+        return $this;
+    }
+
+    public function position(int $position): self
+    {
+        $this->data[$this->getCurrentIndex()]['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * $option['as'] required
+     * @param string $title
+     * @param string|null $slug
+     * @return SideMenu
+     */
+    public function child(string $title, string $slug = null): self
+    {
+        if(!$this->prentSlug){
+            return $this;
+        }
+
+        $this->data[] = [
+            'title' => $title,
+            'menu_title' => $title,
+            'submenu' => true,
+            'parent_slug' =>  $this->prentSlug,
+            'slug' =>   $slug ?? str_replace(' ', '_', strtolower($title)),
+        ];
+
+        return $this;
+    }
+
+    /**
+     * $option['as'] required
+     * @param string $parentSlug
+     * @param string $title
+     * @param string|null $slug
+     * @return SideMenu
+     */
+    public static function submenu(string $parentSlug, string $title, string $slug = null): self
+    {
+        static::getInstance()->data[] = [
+            'title' => $title,
+            'menu_title' => $title,
+            'submenu' => true,
+            'parent_slug' =>  $parentSlug,
+            'slug' =>   $slug ?? str_replace(' ', '_', strtolower($title)),
+        ];
+
+        return static::getInstance();
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
     }
 
 }

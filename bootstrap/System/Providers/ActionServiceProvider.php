@@ -16,8 +16,11 @@ class ActionServiceProvider implements ServiceProviderInterface
     public function boot(): void
     {
         $app = App::get();
-        $app->get(ActionHandler::class)
-            ->setAppInstance($app)
+
+        /** @var \PluginMaster\Foundation\Action\ActionHandler $actionHandler */
+        $actionHandler = $app->get(ActionHandler::class);
+
+        $actionHandler->setAppInstance($app)
             ->setControllerNamespace($this->controllerNamespace)
             ->loadFile($app->hooksPath('action.php'));
     }

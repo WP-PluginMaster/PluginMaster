@@ -9,23 +9,27 @@ class Action
 {
 
     /**
-     * @var object
+     * @var \PluginMaster\Foundation\Action\ActionHandler
      */
-    private static $shortcodeHandler;
+    private static ActionHandler $shortcodeHandler;
 
 
     /**
      * add any action and resolve callback
-     * @param $name
+     * @param string $name
      * @param $callback
      * @param int $priority
      */
-    public static function add( $name, $callback, $priority = 10 ) {
-        static::handler()->add( $name, $callback, $priority );
+    public static function add(string $name, $callback, int $priority = 10): void
+    {
+        static::handler()->add($name, $callback, $priority);
     }
 
-    private static function handler() {
-        if ( !static::$shortcodeHandler ) static::$shortcodeHandler = App::get( ActionHandler::class );
+    private static function handler(): ActionHandler
+    {
+        if (!static::$shortcodeHandler) {
+            static::$shortcodeHandler = App::get(ActionHandler::class);
+        }
 
         return static::$shortcodeHandler;
     }
@@ -33,11 +37,12 @@ class Action
     /**
      * add only wp_ajax_ action and resolve callback
      * @note no need to pass 'wp_ajax_'
-     * @param $name
+     * @param string $name
      * @param $callback
      * @param int $priority
      */
-    public static function ajax( $name, $callback, $priority = 10 ) {
-        static::handler()->add( 'wp_ajax_' . $name, $callback, $priority  );
+    public static function ajax(string $name, $callback, int $priority = 10): void
+    {
+        static::handler()->add('wp_ajax_' . $name, $callback, $priority);
     }
 }

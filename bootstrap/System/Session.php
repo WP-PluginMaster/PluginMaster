@@ -43,7 +43,7 @@ class Session implements SessionInterface
         if ($message) {
             $_SESSION[self::getFlushKey()]['flush'][$key] = $message;
         } else {
-             $_SESSION[self::getFlushKey()]['flush'][$key] ?? '';
+            $_SESSION[self::getFlushKey()]['flush'][$key] ?? '';
         }
     }
 

@@ -3,9 +3,10 @@
 
 use PluginMaster\Bootstrap\System\SideMenu;
 
-SideMenu::parent( 'DemoPlugin', [ 'title' => "Plugin Master", "icon" => "dashicons-admin-site", "as" => 'SideMenuController@index' ], function () {
-    SideMenu::child( 'DemoPlugin#home', [ "title" => "Dashboard", "as" => 'SideMenuController@index' ] );
-} );
 
+SideMenu::parent('Demo Plugin')
+    ->menuTitle("Home | Demo Plugin")
+    ->callback('SideMenuController@index')
+    ->child('demo-plugin-home')->callback('SideMenuController@index') ;
 
-
+SideMenu::submenu('demo-plugin', 'about')->callback('SideMenuController@about');

@@ -17,8 +17,11 @@ class ApiServiceProvider implements ServiceProviderInterface
         $app = App::get();
 
         add_action('rest_api_init', function () use ($app) {
-            $app->get(ApiHandler::class)
-                ->setAppInstance($app)
+
+            /** @var \PluginMaster\Foundation\Api\ApiHandler $apiHandler */
+            $apiHandler = $app->get(ApiHandler::class);
+
+            $apiHandler->setAppInstance($app)
                 ->setNamespace($app->config('api_namespace'))
                 ->setControllerNamespace($this->controllerNamespace)
                 ->setMiddleware($app->config('middleware'))
@@ -26,8 +29,11 @@ class ApiServiceProvider implements ServiceProviderInterface
         });
 
         add_action('rest_api_init', function () use ($app) {
-            $app->get(ApiHandler::class)
-                ->apiGenerate();
+
+            /** @var \PluginMaster\Foundation\Api\ApiHandler $apiHandler */
+            $apiHandler = $app->get(ApiHandler::class);
+            $apiHandler->apiGenerate();
+
         }, 100);
     }
 

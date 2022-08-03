@@ -8,11 +8,18 @@ use PluginMaster\Bootstrap\System\Helpers\View;
 class SideMenuController extends Controller
 {
 
-    public function index() {
-
+    public function index(): string
+    {
         $title = "This is PluginMaster for creating plugin in better way.";
 
-        return View::render( 'index', compact( 'title' )  );
+        return View::render('index', compact('title'));
+    }
+
+    public function about(): string
+    {
+        $title = "This is about page.";
+
+        return View::render('index', compact('title'));
     }
 
 

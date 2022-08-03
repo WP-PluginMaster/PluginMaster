@@ -15,13 +15,12 @@ class EnqueueServiceProvider implements ServiceProviderInterface
 
     public function boot(): void
     {
-        /** @var Application $app */
         $app = App::get();
 
-        /** @var EnqueueHandler $enqueueHandler */
+        /** @var \PluginMaster\Foundation\Enqueue\EnqueueHandler $enqueueHandler */
         $enqueueHandler = $app->get(EnqueueHandler::class);
 
-        /** @var  Enqueue $enqueue */
+        /** @var  \PluginMaster\Bootstrap\System\Enqueue $enqueue */
         $enqueue = $app->get(Enqueue::class);
 
         $enqueueHandler->setAppInstance($app)->loadEnqueueFile($app->enqueuePath('enqueue.php'));

@@ -16,8 +16,11 @@ class ShortcodeServiceProvider implements ServiceProviderInterface
     public function boot(): void
     {
         $app = App::get();
-        $app->get(ShortcodeHandler::class)
-            ->setAppInstance($app)
+
+        /** @var ShortcodeHandler $shortcodeHandler */
+        $shortcodeHandler = $app->get(ShortcodeHandler::class);
+
+        $shortcodeHandler->setAppInstance($app)
             ->setControllerNamespace($this->controllerNamespace)
             ->loadFile($app->hooksPath('shortcode.php'));
     }

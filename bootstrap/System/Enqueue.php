@@ -2,10 +2,8 @@
 
 namespace PluginMaster\Bootstrap\System;
 
-
 use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Contracts\Enqueue\EnqueueInterface;
-use PluginMaster\Foundation\Enqueue\EnqueueHandler;
 
 class Enqueue implements EnqueueInterface
 {
@@ -30,7 +28,7 @@ class Enqueue implements EnqueueInterface
     private static function getInstance(): self
     {
         if (null === self::$instance) {
-            self::$instance = App::get(Enqueue::class) ;
+            self::$instance = App::get(Enqueue::class);
         }
 
         return self::$instance;
@@ -90,7 +88,7 @@ class Enqueue implements EnqueueInterface
 
     private function getCurrentIndex(): int
     {
-        return count($this->data) -1;
+        return count($this->data) - 1;
     }
 
     public function getData(): array
@@ -147,7 +145,7 @@ class Enqueue implements EnqueueInterface
      */
     public function scriptCdn(string $cdnPath, ?string $id = null): self
     {
-        $this->data[]  = [
+        $this->data[] = [
             'id' => $id,
             'path' => $cdnPath,
             'cdn' => true,
@@ -202,7 +200,7 @@ class Enqueue implements EnqueueInterface
      */
     public function localizeScript(string $handle, string $objectName, $data): void
     {
-        $this->data[]  = [
+        $this->data[] = [
             'param' => [$handle, $objectName, $data],
             'type' => 'localizeScript',
             'hook' => static::$hook,
@@ -215,7 +213,7 @@ class Enqueue implements EnqueueInterface
      */
     public function inlineScript(string $data, array $option = []): void
     {
-        $this->data[]  = [
+        $this->data[] = [
             'param' => [$data, $option],
             'type' => 'inlineScript',
             'hook' => static::$hook,
@@ -228,7 +226,7 @@ class Enqueue implements EnqueueInterface
      */
     public function inlineStyle(string $data, string $handle = ''): void
     {
-        $this->data[]  = [
+        $this->data[] = [
             'param' => [$data, $handle],
             'type' => 'inlineStyle',
             'hook' => static::$hook,

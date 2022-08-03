@@ -3,51 +3,50 @@
 
 namespace PluginMaster\Bootstrap\System\Helpers;
 
-use PluginMaster\Foundation\View\ViewHandler;
-
 
 class View
 {
 
     /**
-     * @var ViewHandler
-     */
-    protected static $viewHandler;
-
-
-    /**
      * @param $path
      * @param array $data
-     * @param bool $noTemplate
      * @return string
      */
-    public static function render( $path, $data = [], $noTemplate = false ) {
-        return static::resolveView()->render( $path, $data, $noTemplate );
+    public static function render($path, array $data = []): string
+    {
+        /** @var View $viewInstance */
+        $viewInstance = App::get(View::class);
+
+        return $viewInstance->resolvePHP($viewInstance->resolvePath($path), $data);
     }
 
-    /**
-     * @return mixed
-     */
-    private static function resolveView() {
-
-        if ( !static::$viewHandler ) {
-            $app = App::get();
-
-            $options = $app->config( 'twig_template' ) ? [ 'cache_path' => $app->cachePath( 'views' ), 'text_domain' => $app->config( 'slug' ) ] : [];
-
-            static::$viewHandler = $app->get( ViewHandler::class )->setConfig( $app->viewPath(), $options );
-        }
-
-        return static::$viewHandler;
-
-    }
 
     /**
      * @param $path
-     * @return void
+     * @return string
      */
-    public static function removeCache( $path = null ) {
-        static::resolveView()->removeCache( $path );
+    protected function resolvePath($path): string
+    {
+        $viewPath = '';
+
+        foreach (explode('.', $path) as $path) {
+            $viewPath .= '/' . $path;
+        }
+
+        return $viewPath;
     }
 
+    /**
+     * @param string $path
+     * @param array $data
+     * @return string
+     */
+    protected function resolvePHP(string $path, array $data = []): string
+    {
+        if (count($data)) {
+            extract($data);
+        }
+
+        return include App::get()->viewPath() . $path . '.php';
+    }
 }
