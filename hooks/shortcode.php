@@ -1,6 +1,6 @@
 <?php
 
+
 use PluginMaster\Bootstrap\System\Shortcode;
 
-
-  // Shortcode::add('plugin-master', 'ShortcodeController@index');
+Shortcode::add('plugin-master', 'ShortcodeController@index');
