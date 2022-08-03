@@ -2,14 +2,10 @@
 
 namespace PluginMaster\Bootstrap\System;
 
-use DI\Container;
-use DI\DependencyException;
-use DI\NotFoundException;
-use DI\T;
 use PluginMaster\Contracts\Foundation\ApplicationInterface;
 use PluginMaster\Foundation\Config\ConfigHandler;
 
-class Application implements ApplicationInterface
+class Application extends DependencyInjectionContainer implements ApplicationInterface
 {
     /**
      * @var Application|null
@@ -45,21 +41,17 @@ class Application implements ApplicationInterface
     protected array $config = [];
 
     /**
-     * @var Container
-     */
-    protected Container $container;
-
-    /**
      * The PluginMaster version.
      *
      * @var string
      */
-    private $version;
+    private string $version;
 
+    /**
+     * @throws \ReflectionException
+     */
     public function __construct(string $path)
     {
-        $this->container = new Container();
-
         $this->setBasePath($path);
         $this->setAppConfig();
         $this->setVersion($this->config('version'));
@@ -83,8 +75,7 @@ class Application implements ApplicationInterface
      * set ConfigHandler instance inside container
      * and set config path  for ConfigHandler to resolve config data
      * @return mixed
-     * @throws DependencyException
-     * @throws NotFoundException
+     * @throws \ReflectionException
      */
     private function setAppConfig(): void
     {
@@ -97,17 +88,6 @@ class Application implements ApplicationInterface
     }
 
     /**
-     * @param string $class
-     * @return T|mixed
-     * @throws DependencyException
-     * @throws NotFoundException
-     */
-    public function get(string $class): object
-    {
-        return $this->container->get($class);
-    }
-
-    /**
      * @param string|null $path
      * @return mixed
      */
@@ -117,7 +97,7 @@ class Application implements ApplicationInterface
     }
 
     /**
-     * @param $version
+     * @param string $version
      * @return mixed
      */
     public function setVersion(string $version): void
@@ -147,6 +127,7 @@ class Application implements ApplicationInterface
     /**
      * @param null $path
      * @return Application
+     * @throws \ReflectionException
      */
     public static function getInstance($path = null): ?Application
     {
@@ -296,6 +277,7 @@ class Application implements ApplicationInterface
      * Boot the application's service providers.
      *
      * @return void
+     * @throws \ReflectionException
      */
     public function boot(): void
     {
@@ -320,6 +302,7 @@ class Application implements ApplicationInterface
     /**
      * boot service providers
      * @return void
+     * @throws \ReflectionException
      */
     protected function bootProvider(): void
     {
@@ -341,16 +324,5 @@ class Application implements ApplicationInterface
             }
         }
     }
-
-    /**
-     * @param $callable
-     * @param array $parameters
-     * @return mixed
-     */
-    public function call($callable, array $parameters = [])
-    {
-        return $this->container->call($callable, $parameters);
-    }
-
 
 }
