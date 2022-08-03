@@ -7,12 +7,10 @@ use PluginMaster\Foundation\Action\ActionHandler;
 
 class Action
 {
-
     /**
-     * @var \PluginMaster\Foundation\Action\ActionHandler
+     * @var \PluginMaster\Foundation\Action\ActionHandler|null
      */
-    private static ActionHandler $shortcodeHandler;
-
+    private static ?ActionHandler $actionHandler = null;
 
     /**
      * add any action and resolve callback
@@ -27,11 +25,11 @@ class Action
 
     private static function handler(): ActionHandler
     {
-        if (!static::$shortcodeHandler) {
-            static::$shortcodeHandler = App::get(ActionHandler::class);
+        if (!static::$actionHandler) {
+            static::$actionHandler = App::get(ActionHandler::class);
         }
 
-        return static::$shortcodeHandler;
+        return static::$actionHandler;
     }
 
     /**
