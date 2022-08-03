@@ -10,9 +10,9 @@ class Shortcode implements ShortcodeInterface
 {
 
     /**
-     * @var ShortcodeHandler
+     * @var \PluginMaster\Foundation\Shortcode\ShortcodeHandler|null
      */
-    private static ShortcodeHandler $shortcodeHandler;
+    private static ?ShortcodeHandler $shortcodeHandler = null;
 
 
     /**
