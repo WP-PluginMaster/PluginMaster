@@ -55,6 +55,7 @@ class InitialDataProvider implements ServiceProviderInterface
          * @for front-end area
          */
         Enqueue::front()->localizeScript('jquery-core', $objectName, $data);
+
     }
 
 
