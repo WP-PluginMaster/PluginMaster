@@ -18,7 +18,7 @@ return [
     'name' => "Plugin Master",
 
     /**
-     * application/plugin slug / text domain
+     * application/plugin slug/text domain
      * @type string
      */
     'slug' => "plugin-master",
@@ -61,6 +61,7 @@ return [
     'middleware' => [
         'test' => TestMiddleware::class
     ],
+
     /**
      * system service provide
      * do not add your service provider here
@@ -70,11 +71,9 @@ return [
     'system_providers' => [
         SideMenuServiceProvider::class,
         ApiServiceProvider::class,
-        EnqueueServiceProvider::class,
-        InitialDataProvider::class,
         ActionServiceProvider::class,
         ShortcodeServiceProvider::class,
+        EnqueueServiceProvider::class,
+        InitialDataProvider::class,
     ],
-
-
 ];
