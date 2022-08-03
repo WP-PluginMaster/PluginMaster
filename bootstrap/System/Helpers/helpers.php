@@ -77,3 +77,14 @@ if (!function_exists('plugin_master_domain')) {
         return App::get()->config('slug');
     }
 }
+
+if (!function_exists('plugin_master_slug')) {
+    /**
+     * generate slug from string.
+     */
+
+    function plugin_master_slug(string $string)
+    {
+        return str_replace(' ', '-', strtolower($string));
+    }
+}
