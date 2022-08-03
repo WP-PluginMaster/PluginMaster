@@ -43,7 +43,7 @@ class SideMenu implements SideMenuInterface
      */
     public static function parent(string $title, string $slug = null): self
     {
-        $slug = $slug ?? str_replace(' ', '-', strtolower($title));
+        $slug = $slug ?? plugin_master_slug($title);
 
         static::getInstance()->prentSlug  = $slug;
 
@@ -113,14 +113,13 @@ class SideMenu implements SideMenuInterface
             'menu_title' => $title,
             'submenu' => true,
             'parent_slug' =>  $this->prentSlug,
-            'slug' =>   $slug ?? str_replace(' ', '_', strtolower($title)),
+            'slug' =>   $slug ?? plugin_master_slug($title),
         ];
 
         return $this;
     }
 
     /**
-     * $option['as'] required
      * @param string $parentSlug
      * @param string $title
      * @param string|null $slug
@@ -133,7 +132,7 @@ class SideMenu implements SideMenuInterface
             'menu_title' => $title,
             'submenu' => true,
             'parent_slug' =>  $parentSlug,
-            'slug' =>   $slug ?? str_replace(' ', '_', strtolower($title)),
+            'slug' =>   $slug ?? plugin_master_slug($title),
         ];
 
         return static::getInstance();
