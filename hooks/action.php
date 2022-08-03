@@ -2,7 +2,6 @@
 
 
 use PluginMaster\App\Http\Controllers\Actions\ActionController;
+use PluginMaster\Bootstrap\System\Action;
 
-
-
-  /*Action::add('admin_menu' ,  ActionController::class); */
+Action::add('admin_menu' ,  ActionController::class);
