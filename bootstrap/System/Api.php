@@ -11,19 +11,19 @@ use PluginMaster\Foundation\Api\ApiHandler;
 class Api implements ApiInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public static string $prefix;
+    public static ?string $prefix;
 
     /**
      * @var string
      */
-    private static string $middleware;
+    private static ?string $middleware = null;
 
     /**
-     * @var ApiHandler
+     * @var ApiHandler|null
      */
-    private static ApiHandler $apiHandler;
+    private static ?ApiHandler $apiHandler = null;
 
     /**
      * setting up api prefix and middleware as array with  $config

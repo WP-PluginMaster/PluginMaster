@@ -60,10 +60,10 @@ class DependencyInjectionContainer
     /**
      * initiate the class and return the instance.
      * @param string $id
-     * @return mixed|string
+     * @return object
      * @throws \ReflectionException
      */
-    public function get(string $id)
+    public function get(string $id): object
     {
         if (!isset($this->instances[$id])) {
             $this->instances[$id] = $this->make($id);
