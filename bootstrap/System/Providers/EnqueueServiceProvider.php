@@ -27,7 +27,7 @@ class EnqueueServiceProvider implements ServiceProviderInterface
 
         add_action('admin_enqueue_scripts', function () use ($enqueueHandler, $enqueue) {
             $enqueueHandler->initEnqueue($enqueue);
-        });
+        }, 10);
 
         add_action('wp_enqueue_scripts', function () use ($enqueueHandler, $enqueue) {
             $enqueueHandler->initEnqueue($enqueue);
