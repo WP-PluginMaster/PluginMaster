@@ -5,6 +5,7 @@ namespace PluginMaster\Bootstrap\System;
 use PluginMaster\Bootstrap\System\Helpers\App;
 use PluginMaster\Contracts\Enqueue\EnqueueInterface;
 
+
 class Enqueue implements EnqueueInterface
 {
     /**
@@ -89,11 +90,6 @@ class Enqueue implements EnqueueInterface
     private function getCurrentIndex(): int
     {
         return count($this->data) - 1;
-    }
-
-    public function getData(): array
-    {
-        return $this->data;
     }
 
     /**
@@ -233,6 +229,19 @@ class Enqueue implements EnqueueInterface
         ];
     }
 
+    private function getData(): array
+    {
+        return $this->data;
+    }
+
+    public function __call($method, $args): array
+    {
+        if($method == 'getData'){
+           return  $this->getData();
+        }
+
+        return [];
+    }
 }
 
 
