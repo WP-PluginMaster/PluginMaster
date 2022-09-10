@@ -21,9 +21,9 @@ class EnqueueServiceProvider implements ServiceProviderInterface
 
     public function addAdminEnqueue()
     {
-        wp_enqueue_style( 'plugin-master-css', plugin_master_app()->baseUrl('assets/css/app.css'), [], angel_config('app.version') );
-        wp_enqueue_script( 'plugin-master-react', plugin_master_app()->baseUrl('assets/js/react/app.js'), ['jquery'], angel_config('app.version'), true );
-        wp_enqueue_script( 'plugin-master-vue', plugin_master_app()->baseUrl('assets/js/vue/app.js'), ['jquery'], angel_config('app.version'), true );
+        wp_enqueue_style( 'plugin-master-css', plugin_master_app()->baseUrl('assets/css/app.css'), [], plugin_master_config('app.version') );
+        wp_enqueue_script( 'plugin-master-react', plugin_master_app()->baseUrl('assets/js/react/app.js'), ['jquery'], plugin_master_config('app.version'), true );
+        wp_enqueue_script( 'plugin-master-vue', plugin_master_app()->baseUrl('assets/js/vue/app.js'), ['jquery'], plugin_master_config('app.version'), true );
     }
 
 }
