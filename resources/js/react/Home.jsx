@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = () => {
-    return <h1>PluginMaster React Application </h1>
+    return <p>Hello world, React JS ❤️</p>
 }
 
 export default Home

@@ -13,7 +13,7 @@ if (!function_exists('plugin_master_app')) {
      * @return object|Application
      */
 
-    function plugin_master_app($class = null)
+    function plugin_master_app($class = null): Application
     {
         if (is_null($class)) {
             return Application::getInstance();

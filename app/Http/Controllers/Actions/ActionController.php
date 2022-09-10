@@ -10,7 +10,7 @@ class ActionController extends Controller
 
     public function __invoke($request)
     {
-        View::render("index", ["title" => "This message from PluginMaster Action."]);
+        View::render("action", ["title" => "This message from PluginMaster Action."]);
     }
 
 

@@ -1,16 +1,12 @@
-import Vue from 'vue'
+import {createApp} from 'vue'
 
-import App from './app.vue'
+import App from './App.vue'
 
 
-new Vue({
-    el: '#VueApp',
-    template: '<App/>',
-    components: {App},
-    data: function () {
-        return {
-            name: 'PluginMaster'
-        }
-    },
-    methods: {}
-})
+if( document.getElementById('vueApp') ) {
+
+    const app = createApp(App)
+
+    app.mount('#vueApp')
+
+}

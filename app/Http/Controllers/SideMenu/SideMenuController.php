@@ -12,14 +12,17 @@ class SideMenuController extends Controller
     {
         $title = "This is PluginMaster Home Page.";
 
-        return View::render('home', compact('title'));
+        return View::render('index', compact('title'));
     }
 
-    public function about(): string
+    public function react(): string
     {
-        $title = "This is PluginMaster About Page.";
+        return View::render('react-app');
+    }
 
-        return View::render('about', compact('title'));
+    public function vue(): string
+    {
+        return View::render('vue-app');
     }
 
 

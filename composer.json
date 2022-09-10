@@ -32,7 +32,6 @@
   },
   "require": {
     "php": "^7.0|^8.0",
-    "php-di/php-di": "^6.3",
     "plugin-master/contracts": "^1.0",
     "plugin-master/db": "^1.0",
     "plugin-master/request": "^1.0",

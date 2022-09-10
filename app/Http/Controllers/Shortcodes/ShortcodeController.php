@@ -9,7 +9,7 @@ class ShortcodeController extends Controller
 
     public function index()
     {
-        echo '<pre>This message from PluginMaster ShortCode. <a href=""> read more..</a></pre>';
+        echo '<pre>This message from PluginMaster ShortCode. <a href="https://wppluginmaster.com">read more..</a></pre>';
     }
 
 }

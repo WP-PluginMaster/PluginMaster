@@ -1,13 +1,13 @@
 <?php
 
 use PluginMaster\App\Http\Middleware\TestMiddleware;
-use PluginMaster\App\Providers\TestServiceProvider;
-use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider;
-use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider;
-use PluginMaster\Bootstrap\System\Providers\EnqueueServiceProvider;
+use PluginMaster\App\Providers\EnqueueServiceProvider;
+use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider as SystemActionServiceProvider;
+use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider as SystemApiServiceProvider;
+use PluginMaster\Bootstrap\System\Providers\EnqueueServiceProvider as SystemEnqueueServiceProvider ;
 use PluginMaster\Bootstrap\System\Providers\InitialDataProvider;
-use PluginMaster\Bootstrap\System\Providers\ShortcodeServiceProvider;
-use PluginMaster\Bootstrap\System\Providers\SideMenuServiceProvider;
+use PluginMaster\Bootstrap\System\Providers\ShortcodeServiceProvider as SystemShortcodeServiceProvider;
+use PluginMaster\Bootstrap\System\Providers\SideMenuServiceProvider as SystemSideMenuServiceProvider;
 
 return [
 
@@ -50,7 +50,7 @@ return [
      * @type array
      */
     'providers' => [
-        TestServiceProvider::class,
+        EnqueueServiceProvider::class,
     ],
 
     /**
@@ -69,11 +69,11 @@ return [
      * @type array
      */
     'system_providers' => [
-        SideMenuServiceProvider::class,
-        ApiServiceProvider::class,
-        ActionServiceProvider::class,
-        ShortcodeServiceProvider::class,
-        EnqueueServiceProvider::class,
+        SystemSideMenuServiceProvider::class,
+        SystemApiServiceProvider::class,
+        SystemActionServiceProvider::class,
+        SystemShortcodeServiceProvider::class,
+        SystemEnqueueServiceProvider::class,
         InitialDataProvider::class,
     ],
 ];

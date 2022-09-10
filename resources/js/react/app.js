@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './Home';
+import Home from './Home.jsx';
 
-ReactDOM.render(
-    <Home/>,
-    document.getElementById('app')
-);
+if( document.getElementById('reactApp') ){
+
+    ReactDOM.render(
+        <Home/>,
+        document.getElementById('reactApp')
+    );
+}
