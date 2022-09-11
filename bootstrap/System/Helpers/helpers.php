@@ -24,6 +24,19 @@ if (!function_exists('plugin_master_app')) {
 }
 
 
+if (!function_exists('plugin_master_asset')) {
+    /**
+     * @param $path
+     * @return string
+     */
+
+    function plugin_master_asset($path): string
+    {
+        return Application::getInstance()->asset($path);
+    }
+}
+
+
 if (!function_exists('plugin_master_config')) {
     /**
      * Get config.
