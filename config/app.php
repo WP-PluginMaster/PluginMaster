@@ -1,7 +1,7 @@
 <?php
 
 use PluginMaster\App\Http\Middleware\TestMiddleware;
-use PluginMaster\App\Providers\EnqueueServiceProvider;
+use PluginMaster\App\Providers\TestServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ActionServiceProvider as SystemActionServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\ApiServiceProvider as SystemApiServiceProvider;
 use PluginMaster\Bootstrap\System\Providers\EnqueueServiceProvider as SystemEnqueueServiceProvider ;
@@ -50,7 +50,7 @@ return [
      * @type array
      */
     'providers' => [
-        EnqueueServiceProvider::class,
+        TestServiceProvider::class,
     ],
 
     /**
