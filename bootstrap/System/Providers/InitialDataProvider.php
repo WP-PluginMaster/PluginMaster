@@ -31,12 +31,13 @@ class InitialDataProvider implements ServiceProviderInterface
          *  you can add your custom data here
          */
         $data = [
-            "name" => $app->config('name'),
-            "slug" => $slug,
-            "version" => $app->version(),
+            "name"          => $app->config('name'),
+            "slug"          => $slug,
+            "version"       => $app->version(),
             "api_namespace" => $app->config('api_namespace'),
-            "ajax_url" => admin_url('admin-ajax.php'),
-            "nonce" => wp_create_nonce($slug)
+            "api_endpoint"  => home_url().'/wp-json/'.$app->config('api_namespace'),
+            "ajax_url"      => admin_url('admin-ajax.php'),
+            "nonce"         => wp_create_nonce("wp_rest")
         ];
 
         /**
