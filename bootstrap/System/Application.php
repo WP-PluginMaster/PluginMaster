@@ -4,6 +4,7 @@ namespace PluginMaster\Bootstrap\System;
 
 use PluginMaster\Contracts\Foundation\ApplicationInterface;
 use PluginMaster\Foundation\Config\ConfigHandler;
+use PluginMaster\Foundation\DIC\DependencyInjectionContainer;
 
 class Application extends DependencyInjectionContainer implements ApplicationInterface
 {
