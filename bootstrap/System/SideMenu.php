@@ -10,7 +10,7 @@ class SideMenu implements SideMenuInterface
     /**
      * @var array
      */
-    public array $data ;
+    public array $data = [];
 
     /**
      * @var string

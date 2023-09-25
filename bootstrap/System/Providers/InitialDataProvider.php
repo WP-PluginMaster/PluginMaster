@@ -35,7 +35,7 @@ class InitialDataProvider implements ServiceProviderInterface
             "slug"          => $slug,
             "version"       => $app->version(),
             "api_namespace" => $app->config('api_namespace'),
-            "api_endpoint"  => home_url().'/wp-json/'.$app->config('api_namespace'),
+            'api_endpoint' => home_url().'?rest_route=/'.$app->config('api_namespace'),
             "ajax_url"      => admin_url('admin-ajax.php'),
             "nonce"         => wp_create_nonce("wp_rest")
         ];
